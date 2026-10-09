@@ -1,0 +1,1228 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="description" content="적응형 원뿔 슬라이싱 R&amp;E 2차 중간 발표 초안, 17장">
+    <title>적응형 원뿔 슬라이싱 · 2차 중간 발표</title>
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip" href="#stage">발표 내용으로 이동</a>
+    <header class="appbar">
+      <a class="brand" href="#1" aria-label="처음으로"><span class="brand-icon">a</span><strong>adaptive</strong><span class="brand-divider"></span><span>R&amp;E 2차 발표</span></a>
+      <nav aria-label="발표 도구">
+        <span class="draft-label">발표 초안</span>
+        <button id="overview-button" title="목차 (O)">전체 보기</button>
+        <button id="notes-button" title="발표자 메모 (N)">메모</button>
+        <button id="present-button" title="준비 메모 숨기기 (P)">발표 모드</button>
+        <button id="full-button" title="전체 화면 (F)">전체 화면</button>
+      </nav>
+    </header>
+    <main id="viewport">
+      <div id="stage" role="region" aria-label="발표 슬라이드" tabindex="-1">
+        <!-- 01 · 형상 적응형 원뿔 슬라이싱 -->
+        <section id="slide-1" class="slide cover" data-section="소개" aria-labelledby="title-1" aria-hidden="true">
+          <span class="slide-number">01</span>
+          <div class="content">
+            <div class="split">
+              <div>
+                <p class="eyebrow">R&amp;E · 2차 중간 발표</p>
+                <h1 id="title-1">형상 적응형<br><span class="accent">원뿔 슬라이싱</span></h1>
+                <div class="cover-meta">김재혁 · 나준우 · 김진우<br>서울과학고등학교 · 지도교사 김주성 · AI-017</div>
+                <p class="cover-small">10/12 R&E 2차 중간 발표</p>
+              </div>
+              <div class="cover-visual">
+                <div class="visual" data-visual="cover" data-model="hourglass">
+                  <div class="visual-top">ADAPTIVE CONICAL SLICING</div>
+                  <div class="visual-buttons">
+                    <button data-reset-view="">시점 초기화</button>
+                  </div>
+                  <div class="visual-caption">원뿔 레이어 개념도 · 드래그하여 회전</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>발표일·팀원·지도교사 표기를 최종 확인해주세요.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>1차 발표에서는 형상에 맞는 원뿔각과 높이 구간의 자동 결정이 중심이었다. 이번에는 코드 설계와 Ender-3 V3 SE 기반 Rep5x 제작·개조를 주요 성과로 소개한다. 1차 제목의 4축 연구에서 5축 헤드 구조를 사용하는 출력 플랫폼으로 확장한 이유를 연결해 말한다. 표지의 3D는 개념 설명이며 실제 출력 경로 또는 실측 장비 CAD가 아니다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>발표 날짜</li>
+              <li>팀명·발표자·지도교사 최종 표기</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/26037-arch/adaptive-conical-slicing-presentation" target="_blank" rel="noopener">1차 중간 발표</a>
+            <p style="color:#78859a;font-size:12px;margin:0">82f2c60dd3570c8b1681b6c552cdbd5098f13e34</p>
+          </template>
+        </section>
+        <!-- 02 · 발표 목차 -->
+        <section id="slide-2" class="slide" data-section="소개" aria-labelledby="title-2" aria-hidden="true">
+          <span class="slide-number">02</span>
+          <header class="slide-header">
+            <p class="eyebrow">OVERVIEW</p>
+            <h2 id="title-2">발표 목차</h2>
+            <p class="subtitle">각도 선택 알고리즘을 실제 출력 플랫폼에 연결하는 과정</p>
+          </header>
+          <div class="content">
+            <div class="agenda">
+              <div>
+                <p class="agenda-lead">완성한 코드와<br>하드웨어 구조를<br><span class="accent">하나의 연구 흐름</span>으로<br>설명합니다</p>
+                <p class="small">연구 성과와 검증 근거를 연결하고,<br>최종 출력 비교에서 확인할 항목을 정리합니다.</p>
+              </div>
+              <div class="agenda-list">
+                <div class="agenda-item" data-go="3">
+                  <span class="num">01</span>
+                  <div>
+                    <h3>1차 발표와 이번 성과</h3>
+                    <p>연구의 연속성과 주요 산출물</p>
+                  </div>
+                  <span class="range">03–04</span>
+                </div>
+                <div class="agenda-item" data-go="5">
+                  <span class="num">02</span>
+                  <div>
+                    <h3>코드 제작과 검증</h3>
+                    <p>원뿔각 평가, k값 수정, 결과 판단</p>
+                  </div>
+                  <span class="range">05–08</span>
+                </div>
+                <div class="agenda-item" data-go="9">
+                  <span class="num">03</span>
+                  <div>
+                    <h3>프로그램 설계</h3>
+                    <p>파이프라인과 GUI</p>
+                  </div>
+                  <span class="range">09–10</span>
+                </div>
+                <div class="agenda-item" data-go="11">
+                  <span class="num">04</span>
+                  <div>
+                    <h3>5축 하드웨어</h3>
+                    <p>Rep5x 구조, 부품, 설계, 개조</p>
+                  </div>
+                  <span class="range">11–14</span>
+                </div>
+                <div class="agenda-item" data-go="15">
+                  <span class="num">05</span>
+                  <div>
+                    <h3>출력 확인과 다음 목표</h3>
+                    <p>형상 비교와 후속 연구</p>
+                  </div>
+                  <span class="range">15–17</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>각도 평가부터 경로 생성, 장비 설계, 출력 확인까지의 흐름을 간단히 안내한다. 요청된 17장 구성을 그대로 유지했다.</p>
+          </template>
+        </section>
+        <!-- 03 · 이전 발표 성과 요약 -->
+        <section id="slide-3" class="slide" data-section="연구 성과" aria-labelledby="title-3" aria-hidden="true">
+          <span class="slide-number">03</span>
+          <header class="slide-header">
+            <p class="eyebrow">01 · PREVIOUS WORK</p>
+            <h2 id="title-3">이전 발표 성과 요약</h2>
+            <p class="subtitle">형상에 맞는 원뿔각과 구간을 자동으로 정하는 기반 마련</p>
+          </header>
+          <div class="content">
+            <div class="split wide-left">
+              <div>
+                <ul class="evidence-list">
+                  <li data-num="01"><h3>두 가지 원뿔각 선택 방식</h3><p>평가함수 J 기반 선택과 오버행 연결 성분 I꜀ 기반 선택을 비교</p></li>
+                  <li data-num="02"><h3>영역 분할과 경로 시각화</h3><p>구간별 원뿔각, STL 교선, G-code 경로를 화면에서 검토</p></li>
+                  <li data-num="03"><h3>검증 과제의 구체화</h3><p>구간 경계, 압출량, 축 제약, 간섭과 실제 출력의 연결을 과제로 설정</p></li>
+                </ul>
+                <p class="body-note">이번 발표는 이 기반 위에서 코드 설계와 5축 출력 구조를 설명합니다.</p>
+              </div>
+              <div>
+                <div class="visual" data-visual="model" data-model="arch">
+                  <div class="visual-top">1차 발표 대표 STL · 아치형</div>
+                  <div class="visual-buttons">
+                    <button data-reset-view="">시점 초기화</button>
+                  </div>
+                  <div class="visual-caption">기존 연구 모델 · 실제 출력 결과와 구분</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>1차 발표 저장소의 실제 본문을 요약했다. 당시 주요 성과는 각도·구간 분석과 두 종류의 시각화 도구였다. G-code 연결 및 물리적 출력 검증은 후속 과제였다. 이번 성과와 대비할 때 당시 자료의 시점을 유지한다. 아치형 STL은 1차 발표 저장소 arch-01.stl이다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>1차 대표 결과 중 이번에 이어서 검증한 모델 표시</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/26037-arch/adaptive-conical-slicing-presentation" target="_blank" rel="noopener">1차 중간 발표</a>
+            <p style="color:#78859a;font-size:12px;margin:0">82f2c60dd3570c8b1681b6c552cdbd5098f13e34</p>
+            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
+            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
+          </template>
+        </section>
+        <!-- 04 · 이번 연구 성과 요약 -->
+        <section id="slide-4" class="slide" data-section="연구 성과" aria-labelledby="title-4" aria-hidden="true">
+          <span class="slide-number">04</span>
+          <header class="slide-header">
+            <p class="eyebrow">02 · CURRENT WORK</p>
+            <h2 id="title-4">이번 연구 성과 요약</h2>
+            <p class="subtitle">완성된 코드 설계와 프린터 제작·개조</p>
+          </header>
+          <div class="content">
+            <div class="outcomes">
+              <div class="outcome">
+                <div class="index">01</div>
+                <h3>코드 설계</h3>
+                <p class="outcome-detail">원뿔각 평가와 G-code 생성<br>경로 검사와 퇴적 형상 비교<br>결과를 반복 확인하는 검증 구조</p>
+                <div class="status">핵심 산출물 · 코드와 검증 파이프라인</div>
+              </div>
+              <div class="outcome">
+                <div class="index">02</div>
+                <h3>하드웨어 구조 설계</h3>
+                <p class="outcome-detail">Ender-3 V3 SE 본체 기반<br>Rep5x 헤드 회전 구조 적용<br>3D 프린터 제작·개조</p>
+                <div class="status">핵심 산출물 · 5축 출력 플랫폼</div>
+              </div>
+            </div>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>코드 최종 구조도와 제작·개조 완료 사진을 추가하면 두 성과의 근거가 완성됩니다.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>두 성과의 완료 상태는 사용자 제공 연구 현황을 따른다. 저장소 또는 채팅에 사진이 없다는 이유로 오프라인 팀의 작업을 미완료로 판단하지 않는다. 프로그램 설계 완료와 실물 출력 성능 검증은 별도 단계이므로 구분해 설명한다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>최종 코드 구조도 또는 모듈 목록</li>
+              <li>제작·개조 완료 전경 사진</li>
+              <li>팀원별 오프라인 설계 결과 요약</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
+            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
+            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
+            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
+          </template>
+        </section>
+        <!-- 05 · 원뿔각 평가 코드 제작 -->
+        <section id="slide-5" class="slide" data-section="코드와 검증" aria-labelledby="title-5" aria-hidden="true">
+          <span class="slide-number">05</span>
+          <header class="slide-header">
+            <p class="eyebrow">03 · ANGLE EVALUATION</p>
+            <h2 id="title-5">원뿔각 평가 코드 제작</h2>
+            <p class="subtitle">서포트 감소 이득과 각도 비용을 함께 고려하는 선택</p>
+          </header>
+          <div class="content">
+            <div class="split wide-right">
+              <div>
+                <div class="formula">J(θ, d) = ΔS(θ, d) − k|θ|</div>
+                <dl class="definition">
+                  <dt>ΔS</dt>
+                  <dd>평면 대비 서포트 필요 면적 비율 감소량 (%p)</dd>
+                  <dt>k</dt>
+                  <dd>각도 1°에 부여하는 비용 가중치 (%p/°)</dd>
+                  <dt>θ, d</dt>
+                  <dd>원뿔각과 방향 outward / inward</dd>
+                </dl>
+                <div class="code-block">gain = baseline - support<br>cost = k * angle_deg<br><span class="blue">return gain - cost</span></div>
+                <p class="small">기본 k = 0.20 · 코드의 각도 탐색 0~44°, 2° 간격<br>k는 원뿔 기울기 tanθ와 구분되는 평가 가중치입니다.</p>
+              </div>
+              <div>
+                <div class="label">평가와 선택의 구조</div>
+                <ul class="evidence-list">
+                  <li data-num="01"><h3>STL의 면 법선과 반경 성분 분석</h3><p>국소 원뿔 적층 방향을 기준으로 서포트 필요 면을 판정</p></li>
+                  <li data-num="02"><h3>후보별 점수 계산</h3><p>각도와 방향마다 ΔS 및 k에 따른 비용을 계산</p></li>
+                  <li data-num="03"><h3>추천값과 선택 이유 반환</h3><p>최대 J 후보와 함께 남은 서포트, 이득, 비용을 기록</p></li>
+                </ul>
+                <div class="caption-strip">추천 각도를 G-code 경로와 형상 재구성 단계에서 다시 검증합니다.</div>
+              </div>
+            </div>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>팀에서 확정한 평가 코드 버전과 실제 입력·출력 예시를 추가해주세요.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>식과 단위는 KJH-code/slicer 및 wjd의 conical/selector.py에서 확인했다. evaluate_J는 support_baseline-support_at_angle-k*angle_deg를 계산한다. 기본 각도 후보는 0~44°, 2° 간격이며 실제 장비의 안전 범위라는 뜻은 아니다. analytic.py는 g=n_z*cosθ+d*n_r*sinθ를 자기지지 임계값과 비교한다. k값이 클수록 큰 각도의 비용이 커진다. inward 후보가 기하 점수에서 선택되더라도 출력 가능성을 보장하지 않는다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>연구팀 최종 커밋과 실행 조건</li>
+              <li>입력 STL 및 평가 결과 JSON 또는 로그</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
+            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
+            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
+            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
+          </template>
+        </section>
+        <!-- 06 · 코드 구조와 검증 역할 -->
+        <section id="slide-6" class="slide" data-section="코드와 검증" aria-labelledby="title-6" aria-hidden="true">
+          <span class="slide-number">06</span>
+          <header class="slide-header">
+            <p class="eyebrow">04 · VALIDATION ARCHITECTURE</p>
+            <h2 id="title-6">코드 구조와 검증 역할</h2>
+            <p class="subtitle">생성한 G-code와 재구성 형상을 각각 확인</p>
+          </header>
+          <div class="content">
+            <div class="step-flow">
+              <div class="step">
+                <div class="num">INPUT</div>
+                <h3>STL + 조건</h3>
+                <p>모델, k, 층높이, 장비 설정</p>
+              </div>
+              <div class="step">
+                <div class="num">SELECT</div>
+                <h3>각도·구간 선택</h3>
+                <p>평가식과 전환 제약 적용</p>
+              </div>
+              <div class="step">
+                <div class="num">GENERATE</div>
+                <h3>G-code 생성</h3>
+                <p>원뿔 변환, 슬라이싱, 역변환</p>
+              </div>
+            </div>
+            <div class="check-lanes">
+              <div class="check-lane">
+                <div class="label">A · 경로·기구학 검사</div>
+                <h3>출력 명령의 실행 조건 확인</h3>
+                <p>XYZ/E 경로와 B/C 자세를 해석<br>축 범위, 되감기, 층간 지지와 근사 간섭 검사</p>
+                <p class="small"><code>toolpath.py · rep5x.py · rep5x_check.py</code></p>
+              </div>
+              <div class="check-lane green">
+                <div class="label">B · 퇴적·물리 모델 비교</div>
+                <h3>G-code로 만든 형상 평가</h3>
+                <p>VOLCO 확장으로 전체 퇴적 형상을 재구성<br>OpenFOAM 어댑터로 국소 유동을 별도 검토</p>
+                <p class="small">현재 CFD는 1층 국소·등온 범위<br>Rep5x 자세·열·고화 결합은 추가 검증 대상</p>
+              </div>
+            </div>
+            <p class="caption-strip">기하 검사, 퇴적 재구성, 물리 해석의 판정 범위를 구분해 결과를 저장합니다.</p>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>물리 엔진 실행 화면·재구성 STL·원본 비교 그림과 실행 조건을 추가해주세요.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>wjd의 conical/pipeline.py 및 docs/physics_validation.md, docs/deposition_simulation.md에 근거한다. VOLCO oriented는 B/C 방향을 반영하는 구형 voxel 퇴적 모델이다. 유동·열·고화·충돌을 푸는 물리 엔진이 아니다. 별도 physics_cfd 어댑터는 pyGCodeDecode와 OpenFOAM 14 incompressibleVoF를 연결하며 현재 Cartesian 1층 국소, 등온, 고정 격자 소스 범위다. Rep5x 방향은 UNSUPPORTED_REP5X_ORIENTATION으로 처리한다. CFD 완료와 실물 출력 가능 PASS를 혼동하지 않는다. 온도·재료·장비 미보정 결과는 보정 필요 상태로 남긴다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>실제 사용한 물리 엔진·버전·실행 상태</li>
+              <li>재구성 형상과 원본의 같은 시점 비교 그림</li>
+              <li>G-code 경로 검사 보고서</li>
+              <li>재료·기계 프로파일</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
+            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
+            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
+            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+          </template>
+        </section>
+        <!-- 07 · k값 수정과 원뿔각 선택 검증 -->
+        <section id="slide-7" class="slide" data-section="코드와 검증" aria-labelledby="title-7" aria-hidden="true">
+          <span class="slide-number">07</span>
+          <header class="slide-header">
+            <p class="eyebrow">05 · PARAMETER VALIDATION</p>
+            <h2 id="title-7">k값 수정과 원뿔각 선택 검증</h2>
+            <p class="subtitle">같은 모델에서 k를 바꿨을 때 선택과 형상 재현도가 어떻게 달라지는가</p>
+          </header>
+          <div class="content">
+            <div class="split wide-left">
+              <div>
+                <div class="chart-panel">
+                  <p class="chart-heading">선택 민감도 시연 · 1차 아치형 STL</p>
+                  <svg id="k-chart" viewBox="0 0 670 315" role="img" aria-label="원뿔각별 평가 점수 그래프"></svg>
+                  <div class="control-row">
+                    <label for="k-control">k</label>
+                    <input id="k-control" type="range" min="0" max="1.2" step="0.01" value="0.2">
+                    <output id="k-value">0.20</output>
+                  </div>
+                  <div class="selection-readout">
+                    <div>
+                      <span>선택 원뿔각</span>
+                      <strong id="chosen-angle">—</strong>
+                    </div>
+                    <div>
+                      <span>방향</span>
+                      <strong id="chosen-direction">—</strong>
+                    </div>
+                    <div>
+                      <span>평가점수 J</span>
+                      <strong id="chosen-score">—</strong>
+                    </div>
+                  </div>
+                </div>
+                <p class="small" style="margin-top:13px">슬라이더는 저장소 판정식으로 재계산한 기하 시연입니다.<br>실제 G-code 형상 비교 결과는 별도 자료로 연결합니다.</p>
+              </div>
+              <div>
+                <ul class="evidence-list">
+                  <li data-num="01"><h3>기준값 고정</h3><p>현재 기본 k=0.20과 동일한 모델·각도 후보로 비교</p></li>
+                  <li data-num="02"><h3>k 수정값 적용</h3><p>전역 k와 형상 특징 기반 k 예측을 비교하는 설계</p></li>
+                  <li data-num="03"><h3>선택한 각도에서 재검증</h3><p>원본과 G-code 재구성 형상의 교집합/합집합 비율(IoU) 평가</p></li>
+                </ul>
+                <p class="body-note">학습용과 평가용 STL을 분리하고,<br>선택각이 IoU 최대값에 얼마나 가까운지 확인합니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>수정 전·후 k, 각도–IoU 곡선, 선택각 점선, 모델별 결과표를 이 장에 추가해주세요.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>k 정의는 코드에서 확인했다. 2학기 프로젝트의 역전파 기반 k값 결정 대화는 저렴한 형상 특징에서 k를 예측하고 기존 selector를 유지하는 설계를 제안한다. 학습 때만 softmax와 IoU 손실을 연결하고 실제 선택은 hard argmax를 사용한다. 이 대화는 성능 향상 측정값을 제공하는 결과표가 아니다. 왼쪽 시연은 1차 발표 arch-01.stl에서 analytic.py의 면적 가중 판정식으로 계산했다. outward/inward 모든 후보 가운데 최대 J를 선택한다. 표시된 결과는 기하 추정이며 물리 출력 판정이 아니다. 최종 발표용 결과 그래프는 x축=원뿔각, y축=G-code 실행 재구성 형상과 원본의 IoU, 수정 k가 선택한 θ 위치에 점선을 표시한다. 다른 프로젝트 채팅의 수치 결과는 본문에 가져오지 않았다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>확정한 수정 전·후 k값과 단위</li>
+              <li>모델별 각도·방향·IoU CSV/JSON</li>
+              <li>선택각 및 IoU 최대각의 대응</li>
+              <li>학습·검증·평가 모델 분리 기록</li>
+              <li>최종 결과 그래프 원본</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
+            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
+            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
+            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
+            <a class="note-source" href="https://github.com/26037-arch/adaptive-conical-slicing-presentation" target="_blank" rel="noopener">1차 중간 발표</a>
+            <p style="color:#78859a;font-size:12px;margin:0">82f2c60dd3570c8b1681b6c552cdbd5098f13e34</p>
+            <a class="note-source" href="codex://threads/6ac63eb2-57e0-83e8-b501-0276e3e31b98" target="_blank" rel="noopener">R&amp;E 2학기 · 역전파 기반 k값 결정</a>
+            <p style="color:#78859a;font-size:12px;margin:0">형상 특징 기반 k 예측, 학습과 추론 분리 설계</p>
+          </template>
+        </section>
+        <!-- 08 · 검증 결과 판단 -->
+        <section id="slide-8" class="slide" data-section="코드와 검증" aria-labelledby="title-8" aria-hidden="true">
+          <span class="slide-number">08</span>
+          <header class="slide-header">
+            <p class="eyebrow">06 · RESULT INTERPRETATION</p>
+            <h2 id="title-8">검증 결과 판단</h2>
+            <p class="subtitle">각도 선택의 근거를 실행 경로와 형상 비교로 확인</p>
+          </header>
+          <div class="content">
+            <table class="comparison">
+              <thead>
+                <tr>
+                  <th style="width:23%">판정 대상</th>
+                  <th style="width:43%">확인할 근거</th>
+                  <th>결과를 읽는 기준</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>각도 선택</td>
+                  <td>k, 선택각, 방향, J와 후보별 점수</td>
+                  <td>평가 기준에 맞는 선택인지 확인</td>
+                </tr>
+                <tr>
+                  <td>G-code 검사</td>
+                  <td>지원되는 축·간섭·층간 지지 검사와 실패 로그</td>
+                  <td>실행한 검사 범위 안에서 판단</td>
+                </tr>
+                <tr>
+                  <td>형상 재현도</td>
+                  <td>IoU, 누락·과잉 체적, 표면 거리와 해상도 민감도</td>
+                  <td>형상 오차와 격자 오차를 함께 비교</td>
+                </tr>
+                <tr>
+                  <td>실물 출력</td>
+                  <td>출력 사진, 치수, 시간, 실패 위치와 반복 측정</td>
+                  <td>실제 제작 성능과 최종 일치 여부 판단</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="judgment">k 수정의 효과는 <span class="accent">동일 조건의 형상 비교</span>로 판단합니다</div>
+            <p class="small">최종 결론 입력 자리: 어떤 형상에서 개선됐는가 · 최대 IoU 대비 차이 · 실패하거나 개선되지 않은 사례</p>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>이 장에는 팀의 최종 판단 문장과 그 근거 수치를 함께 넣어주세요. 수치가 없다는 이유로 성과를 삭제하지 않습니다.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>일반적인 결과 해석 틀과 저장소의 실제 검사 범위를 함께 정리했다. 생성기와 내부 검사기는 공통 가정을 공유하므로 검사 통과만으로 독립 물리 검증을 주장하지 않는다. VOLCO의 voxel 해상도끼리 비교한 IoU는 수치 수렴이며 실물 정확도가 아니다. IoU만으로 국소 누락과 과잉이 상쇄될 수 있으므로 두 체적 및 표면 거리도 확인한다. 전역 k 대비 형상별 k의 개선은 평가 STL에서 확인해야 한다. 팀의 오프라인 결과가 준비되면 마지막 판단 문장을 결과 중심으로 교체한다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>수정 전·후 IoU 및 최대 IoU 대비 차이</li>
+              <li>형상별 개선·실패 사례</li>
+              <li>격자 또는 샘플링 해상도와 반복 측정</li>
+              <li>발표용 최종 결론 한 문장</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
+            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+            <a class="note-source" href="codex://threads/6ac63eb2-57e0-83e8-b501-0276e3e31b98" target="_blank" rel="noopener">R&amp;E 2학기 · 역전파 기반 k값 결정</a>
+            <p style="color:#78859a;font-size:12px;margin:0">형상 특징 기반 k 예측, 학습과 추론 분리 설계</p>
+          </template>
+        </section>
+        <!-- 09 · 파이프라인 설계 -->
+        <section id="slide-9" class="slide" data-section="프로그램 설계" aria-labelledby="title-9" aria-hidden="true">
+          <span class="slide-number">09</span>
+          <header class="slide-header">
+            <p class="eyebrow">07 · PIPELINE DESIGN</p>
+            <h2 id="title-9">파이프라인 설계</h2>
+            <p class="subtitle">선택 조건부터 출력 결과까지 같은 실험 ID로 연결</p>
+          </header>
+          <div class="content">
+            <div class="pipeline">
+              <div class="pipeline-item">
+                <div class="num">01 / INPUT</div>
+                <h3>모델·조건</h3>
+                <p>STL 품질, 좌표계,<br>공통 출력 조건</p>
+                <code>model.stl<br>case.json</code>
+              </div>
+              <div class="pipeline-item">
+                <div class="num">02 / SELECT</div>
+                <h3>각도·구간</h3>
+                <p>k와 평가식,<br>전환·층간격 제약</p>
+                <code>selection.json<br>profile.json</code>
+              </div>
+              <div class="pipeline-item">
+                <div class="num">03 / PATH</div>
+                <h3>G-code</h3>
+                <p>변환과 역변환,<br>Rep5x B/C 자세</p>
+                <code>output.gcode<br>CONICAL_META</code>
+              </div>
+              <div class="pipeline-item">
+                <div class="num">04 / VALIDATE</div>
+                <h3>검증·재구성</h3>
+                <p>경로·기계 검사,<br>퇴적·국소 물리 해석</p>
+                <code>manifest.json<br>final.stl</code>
+              </div>
+              <div class="pipeline-item">
+                <div class="num">05 / COMPARE</div>
+                <h3>비교·기록</h3>
+                <p>평면·고정각·가변각,<br>원본·예측·실물 비교</p>
+                <code>metrics.json<br>report + log</code>
+              </div>
+            </div>
+            <div class="pipeline-output">
+              <strong class="accent">공통 실행 기록</strong>
+              <p>모델 ID · 코드 버전 · k · 각도·구간 · 층높이 · 기계·재료 설정 · 검사 상태</p>
+            </div>
+            <p class="body-note" style="margin-top:29px">실패 사례와 지원되지 않는 검사도 같은 기록에 남겨, 결과를 다시 확인할 수 있게 설계합니다.</p>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>최종 모듈 이름·파일 형식과 실제 실행 폴더 예시로 설계안을 확정해주세요.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>앞 장의 각도 평가와 검사·형상 비교를 하나의 파이프라인으로 묶는 설계안이다. conical.pipeline은 고정각 경로 생성 분기를 제공하고, conical_slice.py는 가변각/자동 밴드 CLI를 제공한다. 실제 저장소에 존재하는 CONICAL_META, manifest.json, events.json, frames.jsonl, final.stl, metrics.json은 재사용한다. case.json, selection.json, profile.json의 공통 실험 스키마는 발표용 설계 제안이며 구현 완료된 파일이라고 단정하지 않는다. 각 실험의 실패와 지원 불가 상태를 포함해야 한다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>팀에서 확정한 공통 실험 스키마</li>
+              <li>실제 실행 디렉터리와 파일 목록</li>
+              <li>각 단계 입출력 및 담당 모듈</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
+            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
+            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
+            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+          </template>
+        </section>
+        <!-- 10 · GUI 설계 -->
+        <section id="slide-10" class="slide" data-section="프로그램 설계" aria-labelledby="title-10" aria-hidden="true">
+          <span class="slide-number">10</span>
+          <header class="slide-header">
+            <p class="eyebrow">08 · GUI CONCEPT</p>
+            <h2 id="title-10">GUI 설계</h2>
+            <p class="subtitle">모델 입력, 선택 조건, 검증 결과를 한 화면에서 확인하는 시안</p>
+          </header>
+          <div class="content">
+            <div class="split" style="grid-template-columns:1.65fr .75fr;gap:45px">
+              <div class="mock-window">
+                <div class="mock-top">
+                  <i class="window-dot"></i>
+                  <i class="window-dot"></i>
+                  <i class="window-dot"></i>
+                  <span>Adaptive slicer · GUI 설계 시안</span>
+                </div>
+                <div class="mock-body">
+                  <div class="mock-sidebar">
+                    <div class="label">실험 설정</div>
+                    <label>모델</label>
+                    <div class="mock-field">reference_arch.stl</div>
+                    <label>슬라이싱 방식</label>
+                    <div class="mock-field">가변각 원뿔</div>
+                    <label>k값</label>
+                    <div class="mock-field">0.20</div>
+                    <label>출력 플랫폼</label>
+                    <div class="mock-field">Rep5x</div>
+                    <button class="primary" disabled="">분석 및 경로 생성</button>
+                    <p class="small" style="font-size:12px;margin-top:13px">화면 구조 시안 · 분석 기능 미연결</p>
+                  </div>
+                  <div class="mock-main">
+                    <div class="visual" data-visual="model" data-model="arch">
+                      <div class="visual-top">참고 STL 미리보기</div>
+                      <div class="visual-buttons">
+                        <button data-reset-view="">시점 초기화</button>
+                      </div>
+                      <div class="visual-caption">드래그하여 모델 회전</div>
+                    </div>
+                    <div class="mock-results">
+                      <span>선택각 <strong>—</strong></span>
+                      <span>IoU <strong>—</strong></span>
+                      <span>검사 상태 <strong>실행 전</strong></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="gui-notes">
+                <div class="item">
+                  <h3>입력 조건</h3>
+                  <p>모델과 공통 출력 설정을<br>한 곳에서 관리</p>
+                </div>
+                <div class="item">
+                  <h3>3D 확인</h3>
+                  <p>원본, 경로, 재구성 형상을<br>같은 좌표계에서 비교</p>
+                </div>
+                <div class="item">
+                  <h3>결과 기록</h3>
+                  <p>추천 이유와 검사 상태,<br>실패 원인을 함께 표시</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>최종 GUI 캡처와 사용 흐름을 추가해주세요. 현재 화면은 구성 제안이며 실제 프로그램 화면이 아닙니다.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>사용자는 GUI 자료가 아직 없다고 명시했다. 이를 반영해 최종 화면을 교체할 수 있는 시안을 만들었다. 3D 참고 모델 회전만 동작하며 분석 버튼은 비활성화했다. 실제 분석 결과나 성공 상태를 채워 넣지 않았다. 최종 GUI가 오면 본문 구조를 유지하면서 캡처를 교체할 수 있다. 외부 GUI 서비스, 추가 계정 연결 또는 새로운 라이브러리를 사용하지 않았다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>최종 GUI 캡처 또는 디자인 파일</li>
+              <li>모델 입력부터 결과 저장까지 사용 흐름</li>
+              <li>담당 팀원이 확정한 기능·메뉴 이름</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+          </template>
+        </section>
+        <!-- 11 · Rep5x와 5축 구조 -->
+        <section id="slide-11" class="slide" data-section="5축 하드웨어" aria-labelledby="title-11" aria-hidden="true">
+          <span class="slide-number">11</span>
+          <header class="slide-header">
+            <p class="eyebrow">09 · FIVE-AXIS STRUCTURE</p>
+            <h2 id="title-11">Rep5x와 5축 구조</h2>
+            <p class="subtitle">기존 XYZ 이동에 헤드의 기울기 B와 방위 회전 C를 추가</p>
+          </header>
+          <div class="content">
+            <div class="split wide-left">
+              <div>
+                <div class="visual" data-visual="machine" data-model="">
+                  <div class="visual-top">헤드 회전 구조 개념도 · 실제 장비 CAD와 구분</div>
+                  <div class="visual-buttons">
+                    <button data-reset-view="">시점 초기화</button>
+                  </div>
+                  <div class="visual-caption">B축 기울기 · C축 방위 회전</div>
+                </div>
+              </div>
+              <div>
+                <div class="axis-specs">
+                  <strong>XYZ</strong>
+                  <span>노즐 끝의 목표 위치</span>
+                  <strong>B</strong>
+                  <span>헤드의 기울기</span>
+                  <strong>C</strong>
+                  <span>수직축 주위 헤드 방위 회전</span>
+                </div>
+                <div class="rule"></div>
+                <h3>Ender-3 V3 SE 기반 개조</h3>
+                <p class="muted">캐리지에 회전 헤드 장착<br>기존 베드의 회전 자유도는 추가하지 않음</p>
+                <div class="axis-control">
+                  <label for="b-control">기울기 B</label>
+                  <input id="b-control" type="range" min="-55" max="55" value="25">
+                  <output id="b-value">25°</output>
+                </div>
+                <div class="axis-control">
+                  <label for="c-control">회전 C</label>
+                  <input id="c-control" type="range" min="-180" max="180" value="30">
+                  <output id="c-value">30°</output>
+                </div>
+                <p class="small">위 입력 범위는 설명용입니다.<br>실제 허용각과 축 부호는 장비에서 확인합니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>완성 장비의 B/C축 표시 사진과 짧은 구동 영상을 추가해주세요.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>Rep5x는 head-head 구조다. C축이 yaw, B축이 tilt이며 회전 헤드가 캐리지에 장착된다. Open5x의 베드 회전 기구학을 동일하게 적용하면 안 된다. 여기의 3D는 사용자 요청에 따른 축 설명 개념도다. 부품 크기·장착 변환·장비 도달 영역은 실측 또는 검증된 조립 CAD를 나타내지 않는다. 렌더링은 노즐 끝이 기준점에 머물게 단순 보정해 운동 원리를 보여준다. 실제 RTCP 검증 결과가 아니다. 공식 웹은 마지막 출처와 메모에서만 링크한다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>실물 장비 전체 사진과 B/C축 라벨</li>
+              <li>B/C축 구동 영상</li>
+              <li>실측 축 범위와 홈 방향</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/dennisklappe/Rep5x" target="_blank" rel="noopener">Rep5x 공식 설계</a>
+            <p style="color:#78859a;font-size:12px;margin:0">9c437d5cce7766d641e7aa35ced2c63231148a1f</p>
+            <a class="note-source" href="https://rep5x.com/build-instructions/" target="_blank" rel="noopener">Rep5x 공식 웹</a>
+            <p style="color:#78859a;font-size:12px;margin:0">Ender 3 V3 SE 개조 안내</p>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+          </template>
+        </section>
+        <!-- 12 · 부품 3D 모델과 구조 -->
+        <section id="slide-12" class="slide" data-section="5축 하드웨어" aria-labelledby="title-12" aria-hidden="true">
+          <span class="slide-number">12</span>
+          <header class="slide-header">
+            <p class="eyebrow">10 · PARTS LIBRARY</p>
+            <h2 id="title-12">부품 3D 모델과 구조</h2>
+            <p class="subtitle">공통 부품 6종과 Ender-3 V3 SE 전용 장착부 4종</p>
+          </header>
+          <div class="content">
+            <div class="parts-layout">
+              <div class="part-menu" id="part-menu">
+                <p class="group-label" style="margin-top:2px">공통 부품</p>
+                <button data-part="b-arm_v1.1.0">B축 회전 암</button>
+                <template data-part-info="b-arm_v1.1.0">
+                  <p data-part-desc="">기울어지는 헤드의 중심 구조. 회전 베어링과 핫엔드를 연결합니다.</p>
+                  <p data-part-detail="">베어링 지지와 핫엔드 체결 위치가 중요합니다. 실제 장착 치수와 피벗 위치는 조립 CAD 및 실측으로 확인합니다.</p>
+                </template>
+                <button data-part="C-driven-pulley_v1.1.0">C축 구동 풀리</button>
+                <template data-part-info="C-driven-pulley_v1.1.0">
+                  <p data-part-desc="">헤드를 수직축 주위로 회전시키는 구동 전달부입니다.</p>
+                  <p data-part-detail="">벨트 전달 구조와 회전 베어링이 헤드의 방위각을 결정합니다. 축 이름은 현재 공식 B/C 표기를 따릅니다.</p>
+                </template>
+                <button data-part="b-driven-pulley_v1.1.0">B축 구동 풀리</button>
+                <template data-part-info="b-driven-pulley_v1.1.0">
+                  <p data-part-desc="">벨트 구동을 회전 암에 전달해 노즐의 기울기를 바꿉니다.</p>
+                  <p data-part-detail="">회전 암 체결부와 벨트 맞물림을 확인합니다. 조립 후 유격 및 각도 반복 오차를 기록해야 합니다.</p>
+                </template>
+                <button data-part="hotend-spacer_v1.0.0">핫엔드 스페이서</button>
+                <template data-part-info="hotend-spacer_v1.0.0">
+                  <p data-part-desc="">핫엔드 장착 간격을 맞추는 부품입니다.</p>
+                  <p data-part-detail="">간격 변화는 노즐 끝 위치와 공구 길이 보정에 영향을 줍니다. 모델 치수와 실제 체결 상태를 함께 확인합니다.</p>
+                </template>
+                <button data-part="slip-ring-holder_v1.1.1">슬립링 홀더</button>
+                <template data-part-info="slip-ring-holder_v1.1.1">
+                  <p data-part-desc="">회전부 전기 연결을 위한 슬립링을 고정합니다.</p>
+                  <p data-part-detail="">슬립링은 배선 감김을 줄이는 구조입니다. 펌웨어의 C축 소프트리밋과 되감기 처리는 별도로 관리합니다.</p>
+                </template>
+                <button data-part="spacer-3mm_v1.0.0">3 mm 스페이서</button>
+                <template data-part-info="spacer-3mm_v1.0.0">
+                  <p data-part-desc="">조립 간격을 맞추기 위한 스페이서입니다.</p>
+                  <p data-part-detail="">어느 조립 위치에 사용했는지 실제 조립도에 표시합니다. 단품 뷰는 조립 방향을 나타내지 않습니다.</p>
+                </template>
+                <p class="group-label" style="margin-top:17px">Ender-3 V3 SE 전용</p>
+                <button data-part="carriage-mount_v1.1.1">캐리지 마운트</button>
+                <template data-part-info="carriage-mount_v1.1.1">
+                  <p data-part-desc="">기존 X 캐리지와 Rep5x 회전 헤드를 연결하는 장착부입니다.</p>
+                  <p data-part-detail="">기존 캐리지 체결, 헤드 강성, 회전부 간섭을 확인합니다. Ender 3 V3 SE용 공식 모델 v1.1.1을 사용했습니다.</p>
+                </template>
+                <button data-part="extruder-mount_v1.1.0">외장 압출기 마운트</button>
+                <template data-part-info="extruder-mount_v1.1.0">
+                  <p data-part-desc="">외장 압출기를 프린터 프레임에 고정하는 부품입니다.</p>
+                  <p data-part-detail="">Rep5x의 Bowden 구성에 맞춘 장착부입니다. 실제 압출기와 튜브 배치 사진을 함께 넣으면 설명이 분명해집니다.</p>
+                </template>
+                <button data-part="x-endstop_v1.1.0">X축 엔드스톱 마운트</button>
+                <template data-part-info="x-endstop_v1.1.0">
+                  <p data-part-desc="">헤드 변경에 맞춰 X축 원점 센서를 설치하는 장착부입니다.</p>
+                  <p data-part-detail="">센서 위치와 실제 홈 방향을 사진으로 표시합니다. 공식 전용 부품 목록의 축 표기는 X/Z입니다.</p>
+                </template>
+                <button data-part="z-endstop_v1.1.0">Z축 엔드스톱 마운트</button>
+                <template data-part-info="z-endstop_v1.1.0">
+                  <p data-part-desc="">개조 구조에 맞는 Z축 원점 센서를 설치하는 장착부입니다.</p>
+                  <p data-part-detail="">원점 위치, 베드와의 간격, 소프트리밋은 실제 장비 설정으로 확인합니다.</p>
+                </template>
+              </div>
+              <div>
+                <div class="visual" data-visual="part" data-model="b-arm_v1.1.0">
+                  <div class="visual-top">공식 3MF에서 추출한 실제 단품 형상</div>
+                  <div class="visual-buttons">
+                    <button data-reset-view="">시점 초기화</button>
+                  </div>
+                  <div class="visual-caption">드래그 회전 · 휠 확대 · 조립 자세와 구분</div>
+                </div>
+              </div>
+              <div class="part-info">
+                <h3 id="part-name">B축 회전 암</h3>
+                <div id="part-file" class="part-file">b-arm_v1.1.0.3mf</div>
+                <p id="part-desc" class="part-desc"></p>
+                <div id="part-detail" class="part-detail"></div>
+                <div id="part-size" class="part-size"></div>
+              </div>
+            </div>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>실제 출력한 부품 사진과 사용 버전, 팀이 수정한 형상·치수를 함께 표시해주세요.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>모든 단품 메시를 Rep5x 공식 저장소의 current/3mf에서 추출했다. 원본 파일을 함께 제공한다. 공통 부품: B arm, C driven pulley, B driven pulley, hotend spacer, slip-ring holder, 3 mm spacer. Ender 3 V3 SE 전용: carriage mount, extruder mount, X/Z endstop mounts. 단품은 뷰어 중앙으로 이동해 표시하며 실제 조립 좌표계·출력 방향을 의미하지 않는다. 표시 치수는 파일의 경계상자이며 측정한 장비 치수가 아니다. 공식 CAD를 팀이 직접 설계한 부품으로 주장하지 않는다. 팀의 재설계가 있다면 수정 형상과 원본을 대응시킨다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>실제 채택한 각 부품 파일 버전</li>
+              <li>부품 출력 사진과 조립 위치</li>
+              <li>직접 설계·수정한 부위의 CAD 및 변경 이유</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/dennisklappe/Rep5x" target="_blank" rel="noopener">Rep5x 공식 설계</a>
+            <p style="color:#78859a;font-size:12px;margin:0">9c437d5cce7766d641e7aa35ced2c63231148a1f</p>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+          </template>
+        </section>
+        <!-- 13 · 하드웨어 좌표계와 보정 설계 -->
+        <section id="slide-13" class="slide" data-section="5축 하드웨어" aria-labelledby="title-13" aria-hidden="true">
+          <span class="slide-number">13</span>
+          <header class="slide-header">
+            <p class="eyebrow">11 · HARDWARE INTERFACE</p>
+            <h2 id="title-13">하드웨어 좌표계와 보정 설계</h2>
+            <p class="subtitle">선택한 원뿔각을 실제 노즐 위치와 자세에 연결</p>
+          </header>
+          <div class="content">
+            <div class="hardware-plan">
+              <div class="diagram-area">
+                <div class="label">장비 구조와 변환의 연결</div>
+                <div class="hierarchy-node">
+                  <span class="chip">XYZ</span>
+                  <span>기존 캐리지의 직선 이동</span>
+                </div>
+                <div class="hierarchy-node">
+                  <span class="chip">C</span>
+                  <span>수직축 주위 헤드 회전</span>
+                </div>
+                <div class="hierarchy-node">
+                  <span class="chip">B</span>
+                  <span>회전 암의 기울기</span>
+                </div>
+                <div class="hierarchy-node">
+                  <span class="chip">TCP</span>
+                  <span>노즐 끝의 목표 위치</span>
+                </div>
+                <div class="hierarchy-foot">슬라이서가 목표 XYZ와 B/C 자세를 생성<br>해당 기능을 지원하는 펌웨어가 기구학 보정</div>
+              </div>
+              <div>
+                <h3>설계에서 확정할 항목</h3>
+                <div class="spec-table">
+                  <div class="spec-row">
+                    <strong>회전 중심과 공구 길이</strong>
+                    <span>조립 CAD와 실제 측정값 대조</span>
+                  </div>
+                  <div class="spec-row">
+                    <strong>축 방향과 원점</strong>
+                    <span>홈 자세, B/C 부호, 좌표계 정의</span>
+                  </div>
+                  <div class="spec-row">
+                    <strong>작업 영역과 간섭</strong>
+                    <span>헤드·암·베드·출력물의 공간 확보</span>
+                  </div>
+                  <div class="spec-row">
+                    <strong>회전 범위와 되감기</strong>
+                    <span>슬립링 구조와 펌웨어 리밋 구분</span>
+                  </div>
+                </div>
+                <p class="body-note">원뿔 워핑의 역변환과 기계 역기구학 보정을<br>각각 담당 모듈에 한 번씩 적용합니다.</p>
+              </div>
+            </div>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>회전 중심 표시 사진, 공구 길이 측정표, 조립 CAD, 제어보드·펌웨어 정보를 추가해주세요.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>내용이 미정이었던 13장을 코드에서 하드웨어로 넘어가는 연결 장으로 구성했다. nozzle TCP 위치 및 B/C 자세 입력의 의미와 보정 책임을 정리한다. 현 저장소는 Rep5x-Marlin PENTA_AXIS_HH 및 기본 TCP 제어 ON을 기록하지만 실제 장비의 펌웨어 버전을 확인해야 한다. LB/LC 기본값은 사용자의 실측값으로 간주하지 않는다. 슬립링의 기계적 연속 회전과 펌웨어 C축 ±360° 창은 서로 다른 제약이며, 저장소에 C 되감기 처리 코드가 있다. full assembly CAD의 측정된 rigid transforms 없이 단품 모델만으로 정확한 조립 또는 간섭 통과를 주장하지 않는다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>장비의 B/C 회전 중심이 표시된 CAD·사진</li>
+              <li>노즐 TCP 및 공구 길이 실측표</li>
+              <li>제어보드·펌웨어 버전 및 축 설정</li>
+              <li>작업 영역·간섭 확인 기록</li>
+              <li>실제 장비–소프트웨어 대응표</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
+            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
+            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
+            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
+            <a class="note-source" href="https://github.com/dennisklappe/Rep5x" target="_blank" rel="noopener">Rep5x 공식 설계</a>
+            <p style="color:#78859a;font-size:12px;margin:0">9c437d5cce7766d641e7aa35ced2c63231148a1f</p>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+          </template>
+        </section>
+        <!-- 14 · 3D 프린터 개조 -->
+        <section id="slide-14" class="slide" data-section="5축 하드웨어" aria-labelledby="title-14" aria-hidden="true">
+          <span class="slide-number">14</span>
+          <header class="slide-header">
+            <p class="eyebrow">12 · PRINTER RETROFIT</p>
+            <h2 id="title-14">3D 프린터 개조</h2>
+            <p class="subtitle">Ender-3 V3 SE 본체에 Rep5x 헤드 회전 구조 적용</p>
+          </header>
+          <div class="content">
+            <div class="photo-grid">
+              <div>
+                <div class="photo-slot">
+                  <span class="slot-num">01 / BEFORE</span>
+                  <strong>개조 전 본체</strong>
+                  <p>Ender-3 V3 SE 전체 사진<br>기존 헤드와 캐리지 표시</p>
+                </div>
+                <div class="photo-caption">
+                  <h3>본체와 기준 구조</h3>
+                  <p>기존 XYZ 이동 구조와<br>원점 센서 위치 확인</p>
+                </div>
+              </div>
+              <div>
+                <div class="photo-slot">
+                  <span class="slot-num">02 / BUILD</span>
+                  <strong>회전 헤드 조립</strong>
+                  <p>C축 구동부와 B축 암 근접 사진<br>부품 연결 위치 표시</p>
+                </div>
+                <div class="photo-caption">
+                  <h3>5축 회전부</h3>
+                  <p>캐리지 마운트, 풀리, 베어링,<br>핫엔드와 슬립링 연결</p>
+                </div>
+              </div>
+              <div>
+                <div class="photo-slot">
+                  <span class="slot-num">03 / AFTER</span>
+                  <strong>개조 완료 장비</strong>
+                  <p>완성 장비 정면·측면 사진<br>외장 압출기와 배선 표시</p>
+                </div>
+                <div class="photo-caption">
+                  <h3>장비 통합</h3>
+                  <p>외장 압출기, 엔드스톱,<br>제어보드·펌웨어 구성</p>
+                </div>
+              </div>
+            </div>
+            <div class="retrofit-bottom">
+              <div>
+                <h3>제작 과정에서 설명할 변경점</h3>
+                <p>기존 부품 대비 추가·교체한 부위와 선택 이유</p>
+              </div>
+              <div>
+                <h3>완료 상태를 보여줄 기록</h3>
+                <p>축 구동, 원점 복귀, 보정 결과와 짧은 동작 영상</p>
+              </div>
+            </div>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>필요 사진: 개조 전 전경 1장, 회전 헤드 근접 1장, 개조 후 정면·측면 각 1장, 배선·압출기 근접 1장.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>사용자 제공 성과인 프린터 제작·개조를 소개하는 장이다. 공식 시연 사진을 팀 장비 사진처럼 사용하지 않고 실제 사진 요청을 남겼다. 사진에 어떤 구조가 보이면 좋을지 구체적으로 적었다. Ender 3 V3 SE용 설계는 외장 압출기 마운트와 X/Z endstop mount를 포함한다. 실제 설치한 제어보드나 모터·드라이버 모델은 자료가 없으므로 임의로 채우지 않았다. 장비 상태와 팀의 직접 수정 부품을 중심으로 최종 문구를 보완한다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>개조 전 본체 전경</li>
+              <li>B/C 회전 헤드 조립 근접</li>
+              <li>완성 장비 정면·측면</li>
+              <li>외장 압출기·배선·센서 근접</li>
+              <li>구동·홈·보정 기록 또는 10~20초 영상</li>
+              <li>교체·추가 부품 및 직접 변경점</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/dennisklappe/Rep5x" target="_blank" rel="noopener">Rep5x 공식 설계</a>
+            <p style="color:#78859a;font-size:12px;margin:0">9c437d5cce7766d641e7aa35ced2c63231148a1f</p>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+          </template>
+        </section>
+        <!-- 15 · 형상 출력 확인 -->
+        <section id="slide-15" class="slide" data-section="출력과 후속 연구" aria-labelledby="title-15" aria-hidden="true">
+          <span class="slide-number">15</span>
+          <header class="slide-header">
+            <p class="eyebrow">13 · PRINT VERIFICATION</p>
+            <h2 id="title-15">형상 출력 확인</h2>
+            <p class="subtitle">동일 모델의 원본, G-code 재구성, 실제 출력물을 대응</p>
+          </header>
+          <div class="content">
+            <div class="validation-columns">
+              <div class="validation-column">
+                <div class="visual" data-visual="model" data-model="arch">
+                  <div class="visual-top">1차 대표 STL · 참고 모델</div>
+                  <div class="visual-buttons">
+                    <button data-reset-view="">시점 초기화</button>
+                  </div>
+                  <div class="visual-caption">검증 대상 STL로 교체 가능</div>
+                </div>
+                <h3>원본 형상</h3>
+                <p>모델 크기와 기준 치수를 고정</p>
+              </div>
+              <div class="validation-column">
+                <div class="photo-slot">
+                  <span class="slot-num">SIMULATION</span>
+                  <strong>재구성 형상</strong>
+                  <p>G-code 시뮬레이션 STL 또는 캡처<br>같은 좌표계·크기·시점</p>
+                </div>
+                <h3>G-code 재구성</h3>
+                <p>IoU와 누락·과잉 형상 확인</p>
+              </div>
+              <div class="validation-column">
+                <div class="photo-slot">
+                  <span class="slot-num">PRINT</span>
+                  <strong>실물 출력 사진</strong>
+                  <p>같은 시점의 실물 정면·측면<br>크기 기준 또는 측정 눈금 포함</p>
+                </div>
+                <h3>실제 출력물</h3>
+                <p>치수, 표면, 실패 위치와 시간 기록</p>
+              </div>
+            </div>
+            <table class="empty-results">
+              <thead>
+                <tr>
+                  <th>비교 방법</th>
+                  <th>IoU</th>
+                  <th>대표 치수 오차 (mm)</th>
+                  <th>출력 시간 (min)</th>
+                  <th>출력 결과</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>평면</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>기록 추가</td>
+                </tr>
+                <tr>
+                  <td>고정각 원뿔</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>기록 추가</td>
+                </tr>
+                <tr>
+                  <td>가변각 원뿔</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>—</td>
+                  <td>기록 추가</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>실제 출력 STL·G-code·재구성 STL·사진·측정표를 같은 모델 ID로 추가해주세요. 반복 횟수와 실패 사례도 필요합니다.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>요청한 형상 출력 확인 장을 원본–수치 재구성–실물의 비교 구조로 만들었다. 현재 왼쪽은 1차 참고 arch-01.stl이다. 최종 대표 출력 대상과 다르면 해당 STL로 교체한다. 재구성 및 실물 자료가 전달되지 않았으므로 임의 수치와 성공 사진을 만들지 않았다. IoU는 어떤 형상 사이의 비교인지 명시해야 한다. 시뮬레이션의 IoU와 실물 스캔의 IoU를 같은 값으로 취급하지 않는다. 같은 개조 장비에서 평면/고정각/가변각을 비교하면 장비 차이의 영향을 줄일 수 있다. 선폭·층고·재료·인필·노즐 조건도 공통으로 기록한다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>동일 모델의 원본 STL·G-code·재구성 STL</li>
+              <li>실물 출력 정면·측면·표면 근접 사진</li>
+              <li>대표 치수 측정값·시간·반복 횟수</li>
+              <li>평면·고정각·가변각 비교표</li>
+              <li>성공·실패 구간과 조건</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
+            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
+            <a class="note-source" href="https://github.com/26037-arch/adaptive-conical-slicing-presentation" target="_blank" rel="noopener">1차 중간 발표</a>
+            <p style="color:#78859a;font-size:12px;margin:0">82f2c60dd3570c8b1681b6c552cdbd5098f13e34</p>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+          </template>
+        </section>
+        <!-- 16 · 앞으로의 목표 -->
+        <section id="slide-16" class="slide" data-section="출력과 후속 연구" aria-labelledby="title-16" aria-hidden="true">
+          <span class="slide-number">16</span>
+          <header class="slide-header">
+            <p class="eyebrow">14 · NEXT STEPS</p>
+            <h2 id="title-16">앞으로의 목표</h2>
+            <p class="subtitle">설계한 시스템의 성능을 재현 가능한 출력 비교로 확인</p>
+          </header>
+          <div class="content">
+            <div class="targets">
+              <div class="target">
+                <div class="num">01</div>
+                <h3>k 선택의 근거</h3>
+                <p>전역 k와 형상별 k를<br>독립 평가 모델에서 비교<br>최대 IoU 대비 차이 확인</p>
+                <div class="deliverable">모델별 검증 결과표</div>
+              </div>
+              <div class="target">
+                <div class="num">02</div>
+                <h3>장비 보정</h3>
+                <p>회전 중심과 TCP 확인<br>축 부호·원점·리밋 확정<br>간섭 및 반복 오차 측정</p>
+                <div class="deliverable">기계 프로파일과 보정 기록</div>
+              </div>
+              <div class="target">
+                <div class="num">03</div>
+                <h3>출력 비교</h3>
+                <p>동일 장비에서<br>평면·고정각·가변각 비교<br>형상·시간·실패 사례 기록</p>
+                <div class="deliverable">실물 비교와 반복 실험</div>
+              </div>
+              <div class="target">
+                <div class="num">04</div>
+                <h3>프로그램 통합</h3>
+                <p>GUI와 실행 흐름 연결<br>입력 조건과 결과 저장<br>팀 외부에서도 재현 확인</p>
+                <div class="deliverable">최종 프로그램과 사용 문서</div>
+              </div>
+            </div>
+            <div class="goal-bar">최종 목표: <span class="accent">형상에 맞는 각도 선택이 실제 출력 결과의 개선으로 이어지는지 확인</span></div>
+          </div>
+          <div class="prep-note">
+            <strong>자료 메모</strong>
+            <span>팀의 남은 일정과 담당자, 완료 기준을 이 순서에 맞춰 정리해주세요.</span>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>설계·제작 성과의 다음 단계는 실물 출력 검증과 프로그램 통합이다. k 학습은 2학기 프로젝트 대화의 방향을 반영했고, 실제 데이터가 확보되면 global k보다 형상별 k가 개선되는지 평가한다. 물리 해석 모델에는 장비·재료 보정과 B/C 자세 반영이라는 한계가 있어 이를 후속 과제로 남긴다. 특정 방법이 항상 더 낫다는 결론을 미리 정하지 않는다.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>후속 실험 일정</li>
+              <li>각 과제 담당자</li>
+              <li>성능 비교 및 완료 기준</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="codex://threads/6ac63eb2-57e0-83e8-b501-0276e3e31b98" target="_blank" rel="noopener">R&amp;E 2학기 · 역전파 기반 k값 결정</a>
+            <p style="color:#78859a;font-size:12px;margin:0">형상 특징 기반 k 예측, 학습과 추론 분리 설계</p>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
+            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
+          </template>
+        </section>
+        <!-- 17 · 출처 및 마무리 -->
+        <section id="slide-17" class="slide" data-section="출력과 후속 연구" aria-labelledby="title-17" aria-hidden="true">
+          <span class="slide-number">17</span>
+          <header class="slide-header">
+            <p class="eyebrow">15 · REFERENCES &amp; CLOSING</p>
+            <h2 id="title-17">출처 및 마무리</h2>
+          </header>
+          <div class="content">
+            <div class="closing">
+              <div>
+                <h3>코드 설계와<br><span class="accent">5축 출력 구조</span></h3>
+                <p class="lead">형상에 맞는 원뿔각 선택을<br>실제 출력으로 검증하겠습니다</p>
+                <div class="rule"></div>
+                <p class="small">R&amp;E 2차 중간 발표<br>김재혁 · 나준우 · 김진우</p>
+                <p style="font-size:26px;margin-top:36px">감사합니다</p>
+              </div>
+              <div class="references">
+                <div class="ref-item">
+                  <span>PREVIOUS PRESENTATION</span>
+                  <a href="https://github.com/26037-arch/adaptive-conical-slicing-presentation" target="_blank" rel="noopener">1차 중간 발표</a>
+                  <p>연구 배경, 알고리즘, 대표 STL 자료</p>
+                </div>
+                <div class="ref-item">
+                  <span>RESEARCH CODE</span>
+                  <a href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">26037-arch/wjd</a>
+                  <p>원뿔각 평가, 경로 검사, 퇴적·물리 검증 구조</p>
+                  <a href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener" style="display:block;margin-top:10px">KJH-code/slicer</a>
+                  <p>평가식 J와 k 정의, 슬라이싱·Rep5x 연결</p>
+                </div>
+                <div class="ref-item">
+                  <span>HARDWARE &amp; CAD</span>
+                  <a href="https://github.com/dennisklappe/Rep5x" target="_blank" rel="noopener">Rep5x 공식 저장소</a>
+                  <p>공통·Ender-3 V3 SE 부품 모델 및 조립 설계</p>
+                  <a href="https://rep5x.com/build-instructions/" target="_blank" rel="noopener" style="font-size:16px;display:inline-block;margin-top:7px">공식 제작 안내 웹</a>
+                </div>
+                <div class="ref-item">
+                  <span>PRESENTATION IMPLEMENTATION</span>
+                  <a href="https://github.com/mrdoob/three.js" target="_blank" rel="noopener">Three.js · MIT</a>
+                  <p>HTML 발표와 3D 시각화</p>
+                </div>
+                <p class="small" style="font-size:14px;margin:0">설계 방향 참고: R&amp;E 2학기 프로젝트의<br>‘코드 검토 결과’, ‘역전파 기반 k값 결정’ 대화</p>
+              </div>
+            </div>
+          </div>
+          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
+          <template class="slide-notes">
+            <h3>발표 설명</h3>
+            <p>출처는 이전 발표, 본 연구 코드, Rep5x 원본 설계, 발표 구현으로 나눴다. Rep5x 공식 CAD와 팀의 제작·수정 기여를 구분한다. 공식 웹은 출처로만 언급했다. 기하 시연, GUI 시안, 기구학 개념도와 실제 실험 자료의 차이는 해당 장에서 표시했다. 코드는 커밋 기준, 채팅은 설계 방향 참고로 기록한다. 웹 출처 확인일 2026-10-10.</p>
+            <h3>추가로 필요한 자료</h3>
+            <ul>
+              <li>추가한 팀 자체 자료의 제작자·날짜</li>
+              <li>추가 사진·논문·프로그램의 출처 및 라이선스</li>
+            </ul>
+            <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/26037-arch/adaptive-conical-slicing-presentation" target="_blank" rel="noopener">1차 중간 발표</a>
+            <p style="color:#78859a;font-size:12px;margin:0">82f2c60dd3570c8b1681b6c552cdbd5098f13e34</p>
+            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
+            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
+            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
+            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
+            <a class="note-source" href="https://github.com/dennisklappe/Rep5x" target="_blank" rel="noopener">Rep5x 공식 설계</a>
+            <p style="color:#78859a;font-size:12px;margin:0">9c437d5cce7766d641e7aa35ced2c63231148a1f</p>
+            <a class="note-source" href="https://rep5x.com/build-instructions/" target="_blank" rel="noopener">Rep5x 공식 웹</a>
+            <p style="color:#78859a;font-size:12px;margin:0">Ender 3 V3 SE 개조 안내</p>
+            <a class="note-source" href="https://github.com/mrdoob/three.js" target="_blank" rel="noopener">Three.js</a>
+            <p style="color:#78859a;font-size:12px;margin:0">MIT, 발표 구현 r128</p>
+            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
+            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
+            <a class="note-source" href="codex://threads/6ac63eb2-57e0-83e8-b501-0276e3e31b98" target="_blank" rel="noopener">R&amp;E 2학기 · 역전파 기반 k값 결정</a>
+            <p style="color:#78859a;font-size:12px;margin:0">형상 특징 기반 k 예측, 학습과 추론 분리 설계</p>
+          </template>
+        </section>
+      </div>
+    </main>
+    <footer class="appfooter">
+      <div class="section-label" id="section-label"></div>
+      <div class="slide-dots" id="slide-dots" aria-label="슬라이드 바로 가기"></div>
+      <div class="paging">
+        <button id="prev" aria-label="이전 슬라이드">←</button>
+        <span id="counter" aria-live="polite">01 / 17</span>
+        <button id="next" aria-label="다음 슬라이드">→</button>
+      </div>
+    </footer>
+    <div id="overview" class="overlay" hidden="">
+      <div class="overview-wrap">
+        <div class="overlay-heading">
+          <h2>발표 전체 보기</h2>
+          <button id="close-overview" aria-label="전체 보기 닫기">닫기 ×</button>
+        </div>
+        <div id="overview-grid"></div>
+        <p>← → 이동 · N 발표자 메모 · M 준비 메모 · P 발표 모드 · F 전체 화면</p>
+      </div>
+    </div>
+    <aside id="notes" class="notes" hidden="" aria-label="발표자 메모">
+      <div class="overlay-heading">
+        <h2 id="notes-title">발표자 메모</h2>
+        <button id="close-notes" aria-label="메모 닫기">×</button>
+      </div>
+      <div id="notes-body"></div>
+    </aside>
+    <div id="live-status" class="sr-only" role="status" aria-live="polite"></div>
+    <script src="assets/vendor/three.min.js"></script>
+    <script src="assets/vendor/OrbitControls.js"></script>
+    <script src="assets/vendor/STLLoader.js"></script>
+    <script src="assets/models.js"></script>
+    <script src="visuals.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
