@@ -215,265 +215,128 @@
           </template>
         </section>
         <!-- 05 · 원뿔각 평가 코드 제작 -->
-        <section id="slide-5" class="slide" data-section="코드와 검증" aria-labelledby="title-5" aria-hidden="true">
-          <span class="slide-number">05</span>
-          <header class="slide-header">
-            <p class="eyebrow">03 · ANGLE EVALUATION</p>
-            <h2 id="title-5">원뿔각 평가 코드 제작</h2>
-            <p class="subtitle">서포트 감소 이득과 각도 비용을 함께 고려하는 선택</p>
-          </header>
-          <div class="content">
-            <div class="split wide-right">
-              <div>
-                <div class="formula">J(θ, d) = ΔS(θ, d) − k|θ|</div>
-                <dl class="definition">
-                  <dt>ΔS</dt>
-                  <dd>평면 대비 서포트 필요 면적 비율 감소량 (%p)</dd>
-                  <dt>k</dt>
-                  <dd>각도 1°에 부여하는 비용 가중치 (%p/°)</dd>
-                  <dt>θ, d</dt>
-                  <dd>원뿔각과 방향 outward / inward</dd>
-                </dl>
-                <div class="code-block">gain = baseline - support<br>cost = k * angle_deg<br><span class="blue">return gain - cost</span></div>
-                <p class="small">기본 k = 0.20 · 코드의 각도 탐색 0~44°, 2° 간격<br>k는 원뿔 기울기 tanθ와 구분되는 평가 가중치입니다.</p>
-              </div>
-              <div>
-                <div class="label">평가와 선택의 구조</div>
-                <ul class="evidence-list">
-                  <li data-num="01"><h3>STL의 면 법선과 반경 성분 분석</h3><p>국소 원뿔 적층 방향을 기준으로 서포트 필요 면을 판정</p></li>
-                  <li data-num="02"><h3>후보별 점수 계산</h3><p>각도와 방향마다 ΔS 및 k에 따른 비용을 계산</p></li>
-                  <li data-num="03"><h3>추천값과 선택 이유 반환</h3><p>최대 J 후보와 함께 남은 서포트, 이득, 비용을 기록</p></li>
-                </ul>
-                <div class="caption-strip">추천 각도를 G-code 경로와 형상 재구성 단계에서 다시 검증합니다.</div>
-              </div>
-            </div>
-          </div>
-          <div class="prep-note">
-            <strong>자료 메모</strong>
-            <span>팀에서 확정한 평가 코드 버전과 실제 입력·출력 예시를 추가해주세요.</span>
-          </div>
-          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
-          <template class="slide-notes">
-            <h3>발표 설명</h3>
-            <p>식과 단위는 KJH-code/slicer 및 wjd의 conical/selector.py에서 확인했다. evaluate_J는 support_baseline-support_at_angle-k*angle_deg를 계산한다. 기본 각도 후보는 0~44°, 2° 간격이며 실제 장비의 안전 범위라는 뜻은 아니다. analytic.py는 g=n_z*cosθ+d*n_r*sinθ를 자기지지 임계값과 비교한다. k값이 클수록 큰 각도의 비용이 커진다. inward 후보가 기하 점수에서 선택되더라도 출력 가능성을 보장하지 않는다.</p>
-            <h3>추가로 필요한 자료</h3>
-            <ul>
-              <li>연구팀 최종 커밋과 실행 조건</li>
-              <li>입력 STL 및 평가 결과 JSON 또는 로그</li>
-            </ul>
-            <h3>내용 출처</h3>
-            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
-            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
-            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
-            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
-          </template>
-        </section>
+        <section id="slide-5" class="slide research-slide" data-section="코드와 검증" aria-labelledby="title-5" aria-hidden="true">
+    <span class="slide-number">05</span><header class="slide-header">
+    <p class="eyebrow">03 · SYSTEM GRAPH</p>
+    <h2 id="title-5">원뿔각 평가 코드를 검증 시스템으로 연결</h2><p class="subtitle">모델 검사부터 경로 평가까지 연결하고, 평가 데이터로 k를 학습</p></header>
+    <div class="content">
+<div class="system-layout"><div class="graph-area"><svg class="system-graph" viewBox="0 0 840 490" role="img" aria-label="STL 검사, 원뿔각 선택, G-code 생성 및 평가, 실패 재생성과 k 학습 연결 그래프">
+<defs><marker id="flow-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="#8093b2"/></marker><marker id="loop-arrow" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="#4262e9"/></marker></defs>
+<g class="graph-links">
+<path d="M158 97H205"/><path d="M400 97H458"/><path d="M636 97H688"/>
+<path d="M759 152V202H611V228"/><path d="M502 281H404"/><path d="M207 281H155"/>
+<path d="M312 153V182H73V152" class="stl-loop"/>
+<path d="M707 322V382H547V153" class="retry-loop"/>
+<path d="M75 326V419H547V154" class="training-loop"/>
+<path d="M306 335V371" class="label-link"/>
+</g>
+<g class="graph-node"><rect x="0" y="42" width="158" height="110" rx="10"/><text x="18" y="73" class="node-index">01 / INPUT</text><text x="18" y="105" class="node-title">STL 모델</text><text x="18" y="131" class="node-detail">입력 · 생성 모델</text></g>
+<g class="graph-node"><rect x="205" y="42" width="195" height="110" rx="10"/><text x="225" y="73" class="node-index">02 / MESH CHECK</text><text x="225" y="105" class="node-title">STL 자체 검사</text><text x="225" y="131" class="node-detail">닫힘 · 부피 · 좌표</text></g>
+<g class="graph-node selected"><rect x="458" y="42" width="178" height="110" rx="10"/><text x="478" y="73" class="node-index">03 / SELECT</text><text x="478" y="105" class="node-title">원뿔각 결정</text><text x="478" y="131" class="node-detail">max(ΔS − k|θ|)</text></g>
+<g class="graph-node"><rect x="688" y="42" width="150" height="110" rx="10"/><text x="706" y="73" class="node-index">04 / SLICE</text><text x="706" y="105" class="node-title">G-code 생성</text><text x="706" y="131" class="node-detail">변환 · XYZ/B/C</text></g>
+<g class="graph-node"><rect x="502" y="228" width="224" height="106" rx="10"/><text x="522" y="259" class="node-index">05 / VALIDATE</text><text x="522" y="290" class="node-title">명령·기구학 오류 검사</text><text x="522" y="316" class="node-detail">파싱 · 축 범위 · 간섭</text></g>
+<g class="graph-node green"><rect x="207" y="228" width="197" height="106" rx="10"/><text x="226" y="259" class="node-index">06 / EVALUATE</text><text x="226" y="290" class="node-title">G-code 평가</text><text x="226" y="316" class="node-detail">지지율 · 퇴적 복원 · IoU</text></g>
+<g class="graph-node selected"><rect x="0" y="228" width="155" height="106" rx="10"/><text x="18" y="259" class="node-index">07 / LEARN</text><text x="18" y="290" class="node-title">k 갱신·반복</text><text x="18" y="316" class="node-detail">MLP · 역전파</text></g>
+<text x="145" y="176" class="loop-label">STL 부적합: 생성 재시도</text>
+<text x="580" y="375" class="loop-label">오류 기록 · 조건 수정 · 재생성</text>
+<text x="140" y="445" class="loop-label">평가 데이터로 학습 후 선택기에 k 전달</text>
+<g class="graph-output"><rect x="225" y="372" width="162" height="28" rx="5"/><text x="238" y="391">CSV · JSON · STL</text></g>
+<text x="0" y="481" class="graph-legend">실선: 구현 경로 / 점선: G-code 재시도 통합 제어 설계 / 파란 선: 학습 데이터 연결</text>
+</svg></div>
+<div class="source-explain"><div class="dependency-row"><span class="dependency-no">01</span><div><h3>직접 구현한 부분</h3><p>ΔS−k|θ| 선택기, 경로 순서 기반 지지 판정,<br>Rep5x 자세 변환, k 학습과 IoU 집계</p></div></div>
+<div class="dependency-row"><span class="dependency-no">02</span><div><h3>슬라이싱 구조 참고</h3><p>RotBot의 좌표 변환과 역변환을 바탕으로<br>PrusaSlicer CLI 연결 및 내장 슬라이서 구현</p><div class="dependency-foot">Bambu Studio·OrcaSlicer는 CLI·설정 구조 비교 자료</div></div></div>
+<div class="dependency-row"><span class="dependency-no">03</span><div><h3>검사·복원에 사용한 도구</h3><p>Trimesh · Shapely · SciPy로 기하 연산<br>PyMeshLab·ADMesh 검사 어댑터<br>VOLCO의 구형 퇴적 규칙에 B/C 방향 확장</p></div></div>
+<div class="retry-policy"><strong>실패를 되돌리는 기준</strong><p>생성 STL은 횟수를 제한해 재시도합니다.<br>G-code 실패는 원인을 기록하고 조건을 수정합니다.</p></div></div></div></div>
+    <div class="prep-note"><strong>자료 메모</strong><span>팀 최종 버전 확인: 공개 저장소의 기존 구조 + Drive의 e9bc3b0 학습·검증 확장.</span></div><template class="slide-notes"><h3>발표 설명</h3><p>연결 그래프는 구현 모듈과 통합 제어 설계를 함께 설명한다. 공개 wjd main은 54385cf이고 Drive 소스는 e9bc3b0이다. 원뿔각 선택의 J와 후보 격자는 기존 selector를 그대로 사용한다. run_random_validation은 생성 STL 부적합일 때 max_generation_retries+1회까지 시도하지만 이미 선택된 G-code 생성 실패는 해당 사례에 기록하며 새 모델로 교체하지 않는다. 그래프의 G-code 실패 되돌림은 점선으로 통합 제어 설계라고 표시했다. 학습 데이터 연결도 별도 실행 프로그램 사이의 연결이며 모든 모듈이 하나의 자동 CLI로 통합됐다는 뜻은 아니다. Bambu Studio를 실행한 결과나 코드를 사용했다는 주장을 하지 않는다. 실제 이 발표의 G-code 반복 실험은 내장 슬라이서를 사용했다. OpenFOAM의 국소 유동 어댑터는 별도 범위이며 본 IoU 그래프에 사용하지 않았다.</p>
+    <h3>구현 근거</h3><p>conical/selector.py, conical/pipeline.py, tools/run_random_validation.py, tools/external/validators.py, conical/k_learning/*, docs/slicer_cli_analysis.md</p><h3>내용 출처</h3>
+    <a class="note-source" href="https://github.com/26037-arch/wjd">wjd 공개 저장소</a>
+    <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>
+    <a class="note-source" href="https://drive.google.com/drive/folders/1Z0gUKEgeItji8W_Syo2zUCr6RDTfqadh">Drive · wjd e9bc3b0 코드와 실험 원본</a>
+    <a class="note-source" href="assets/data/provenance.json">발표용 반복 검증 조건과 결과</a><a class="note-source" href="https://github.com/FullControlXYZ/volco">VOLCO 원본</a><a class="note-source" href="https://github.com/RotBotSlicer/Transform">RotBot · 좌표 변환 원본</a></template></section>
         <!-- 06 · 코드 구조와 검증 역할 -->
-        <section id="slide-6" class="slide" data-section="코드와 검증" aria-labelledby="title-6" aria-hidden="true">
-          <span class="slide-number">06</span>
-          <header class="slide-header">
-            <p class="eyebrow">04 · VALIDATION ARCHITECTURE</p>
-            <h2 id="title-6">코드 구조와 검증 역할</h2>
-            <p class="subtitle">생성한 G-code와 재구성 형상을 각각 확인</p>
-          </header>
-          <div class="content">
-            <div class="step-flow">
-              <div class="step">
-                <div class="num">INPUT</div>
-                <h3>STL + 조건</h3>
-                <p>모델, k, 층높이, 장비 설정</p>
-              </div>
-              <div class="step">
-                <div class="num">SELECT</div>
-                <h3>각도·구간 선택</h3>
-                <p>평가식과 전환 제약 적용</p>
-              </div>
-              <div class="step">
-                <div class="num">GENERATE</div>
-                <h3>G-code 생성</h3>
-                <p>원뿔 변환, 슬라이싱, 역변환</p>
-              </div>
-            </div>
-            <div class="check-lanes">
-              <div class="check-lane">
-                <div class="label">A · 경로·기구학 검사</div>
-                <h3>출력 명령의 실행 조건 확인</h3>
-                <p>XYZ/E 경로와 B/C 자세를 해석<br>축 범위, 되감기, 층간 지지와 근사 간섭 검사</p>
-                <p class="small"><code>toolpath.py · rep5x.py · rep5x_check.py</code></p>
-              </div>
-              <div class="check-lane green">
-                <div class="label">B · 퇴적·물리 모델 비교</div>
-                <h3>G-code로 만든 형상 평가</h3>
-                <p>VOLCO 확장으로 전체 퇴적 형상을 재구성<br>OpenFOAM 어댑터로 국소 유동을 별도 검토</p>
-                <p class="small">현재 CFD는 1층 국소·등온 범위<br>Rep5x 자세·열·고화 결합은 추가 검증 대상</p>
-              </div>
-            </div>
-            <p class="caption-strip">기하 검사, 퇴적 재구성, 물리 해석의 판정 범위를 구분해 결과를 저장합니다.</p>
-          </div>
-          <div class="prep-note">
-            <strong>자료 메모</strong>
-            <span>물리 엔진 실행 화면·재구성 STL·원본 비교 그림과 실행 조건을 추가해주세요.</span>
-          </div>
-          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
-          <template class="slide-notes">
-            <h3>발표 설명</h3>
-            <p>wjd의 conical/pipeline.py 및 docs/physics_validation.md, docs/deposition_simulation.md에 근거한다. VOLCO oriented는 B/C 방향을 반영하는 구형 voxel 퇴적 모델이다. 유동·열·고화·충돌을 푸는 물리 엔진이 아니다. 별도 physics_cfd 어댑터는 pyGCodeDecode와 OpenFOAM 14 incompressibleVoF를 연결하며 현재 Cartesian 1층 국소, 등온, 고정 격자 소스 범위다. Rep5x 방향은 UNSUPPORTED_REP5X_ORIENTATION으로 처리한다. CFD 완료와 실물 출력 가능 PASS를 혼동하지 않는다. 온도·재료·장비 미보정 결과는 보정 필요 상태로 남긴다.</p>
-            <h3>추가로 필요한 자료</h3>
-            <ul>
-              <li>실제 사용한 물리 엔진·버전·실행 상태</li>
-              <li>재구성 형상과 원본의 같은 시점 비교 그림</li>
-              <li>G-code 경로 검사 보고서</li>
-              <li>재료·기계 프로파일</li>
-            </ul>
-            <h3>내용 출처</h3>
-            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
-            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
-            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
-            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
-            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
-            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
-          </template>
-        </section>
+        <section id="slide-6" class="slide research-slide" data-section="코드와 검증" aria-labelledby="title-6" aria-hidden="true">
+    <span class="slide-number">06</span><header class="slide-header">
+    <p class="eyebrow">04 · CORE ALGORITHMS</p>
+    <h2 id="title-6">각 알고리즘의 실제 계산</h2><p class="subtitle">STL 기반 선택과 G-code 기반 평가를 독립된 계산으로 구성</p></header>
+    <div class="content">
+<div class="algorithm-layout"><div class="algorithm-col"><div class="vs-editor "><div class="vs-tab"><span class="py-icon">Py</span>validators.py + analytic.py<span class="editor-dot"></span></div><pre><code><span class="code-line"><span class="line-no">1</span><span><span class="syn-comment"># STL: 빈 메시, NaN/Inf, 열린 면, 비양수 부피 제외</span></span></span>
+<span class="code-line"><span class="line-no">2</span><span>valid = finite <span class="syn-key">and</span> non_empty <span class="syn-key">and</span> volume &gt; <span class="syn-num">0</span></span></span>
+<span class="code-line"><span class="line-no">3</span><span>valid = valid <span class="syn-key">and</span> mesh.is_watertight</span></span>
+
+<span class="code-line"><span class="line-no">4</span><span>g = nz * cos(theta) + d * nr * sin(theta)</span></span>
+<span class="code-line"><span class="line-no">5</span><span>need = g &lt; -sin(radians(<span class="syn-num">45</span>))</span></span>
+<span class="code-line"><span class="line-no">6</span><span>support = areas[need].sum() / areas.sum() * <span class="syn-num">100</span></span></span>
+<span class="code-line"><span class="line-no">7</span><span>J = baseline - support - k * angle_deg</span></span></code></pre><div class="editor-caption">0–44°를 2° 간격으로, outward / inward 총 46개 평가</div></div><div class="vs-editor "><div class="vs-tab"><span class="py-icon">Py</span>pipeline.py + backtransform.py<span class="editor-dot"></span></div><pre><code><span class="code-line"><span class="line-no">1</span><span>warped = <span class="syn-fn">transform_cone</span>(fine.vertices, theta, direction)</span></span>
+<span class="code-line"><span class="line-no">2</span><span>items = <span class="syn-fn">slice_mesh</span>(warped, layer_height=<span class="syn-num">0.3</span>)</span></span>
+<span class="code-line"><span class="line-no">3</span><span>real, stats = <span class="syn-fn">backtransform</span>(items, theta, direction)</span></span>
+<span class="code-line"><span class="line-no">4</span><span>rep, stats = <span class="syn-fn">to_rep5x</span>(real, theta, direction, REP5X)</span></span>
+<span class="code-line"><span class="line-no">5</span><span>rep, stats = <span class="syn-fn">add_c_rewinds</span>(rep, REP5X)</span></span>
+<span class="code-line"><span class="line-no">6</span><span>gc.<span class="syn-fn">write</span>(rep, output_path)</span></span>
+<span class="code-line"><span class="line-no">7</span><span><span class="syn-key">assert</span> <span class="syn-fn">internal_gcode_check</span>(output_path)[<span class="syn-num">"valid"</span>]</span></span></code></pre><div class="editor-caption">ΔE는 실/변환 길이비로 보정 · 현 오차 ≤ 0.05 mm<br>G0/G1 파싱·좌표 유한성 검사 후 B/C 범위 별도 검사</div></div></div><div class="algorithm-col"><div class="vs-editor "><div class="vs-tab"><span class="py-icon">Py</span>toolpath.py · 자체 G-code 경로 평가<span class="editor-dot"></span></div><pre><code><span class="code-line"><span class="line-no">1</span><span>pts, move_id, weight = <span class="syn-fn">sample_extrusions</span>(items)</span></span>
+<span class="code-line"><span class="line-no">2</span><span>dz = p.z - earlier_points[:, <span class="syn-num">2</span>]</span></span>
+<span class="code-line"><span class="line-no">3</span><span>horizontal = <span class="syn-fn">hypot</span>(p.x-q.x, p.y-q.y)</span></span>
+<span class="code-line"><span class="line-no">4</span><span>ok = (dz &gt; <span class="syn-num">0</span>) &amp; (dz &lt;= <span class="syn-num">1.5</span>*layer_height)</span></span>
+<span class="code-line"><span class="line-no">5</span><span>ok = ok &amp; (horizontal &lt;= width)</span></span>
+<span class="code-line"><span class="line-no">6</span><span>unsupported_pct = weight[~supported].sum() / weight.sum()*<span class="syn-num">100</span></span></span></code></pre><div class="editor-caption">압출 경로를 w/2 간격으로 샘플링 · 이전 퇴적점만 검색 · KD-tree<br>첫 층 z≤h는 베드 지지 · 지지된 점만 사용하는 chained 검사도 구현</div></div><div class="vs-editor "><div class="vs-tab"><span class="py-icon">Py</span>deposition_events.py + volco_oriented.py<span class="editor-dot"></span></div><pre><code><span class="code-line"><span class="line-no">1</span><span><span class="syn-comment"># G90/G91, M82/M83, G92를 해석해 ΔE와 자세 복원</span></span></span>
+<span class="code-line"><span class="line-no">2</span><span><span class="syn-key">if</span> event.delta_e &gt; <span class="syn-num">0</span>:</span></span>
+<span class="code-line"><span class="line-no">3</span><span>    volume += pi * (filament_diameter/<span class="syn-num">2</span>)**<span class="syn-num">2</span> * delta_e</span></span>
+<span class="code-line"><span class="line-no">4</span><span>    needed = round(volume / voxel_size**<span class="syn-num">3</span>) - len(voxels)</span></span>
+<span class="code-line"><span class="line-no">5</span><span>    center = tip + <span class="syn-fn">tool_direction</span>(B, C) * <span class="syn-num">0.2</span></span></span>
+<span class="code-line"><span class="line-no">6</span><span>    voxels.update(<span class="syn-fn">nearest_empty</span>(center, needed))</span></span>
+<span class="code-line"><span class="line-no">7</span><span>IoU = len(target &amp; voxels) / len(target | voxels)</span></span></code></pre><div class="editor-caption">동일 좌표의 STL 내부 voxel과 비교 · 이탈·빈 공간을 함께 벌점으로 반영</div></div></div></div></div>
+    <div class="prep-note"><strong>자료 메모</strong><span>코드는 핵심 구현을 발췌·축약한 설명용 표현입니다. 전체 함수와 기본 설정은 발표자 메모의 출처에서 확인할 수 있습니다.</span></div><template class="slide-notes"><h3>발표 설명</h3><p>왼쪽은 STL 검사·선택·G-code 생성, 오른쪽은 이 연구에서 직접 작성한 G-code 경로 평가와 VOLCO 기반 확장 복원을 설명한다. 코드 박스는 실제 식과 모듈을 읽기 쉽게 발췌·축약했고, 전체 실행 가능한 독립 함수는 아니다. STL 검사는 finite/non_empty/positive_volume/watertight다. 원뿔 좌표 변환은 (x/cosθ,y/cosθ,z+d*r*tanθ), 역변환은 (X*cosθ,Y*cosθ,Z′−d*hypot(X,Y)*sinθ)이다. ΔE는 경로 길이비로 보정한다. toolpath.sample_extrusions는 양의 E 변화 구간을 width/2로 샘플링하고 G92 E 리셋을 처리하며 각 점의 weight는 대표 경로 길이다. check_support는 G-code 순서상 이전 점만 검색하고 0&lt;dz≤1.5h, 수평 거리≤w이면 지지로 인정한다. 첫 층 베드 판정은 z≤h이며 require_supported_below=True는 지지된 재료만 아래 지지 후보로 쓴다. 기본 경로 파서는 G0/G1 중심이고 생성기는 해당 계약을 따른다. 퇴적용 parse_motion_events는 G90/G91, M82/M83, G92 및 단위를 따로 처리하며 G2/G3는 거절한다. RTCP XYZ는 팁 위치이며 B/C를 보존한다. 구형 퇴적은 방향을 따라 0.2mm 이동한 중심, 노즐 평면 클리핑, 빈 voxel의 거리·좌표 동점 순서로 누적 압출 부피를 1 voxel 이내로 맞춘다. 아래 nearest_empty 표현에서는 클리핑·반경 증가가 생략됐다. 코드의 IoU 한 줄은 1개 측정 위치의 정의이며 8장 결과는 4개 측정 위치의 평균 intersection/평균 union으로 집계한다. 본 비교는 냉각·처짐을 해석하는 CFD가 아닌 방향성 퇴적 재구성이다.</p>
+    <h3>구현 근거</h3><p>conical/analytic.py, conical/transform.py, conical/backtransform.py, conical/pipeline.py, conical/toolpath.py: sample_extrusions/check_support, conical/deposition_events.py: parse_motion_events, tools/external/volco_oriented.py, tools/deposition_iou_sweep.py, tools/check_deposition_phases.py</p><h3>내용 출처</h3>
+    <a class="note-source" href="https://github.com/26037-arch/wjd">wjd 공개 저장소</a>
+    <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>
+    <a class="note-source" href="https://drive.google.com/drive/folders/1Z0gUKEgeItji8W_Syo2zUCr6RDTfqadh">Drive · wjd e9bc3b0 코드와 실험 원본</a>
+    <a class="note-source" href="assets/data/provenance.json">발표용 반복 검증 조건과 결과</a></template></section>
         <!-- 07 · k값 수정과 원뿔각 선택 검증 -->
-        <section id="slide-7" class="slide" data-section="코드와 검증" aria-labelledby="title-7" aria-hidden="true">
-          <span class="slide-number">07</span>
-          <header class="slide-header">
-            <p class="eyebrow">05 · PARAMETER VALIDATION</p>
-            <h2 id="title-7">k값 수정과 원뿔각 선택 검증</h2>
-            <p class="subtitle">같은 모델에서 k를 바꿨을 때 선택과 형상 재현도가 어떻게 달라지는가</p>
-          </header>
-          <div class="content">
-            <div class="split wide-left">
-              <div>
-                <div class="chart-panel">
-                  <p class="chart-heading">선택 민감도 시연 · 1차 아치형 STL</p>
-                  <svg id="k-chart" viewBox="0 0 670 315" role="img" aria-label="원뿔각별 평가 점수 그래프"></svg>
-                  <div class="control-row">
-                    <label for="k-control">k</label>
-                    <input id="k-control" type="range" min="0" max="1.2" step="0.01" value="0.2">
-                    <output id="k-value">0.20</output>
-                  </div>
-                  <div class="selection-readout">
-                    <div>
-                      <span>선택 원뿔각</span>
-                      <strong id="chosen-angle">—</strong>
-                    </div>
-                    <div>
-                      <span>방향</span>
-                      <strong id="chosen-direction">—</strong>
-                    </div>
-                    <div>
-                      <span>평가점수 J</span>
-                      <strong id="chosen-score">—</strong>
-                    </div>
-                  </div>
-                </div>
-                <p class="small" style="margin-top:13px">슬라이더는 저장소 판정식으로 재계산한 기하 시연입니다.<br>실제 G-code 형상 비교 결과는 별도 자료로 연결합니다.</p>
-              </div>
-              <div>
-                <ul class="evidence-list">
-                  <li data-num="01"><h3>기준값 고정</h3><p>현재 기본 k=0.20과 동일한 모델·각도 후보로 비교</p></li>
-                  <li data-num="02"><h3>k 수정값 적용</h3><p>전역 k와 형상 특징 기반 k 예측을 비교하는 설계</p></li>
-                  <li data-num="03"><h3>선택한 각도에서 재검증</h3><p>원본과 G-code 재구성 형상의 교집합/합집합 비율(IoU) 평가</p></li>
-                </ul>
-                <p class="body-note">학습용과 평가용 STL을 분리하고,<br>선택각이 IoU 최대값에 얼마나 가까운지 확인합니다.</p>
-              </div>
-            </div>
-          </div>
-          <div class="prep-note">
-            <strong>자료 메모</strong>
-            <span>수정 전·후 k, 각도–IoU 곡선, 선택각 점선, 모델별 결과표를 이 장에 추가해주세요.</span>
-          </div>
-          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
-          <template class="slide-notes">
-            <h3>발표 설명</h3>
-            <p>k 정의는 코드에서 확인했다. 2학기 프로젝트의 역전파 기반 k값 결정 대화는 저렴한 형상 특징에서 k를 예측하고 기존 selector를 유지하는 설계를 제안한다. 학습 때만 softmax와 IoU 손실을 연결하고 실제 선택은 hard argmax를 사용한다. 이 대화는 성능 향상 측정값을 제공하는 결과표가 아니다. 왼쪽 시연은 1차 발표 arch-01.stl에서 analytic.py의 면적 가중 판정식으로 계산했다. outward/inward 모든 후보 가운데 최대 J를 선택한다. 표시된 결과는 기하 추정이며 물리 출력 판정이 아니다. 최종 발표용 결과 그래프는 x축=원뿔각, y축=G-code 실행 재구성 형상과 원본의 IoU, 수정 k가 선택한 θ 위치에 점선을 표시한다. 다른 프로젝트 채팅의 수치 결과는 본문에 가져오지 않았다.</p>
-            <h3>추가로 필요한 자료</h3>
-            <ul>
-              <li>확정한 수정 전·후 k값과 단위</li>
-              <li>모델별 각도·방향·IoU CSV/JSON</li>
-              <li>선택각 및 IoU 최대각의 대응</li>
-              <li>학습·검증·평가 모델 분리 기록</li>
-              <li>최종 결과 그래프 원본</li>
-            </ul>
-            <h3>내용 출처</h3>
-            <a class="note-source" href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener">형상 적응형 슬라이서</a>
-            <p style="color:#78859a;font-size:12px;margin:0">README, conical/selector.py, conical/rep5x.py</p>
-            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
-            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
-            <a class="note-source" href="https://github.com/26037-arch/adaptive-conical-slicing-presentation" target="_blank" rel="noopener">1차 중간 발표</a>
-            <p style="color:#78859a;font-size:12px;margin:0">82f2c60dd3570c8b1681b6c552cdbd5098f13e34</p>
-            <a class="note-source" href="codex://threads/6ac63eb2-57e0-83e8-b501-0276e3e31b98" target="_blank" rel="noopener">R&amp;E 2학기 · 역전파 기반 k값 결정</a>
-            <p style="color:#78859a;font-size:12px;margin:0">형상 특징 기반 k 예측, 학습과 추론 분리 설계</p>
-          </template>
-        </section>
+        <section id="slide-7" class="slide research-slide" data-section="코드와 검증" aria-labelledby="title-7" aria-hidden="true">
+    <span class="slide-number">07</span><header class="slide-header">
+    <p class="eyebrow">05 · LEARNING k</p>
+    <h2 id="title-7">형상 특징에서 k를 예측하고 역전파로 수정</h2><p class="subtitle">38차원 MLP의 연속값 회귀 출력과 선택 확률을 연결</p></header>
+    <div class="content">
+<div class="learning-layout"><div class="learning-method"><div class="label">입력 형상에서 k까지</div><svg class="nn-diagram" viewBox="0 0 650 190" role="img" aria-label="38차원 형상 특징을 32,16개 은닉층과 Softplus 출력으로 처리하고 손실에서 역전파하는 MLP">
+<defs><marker id="nn-arr" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="#6f83a7"/></marker></defs>
+<g class="nn-edges"><path d="M110 79H164"/><path d="M259 79H309"/><path d="M404 79H457"/><path d="M552 79H612"/></g>
+<rect x="0" y="36" width="110" height="87" rx="10" fill="#edf1fc"/><text x="55" y="68" text-anchor="middle" class="nn-title">형상 x</text><text x="55" y="99" text-anchor="middle" class="nn-detail">38 features</text>
+<g class="nn-layer"><rect x="164" y="18" width="95" height="124" rx="10"/><circle cx="186" cy="48" r="7"/><circle cx="212" cy="48" r="7"/><circle cx="238" cy="48" r="7"/><circle cx="186" cy="78" r="7"/><circle cx="212" cy="78" r="7"/><circle cx="238" cy="78" r="7"/><text x="211" y="112" text-anchor="middle">32 · ReLU</text></g>
+<g class="nn-layer"><rect x="309" y="18" width="95" height="124" rx="10"/><circle cx="331" cy="48" r="7"/><circle cx="357" cy="48" r="7"/><circle cx="383" cy="48" r="7"/><circle cx="344" cy="78" r="7"/><circle cx="370" cy="78" r="7"/><text x="357" y="112" text-anchor="middle">16 · ReLU</text></g>
+<rect x="457" y="36" width="95" height="87" rx="10" fill="#e9f5f2"/><text x="505" y="69" text-anchor="middle" class="nn-title">1</text><text x="505" y="100" text-anchor="middle" class="nn-detail">Softplus</text>
+<text x="615" y="87" class="nn-k">k ≥ 0</text>
+<path d="M594 122V169H209V146" class="backprop-line"/><text x="298" y="160" class="backprop-label">IoU regret L · backward() · Adam</text>
+</svg>
+<div class="feature-explain">크기·부피 8개 + 반경 프로필 20개 + 법선 히스토그램 10개</div>
+<div class="equation-set"><div>k<sub>i</sub> = Softplus(MLP<sub>w</sub>(x<sub>i</sub>))</div><div>J<sub>ij</sub> = G<sub>ij</sub> − k<sub>i</sub>|θ<sub>j</sub>|<span>G = 평면 대비 서포트 감소 (%p)</span></div><div>p<sub>ij</sub> = softmax<sub>j</sub>(J<sub>ij</sub>/T)</div><div>L = <span class="fraction"><span>1</span><span>N</span></span> Σ<sub>i,j</sub> p<sub>ij</sub>(Q<sub>i</sub><sup>max</sup> − Q<sub>ij</sub>)</div></div>
+<p class="training-explain">손실의 기울기가 k와 MLP 가중치를 갱신합니다.<br>새 STL 추론에서는 k를 예측한 뒤 기존 J의 최대 후보를 선택합니다.</p></div>
+<div class="convergence-result"><figure class="research-figure"><img src="assets/figures/k-convergence.png" alt="시드 42,43,44의 실제 재학습 평균 k 수렴 기록"><figcaption>누적 1000회 학습 뒤 50개 고정 · 시드 42 / 43 / 44</figcaption></figure>
+<div class="convergence-facts"><div><strong>3 / 3</strong><span>종료 기준 만족</span></div><div><strong>240–540회</strong><span>50개 고정 후 추가 업데이트</span></div></div>
+<p class="convergence-note">100회 동안 선택 후보가 유지되고, 개별 k의 변화폭 &lt; 0.01.<br>그래프는 모든 50개 형상에 대한 평균이며, 시드별 최종 k는 서로 다릅니다.</p></div></div></div>
+    <div class="prep-note"><strong>자료 메모</strong><span>학습 label: 50개 STL × 46후보의 이상적 적층 형상 IoU. 학습 곡선과 실제 G-code 복원 IoU는 구분합니다.</span></div><template class="slide-notes"><h3>발표 설명</h3><p>k_predictor는 38→32 ReLU→16 ReLU→1 Softplus의 작은 MLP이며 정답 k를 바로 회귀하는 MSE baseline도 구현돼 있다. 이 장의 실제 재학습은 IoU regret를 최소화하는 방식이고 MSE 곡선이라고 부르지 않는다. Q는 0~1 IoU, G와 T는 %p, θ는 degree, k는 %p/degree다. softmax는 학습에만 사용하고 추론은 select_cone의 hard argmax를 유지한다. 원본 50-STL 각도별 기하근사 IoU와 원본 STLs를 사용해 seed42/43/44로 재실행했다. 매 STL 도착 후 기존 데이터 전체를 다시 사용해 20회 Adam 업데이트하고 50개 후 동일 고정 데이터로 추가 학습한다. initial_k=.2, lr=.003, weight_decay=1e-4, T 1→.1, 고정 단계 T=.1. 각 실행의 총 업데이트는 1000+540,1000+400,1000+240. 평균 k는 각각 2.133259,4.157754,1.676892. 전체 50개를 학습에 사용한 내부 수렴 검증이며 보지 않은 STL 성능을 측정한 실험은 아니다. 고정 단계 종료 기준은 최근100 업데이트 동안 선택 인덱스 동일, 개별 k 최대 변화폭&lt;.01, loss 범위&lt;1e-5. 이 기준의 만족은 고유한 k값에 대한 수학적 수렴 증명과 구분된다. Drive 원본은 다른 실행에서 평균3.233567을 기록했으나 이번 그래프는 이번에 실제 다시 실행한 기록으로 생성했다. 재실행 전체 결과를 숨기지 않고 세 곡선을 모두 넣었다.</p>
+    <h3>구현 근거</h3><p>conical/k_learning/model.py, features.py, loss.py; tools/run_cumulative_k_learning.py, tools/settle_cumulative_k.py; assets/data/learning-traces.csv, learning-repeats.json</p><h3>내용 출처</h3>
+    <a class="note-source" href="https://github.com/26037-arch/wjd">wjd 공개 저장소</a>
+    <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>
+    <a class="note-source" href="https://drive.google.com/drive/folders/1Z0gUKEgeItji8W_Syo2zUCr6RDTfqadh">Drive · wjd e9bc3b0 코드와 실험 원본</a>
+    <a class="note-source" href="assets/data/provenance.json">발표용 반복 검증 조건과 결과</a><a class="note-source" href="assets/figures/k-training-full.png">누적 학습부터 종료까지 전체 곡선</a></template></section>
         <!-- 08 · 검증 결과 판단 -->
-        <section id="slide-8" class="slide" data-section="코드와 검증" aria-labelledby="title-8" aria-hidden="true">
-          <span class="slide-number">08</span>
-          <header class="slide-header">
-            <p class="eyebrow">06 · RESULT INTERPRETATION</p>
-            <h2 id="title-8">검증 결과 판단</h2>
-            <p class="subtitle">각도 선택의 근거를 실행 경로와 형상 비교로 확인</p>
-          </header>
-          <div class="content">
-            <table class="comparison">
-              <thead>
-                <tr>
-                  <th style="width:23%">판정 대상</th>
-                  <th style="width:43%">확인할 근거</th>
-                  <th>결과를 읽는 기준</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>각도 선택</td>
-                  <td>k, 선택각, 방향, J와 후보별 점수</td>
-                  <td>평가 기준에 맞는 선택인지 확인</td>
-                </tr>
-                <tr>
-                  <td>G-code 검사</td>
-                  <td>지원되는 축·간섭·층간 지지 검사와 실패 로그</td>
-                  <td>실행한 검사 범위 안에서 판단</td>
-                </tr>
-                <tr>
-                  <td>형상 재현도</td>
-                  <td>IoU, 누락·과잉 체적, 표면 거리와 해상도 민감도</td>
-                  <td>형상 오차와 격자 오차를 함께 비교</td>
-                </tr>
-                <tr>
-                  <td>실물 출력</td>
-                  <td>출력 사진, 치수, 시간, 실패 위치와 반복 측정</td>
-                  <td>실제 제작 성능과 최종 일치 여부 판단</td>
-                </tr>
-              </tbody>
-            </table>
-            <div class="judgment">k 수정의 효과는 <span class="accent">동일 조건의 형상 비교</span>로 판단합니다</div>
-            <p class="small">최종 결론 입력 자리: 어떤 형상에서 개선됐는가 · 최대 IoU 대비 차이 · 실패하거나 개선되지 않은 사례</p>
-          </div>
-          <div class="prep-note">
-            <strong>자료 메모</strong>
-            <span>이 장에는 팀의 최종 판단 문장과 그 근거 수치를 함께 넣어주세요. 수치가 없다는 이유로 성과를 삭제하지 않습니다.</span>
-          </div>
-          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
-          <template class="slide-notes">
-            <h3>발표 설명</h3>
-            <p>일반적인 결과 해석 틀과 저장소의 실제 검사 범위를 함께 정리했다. 생성기와 내부 검사기는 공통 가정을 공유하므로 검사 통과만으로 독립 물리 검증을 주장하지 않는다. VOLCO의 voxel 해상도끼리 비교한 IoU는 수치 수렴이며 실물 정확도가 아니다. IoU만으로 국소 누락과 과잉이 상쇄될 수 있으므로 두 체적 및 표면 거리도 확인한다. 전역 k 대비 형상별 k의 개선은 평가 STL에서 확인해야 한다. 팀의 오프라인 결과가 준비되면 마지막 판단 문장을 결과 중심으로 교체한다.</p>
-            <h3>추가로 필요한 자료</h3>
-            <ul>
-              <li>수정 전·후 IoU 및 최대 IoU 대비 차이</li>
-              <li>형상별 개선·실패 사례</li>
-              <li>격자 또는 샘플링 해상도와 반복 측정</li>
-              <li>발표용 최종 결론 한 문장</li>
-            </ul>
-            <h3>내용 출처</h3>
-            <a class="note-source" href="https://github.com/26037-arch/wjd" target="_blank" rel="noopener">원뿔각 평가·검증 코드</a>
-            <p style="color:#78859a;font-size:12px;margin:0">54385cf410ce50364076e071a61c3f85335a3c95</p>
-            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
-            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
-            <a class="note-source" href="codex://threads/6ac63eb2-57e0-83e8-b501-0276e3e31b98" target="_blank" rel="noopener">R&amp;E 2학기 · 역전파 기반 k값 결정</a>
-            <p style="color:#78859a;font-size:12px;margin:0">형상 특징 기반 k 예측, 학습과 추론 분리 설계</p>
-          </template>
-        </section>
+        <section id="slide-8" class="slide research-slide" data-section="코드와 검증" aria-labelledby="title-8" aria-hidden="true">
+    <span class="slide-number">08</span><header class="slide-header">
+    <p class="eyebrow">06 · ANGLE VALIDATION</p>
+    <h2 id="title-8">선택한 원뿔각의 복원 형상을 IoU로 확인</h2><p class="subtitle">전체 G-code 후보 결과가 확보된 mushroom_03을 대표 검증 모델로 사용</p></header>
+    <div class="content">
+<div class="iou-layout"><div><figure class="research-figure angle-figure"><img src="assets/figures/angle-iou.png" alt="mushroom_03의 원뿔각별 체적 IoU. 학습 k 선택각 0도 점선과 측정 최대 10도 표시"><figcaption>0–44° · 2° 간격 · outward / inward 총 46후보</figcaption></figure>
+<p class="plot-conditions">층고 0.3 mm · 선폭/인필 간격 0.45 mm · voxel 0.3 mm · 이동 샘플 0.15 mm</p></div>
+<div class="iou-result"><div class="result-heading">학습 k가 선택한 각도</div><div class="angle-readout">0<span>°</span></div>
+<div class="numeric-results"><div><span>선택각 IoU</span><strong>92.624<span>%</span></strong></div><div><span>측정 최대 · 10°</span><strong>93.172<span>%</span></strong></div></div>
+<p class="result-interpretation">선택값은 측정 최대의 <strong>99.41%</strong>.<br>최대값과의 차이는 <strong>0.547 %p</strong>입니다.</p>
+<div class="repeat-confirmation"><strong>같은 조건으로 3회 반복 확인</strong><span>0° · 10° · 12°의 G-code와 복원 voxel이 모두 동일</span></div>
+<p class="selector-finding">이 모델에서 선형 J는 k에 따라 0° 또는 12°를 선택합니다.<br>측정 최대인 10°를 선택하려면 평가식의 추가 항을 검토해야 합니다.</p></div></div></div>
+    <div class="prep-note"><strong>자료 메모</strong><span>IoU = 교집합 / 합집합. 4개 격자 내부 측정 위치의 부피를 집계한 수치입니다. 실물 스캔이 아닌 G-code 퇴적 복원 비교입니다.</span></div><template class="slide-notes"><h3>발표 설명</h3><p>Drive 데이터 중 mushroom_03 하나에만 실제 G-code 생성과 복원 46조건 전체가 확보돼 있다. 최고 성능의 임의 모델이라고 부르지 않고 전체 후보 결과가 있는 대표 모델로 선정했다. 50개 STL의 이상적 적층 기하근사 label을 실제 출력 형상과 혼합하지 않았다. 동일 원본 STL과 고정 좌표의 구형 퇴적 복원을 비교했으며 각 voxel 내부의 4개 측정 위치에서 교집합 부피와 합집합 부피를 구한 뒤 평균 교집합/평균 합집합으로 집계했다. 4개 측정 위치는 독립 퇴적 실행4회가 아니다. 이번에 0°,10°,12°를 각각3회 실제로 G-code 생성 및 전체 퇴적 재실행했고 매 각도 G-code SHA256, occupied voxel SHA256, IoU가 모두 일치했다. 선택0° IoU .9262427386, 측정최대10° .9317155299, 기본k=.2가 선택한12° .9267034221. 학습 k 선택은 기본 k 대비 .046068%p 낮으며 이번 실험의 성과는 실행 재현과 평가 결과 확인이다. 최고 IoU 차이는 .547279%p다. 비율99.4126%는 선택IoU/측정최대IoU로 계산하며 출력 성공률을 뜻하지 않는다. 원본 selector의 k 선형 envelope는 이 모델에서 경계1.05870556527을 사이에 12°와0°만 도달 가능해, k값 하나를 바꾸는 것으로10°를 선택할 수 없다는 구조적 결과를 얻는다. 이를 실제 프린터 품질의 최고각 확정이라고 말하지 않는다. 냉각/고화/처짐을 해석하지 않는 구형 퇴적 재구성이며 실물 출력 자료는15장에 추가한다.</p>
+    <h3>구현 근거</h3><p>tools/deposition_iou_sweep.py, tools/check_deposition_phases.py, conical/k_learning/baselines.py; assets/data/angle-iou.csv, deposition-repeats.csv, provenance.json</p><h3>내용 출처</h3>
+    <a class="note-source" href="https://github.com/26037-arch/wjd">wjd 공개 저장소</a>
+    <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>
+    <a class="note-source" href="https://drive.google.com/drive/folders/1Z0gUKEgeItji8W_Syo2zUCr6RDTfqadh">Drive · wjd e9bc3b0 코드와 실험 원본</a>
+    <a class="note-source" href="assets/data/provenance.json">발표용 반복 검증 조건과 결과</a><a class="note-source" href="assets/data/angle-iou.csv">46후보 IoU 원시 수치</a><a class="note-source" href="assets/data/deposition-repeats.csv">0°·10°·12° 각 3회 재실행 기록</a></template></section>
         <!-- 09 · 파이프라인 설계 -->
         <section id="slide-9" class="slide" data-section="프로그램 설계" aria-labelledby="title-9" aria-hidden="true">
           <span class="slide-number">09</span>
@@ -545,87 +408,18 @@
           </template>
         </section>
         <!-- 10 · GUI 설계 -->
-        <section id="slide-10" class="slide" data-section="프로그램 설계" aria-labelledby="title-10" aria-hidden="true">
-          <span class="slide-number">10</span>
-          <header class="slide-header">
-            <p class="eyebrow">08 · GUI CONCEPT</p>
-            <h2 id="title-10">GUI 설계</h2>
-            <p class="subtitle">모델 입력, 선택 조건, 검증 결과를 한 화면에서 확인하는 시안</p>
-          </header>
-          <div class="content">
-            <div class="split" style="grid-template-columns:1.65fr .75fr;gap:45px">
-              <div class="mock-window">
-                <div class="mock-top">
-                  <i class="window-dot"></i>
-                  <i class="window-dot"></i>
-                  <i class="window-dot"></i>
-                  <span>Adaptive slicer · GUI 설계 시안</span>
-                </div>
-                <div class="mock-body">
-                  <div class="mock-sidebar">
-                    <div class="label">실험 설정</div>
-                    <label>모델</label>
-                    <div class="mock-field">reference_arch.stl</div>
-                    <label>슬라이싱 방식</label>
-                    <div class="mock-field">가변각 원뿔</div>
-                    <label>k값</label>
-                    <div class="mock-field">0.20</div>
-                    <label>출력 플랫폼</label>
-                    <div class="mock-field">Rep5x</div>
-                    <button class="primary" disabled="">분석 및 경로 생성</button>
-                    <p class="small" style="font-size:12px;margin-top:13px">화면 구조 시안 · 분석 기능 미연결</p>
-                  </div>
-                  <div class="mock-main">
-                    <div class="visual" data-visual="model" data-model="arch">
-                      <div class="visual-top">참고 STL 미리보기</div>
-                      <div class="visual-buttons">
-                        <button data-reset-view="">시점 초기화</button>
-                      </div>
-                      <div class="visual-caption">드래그하여 모델 회전</div>
-                    </div>
-                    <div class="mock-results">
-                      <span>선택각 <strong>—</strong></span>
-                      <span>IoU <strong>—</strong></span>
-                      <span>검사 상태 <strong>실행 전</strong></span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div class="gui-notes">
-                <div class="item">
-                  <h3>입력 조건</h3>
-                  <p>모델과 공통 출력 설정을<br>한 곳에서 관리</p>
-                </div>
-                <div class="item">
-                  <h3>3D 확인</h3>
-                  <p>원본, 경로, 재구성 형상을<br>같은 좌표계에서 비교</p>
-                </div>
-                <div class="item">
-                  <h3>결과 기록</h3>
-                  <p>추천 이유와 검사 상태,<br>실패 원인을 함께 표시</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="prep-note">
-            <strong>자료 메모</strong>
-            <span>최종 GUI 캡처와 사용 흐름을 추가해주세요. 현재 화면은 구성 제안이며 실제 프로그램 화면이 아닙니다.</span>
-          </div>
-          <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
-          <template class="slide-notes">
-            <h3>발표 설명</h3>
-            <p>사용자는 GUI 자료가 아직 없다고 명시했다. 이를 반영해 최종 화면을 교체할 수 있는 시안을 만들었다. 3D 참고 모델 회전만 동작하며 분석 버튼은 비활성화했다. 실제 분석 결과나 성공 상태를 채워 넣지 않았다. 최종 GUI가 오면 본문 구조를 유지하면서 캡처를 교체할 수 있다. 외부 GUI 서비스, 추가 계정 연결 또는 새로운 라이브러리를 사용하지 않았다.</p>
-            <h3>추가로 필요한 자료</h3>
-            <ul>
-              <li>최종 GUI 캡처 또는 디자인 파일</li>
-              <li>모델 입력부터 결과 저장까지 사용 흐름</li>
-              <li>담당 팀원이 확정한 기능·메뉴 이름</li>
-            </ul>
-            <h3>내용 출처</h3>
-            <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
-            <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
-          </template>
-        </section>
+        <section id="slide-10" class="slide research-slide" data-section="프로그램 설계" aria-labelledby="title-10" aria-hidden="true">
+    <span class="slide-number">10</span><header class="slide-header">
+    <p class="eyebrow">08 · GUI DESIGN</p>
+    <h2 id="title-10">GUI 설계</h2><p class="subtitle">최종 프로그램 화면을 이 위치에 삽입</p></header>
+    <div class="content">
+<div class="gui-image-placeholder" id="gui-image-slot"><div class="image-placeholder-symbol">▧</div><strong>GUI 이미지 삽입 예정</strong><p>모델 입력 · 원뿔각 추천 · G-code 검사 · 형상 비교가 보이는 실제 화면</p><span>권장 이미지: 16:9 · 1920 × 1080 px 이상</span></div></div>
+    <div class="prep-note"><strong>자료 메모</strong><span>최종 GUI 캡처를 받으면 이 이미지 영역을 교체합니다. 조작 가능한 프로그램 화면처럼 표시하지 않았습니다.</span></div><template class="slide-notes"><h3>발표 설명</h3><p>사용자 요청에 따라 기존 GUI 시안과 모델 뷰어를 제거하고 실제 이미지의 삽입 영역으로 남겼다. 최종GUI의 모델입력,추천k/원뿔각,G-code검증,형상비교 및 상태를 한 화면에서 보여주는 캡처를 받으면 교체한다.</p>
+    <h3>구현 근거</h3><p>최종 GUI 실제 캡처 추가 예정</p><h3>내용 출처</h3>
+    <a class="note-source" href="https://github.com/26037-arch/wjd">wjd 공개 저장소</a>
+    <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>
+    <a class="note-source" href="https://drive.google.com/drive/folders/1Z0gUKEgeItji8W_Syo2zUCr6RDTfqadh">Drive · wjd e9bc3b0 코드와 실험 원본</a>
+    <a class="note-source" href="assets/data/provenance.json">발표용 반복 검증 조건과 결과</a></template></section>
         <!-- 11 · Rep5x와 5축 구조 -->
         <section id="slide-11" class="slide" data-section="5축 하드웨어" aria-labelledby="title-11" aria-hidden="true">
           <span class="slide-number">11</span>
@@ -1146,6 +940,7 @@
                   <a href="https://github.com/KJH-code/slicer" target="_blank" rel="noopener" style="display:block;margin-top:10px">KJH-code/slicer</a>
                   <p>평가식 J와 k 정의, 슬라이싱·Rep5x 연결</p>
                 </div>
+                <div class="ref-item"><span>LEARNING &amp; VALIDATION DATA</span><a href="https://drive.google.com/drive/folders/1Z0gUKEgeItji8W_Syo2zUCr6RDTfqadh" target="_blank" rel="noopener">R&amp;E data · wjd e9bc3b0</a><p>50개 STL 학습 자료, 46후보 G-code 복원, 반복 검증</p></div>
                 <div class="ref-item">
                   <span>HARDWARE &amp; CAD</span>
                   <a href="https://github.com/dennisklappe/Rep5x" target="_blank" rel="noopener">Rep5x 공식 저장소</a>
@@ -1164,8 +959,8 @@
           <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
           <template class="slide-notes">
             <h3>발표 설명</h3>
-            <p>출처는 이전 발표, 본 연구 코드, Rep5x 원본 설계, 발표 구현으로 나눴다. Rep5x 공식 CAD와 팀의 제작·수정 기여를 구분한다. 공식 웹은 출처로만 언급했다. 기하 시연, GUI 시안, 기구학 개념도와 실제 실험 자료의 차이는 해당 장에서 표시했다. 코드는 커밋 기준, 채팅은 설계 방향 참고로 기록한다. 웹 출처 확인일 2026-10-10.</p>
-            <h3>추가로 필요한 자료</h3>
+            <p>출처는 이전 발표, 본 연구 코드, Rep5x 원본 설계, 발표 구현으로 나눴다. Rep5x 공식 CAD와 팀의 제작·수정 기여를 구분한다. 공식 웹은 출처로만 언급했다. 재학습 곡선, G-code 퇴적 재구성, 기구학 개념도와 실물 자료의 구분은 해당 장에서 표시했다. RotBot의 변환과 VOLCO 구형 퇴적 규칙을 참고하며 PyTorch는 역전파, Pandas·Matplotlib은 그래프 이미지 생성에 사용했다. 코드는 커밋 기준, 채팅은 설계 방향 참고로 기록한다. 웹 출처 확인일 2026-10-10.</p>
+            <a class="note-source" href="https://github.com/RotBotSlicer/Transform">RotBot · 좌표 변환</a><a class="note-source" href="https://github.com/FullControlXYZ/volco">VOLCO · 구형 퇴적 규칙</a><a class="note-source" href="https://github.com/prusa3d/PrusaSlicer">PrusaSlicer · CLI 연결</a><a class="note-source" href="https://github.com/bambulab/BambuStudio">Bambu Studio · 설정 및 CLI 구조 비교</a><a class="note-source" href="https://drive.google.com/drive/folders/1Z0gUKEgeItji8W_Syo2zUCr6RDTfqadh">Drive 원본 코드·실험 묶음</a><h3>추가로 필요한 자료</h3>
             <ul>
               <li>추가한 팀 자체 자료의 제작자·날짜</li>
               <li>추가 사진·논문·프로그램의 출처 및 라이선스</li>

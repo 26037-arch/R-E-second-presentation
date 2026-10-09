@@ -1,0 +1,32 @@
+[
+  {
+    "seed": 42,
+    "initial_k": 0.2,
+    "cumulative_updates": 1000,
+    "settling_updates": 540,
+    "converged": true,
+    "final_mean_k": 2.1332588052749633,
+    "max_k_drift": 0.009833097457885742,
+    "selected_angles_stable": true
+  },
+  {
+    "seed": 43,
+    "initial_k": 0.2,
+    "cumulative_updates": 1000,
+    "settling_updates": 400,
+    "converged": true,
+    "final_mean_k": 4.157754030227661,
+    "max_k_drift": 0.008322715759277344,
+    "selected_angles_stable": true
+  },
+  {
+    "seed": 44,
+    "initial_k": 0.2,
+    "cumulative_updates": 1000,
+    "settling_updates": 240,
+    "converged": true,
+    "final_mean_k": 1.6768923640251159,
+    "max_k_drift": 0.009514689445495605,
+    "selected_angles_stable": true
+  }
+]

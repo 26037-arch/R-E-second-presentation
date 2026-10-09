@@ -1,0 +1,128 @@
+{
+  "source_archive_commit": "e9bc3b0",
+  "source_stl_sha256": "17b46d734c17b90e1c0971d9577e0f143b32627b8660e07d2bc0b742f40175e4",
+  "source_drive_folder": "https://drive.google.com/drive/folders/1Z0gUKEgeItji8W_Syo2zUCr6RDTfqadh",
+  "learning_protocol": {
+    "initial_k": 0.2,
+    "features": 38,
+    "hidden_layers": [
+      32,
+      16
+    ],
+    "output": "Softplus",
+    "optimizer": "Adam",
+    "lr": 0.003,
+    "weight_decay": 0.0001,
+    "updates_per_new_stl": 20,
+    "model_count": 50,
+    "labels": "ideal filled-layer meridian IoU",
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "temperature": "1.0→0.1; fixed stage 0.1",
+    "stopping": "100 updates: same selected candidates; max individual k drift < .01; loss range < 1e-5"
+  },
+  "deposition_protocol": {
+    "model_id": "mushroom_03",
+    "direction": "outward",
+    "repeat_angles": [
+      0,
+      10,
+      12
+    ],
+    "runs_per_angle": 3,
+    "layer_height_mm": 0.3,
+    "extrusion_width_mm": 0.45,
+    "infill_spacing_mm": 0.45,
+    "perimeters": 2,
+    "voxel_mm": 0.3,
+    "step_mm": 0.15,
+    "measurement_phases": 4,
+    "phase_scope": "overlap measurements inside fixed deposited cubes",
+    "backend": "volco_oriented_extension / vectorized-nearest",
+    "physical_print": false,
+    "cfd": false
+  },
+  "repeat_checks": {
+    "0": {
+      "runs": 3,
+      "iou": 0.9262427385722127,
+      "range": 0.0,
+      "gcode_hash_identical": true,
+      "voxel_hash_identical": true
+    },
+    "10": {
+      "runs": 3,
+      "iou": 0.9317155299412344,
+      "range": 0.0,
+      "gcode_hash_identical": true,
+      "voxel_hash_identical": true
+    },
+    "12": {
+      "runs": 3,
+      "iou": 0.9267034221143492,
+      "range": 0.0,
+      "gcode_hash_identical": true,
+      "voxel_hash_identical": true
+    }
+  },
+  "learning_repeats": [
+    {
+      "seed": 42,
+      "initial_k": 0.2,
+      "cumulative_updates": 1000,
+      "settling_updates": 540,
+      "converged": true,
+      "final_mean_k": 2.1332588052749633,
+      "max_k_drift": 0.009833097457885742,
+      "selected_angles_stable": true
+    },
+    {
+      "seed": 43,
+      "initial_k": 0.2,
+      "cumulative_updates": 1000,
+      "settling_updates": 400,
+      "converged": true,
+      "final_mean_k": 4.157754030227661,
+      "max_k_drift": 0.008322715759277344,
+      "selected_angles_stable": true
+    },
+    {
+      "seed": 44,
+      "initial_k": 0.2,
+      "cumulative_updates": 1000,
+      "settling_updates": 240,
+      "converged": true,
+      "final_mean_k": 1.6768923640251159,
+      "max_k_drift": 0.009514689445495605,
+      "selected_angles_stable": true
+    }
+  ],
+  "model_selection": "Only mushroom_03 has a supplied complete actual-G-code sweep of all 46 candidates. Use this complete case rather than cherry-picking a geometric proxy.",
+  "metric": "sum/mean phase intersection divided by sum/mean phase union, not mean of per-phase IoUs",
+  "mushroom_repeat_predictions": [
+    {
+      "seed": 42,
+      "k": 1.629244327545166,
+      "selected_index": 0,
+      "angle_deg": 0,
+      "direction": "outward"
+    },
+    {
+      "seed": 43,
+      "k": 3.6803390979766846,
+      "selected_index": 0,
+      "angle_deg": 0,
+      "direction": "outward"
+    },
+    {
+      "seed": 44,
+      "k": 1.0909674167633057,
+      "selected_index": 0,
+      "angle_deg": 0,
+      "direction": "outward"
+    }
+  ]
+}
