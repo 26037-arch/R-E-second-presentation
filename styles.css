@@ -14,3 +14,86 @@
 }
 @media(prefers-reduced-motion:reduce){.slide.active{animation:none}}
 @media print{@page{size:400mm 225mm;margin:0}body{overflow:visible;background:white}.appbar,.appfooter,.overlay,.notes{display:none!important}#viewport{display:block;height:auto;overflow:visible}#stage{width:1600px;height:auto;transform:none!important}.slide{display:flex!important;position:relative;width:1600px;height:900px;break-after:page;page-break-after:always;animation:none!important;-webkit-print-color-adjust:exact;print-color-adjust:exact}.slide:last-child{break-after:auto}.slide .prep-note{visibility:visible}.visual-buttons{display:none!important}}
+
+/* Research revision: all numeric plots are locally generated PNGs. */
+.research-slide .slide-header{margin-bottom:20px}
+.system-layout{display:grid;grid-template-columns:1.6fr 1fr;gap:42px;height:100%}
+.system-graph{display:block;width:100%;height:100%;max-height:515px;overflow:visible}
+.graph-links path{fill:none;stroke:#8093b2;stroke-width:2;marker-end:url(#flow-arrow)}
+.graph-links .stl-loop{stroke:#ad8c53;marker-end:url(#flow-arrow)}
+.graph-links .retry-loop{stroke:#ad8c53;stroke-dasharray:6 5}
+.graph-links .training-loop{stroke:#4262e9;marker-end:url(#loop-arrow)}
+.graph-links .label-link{stroke:#a7b4c9;stroke-dasharray:3 3;marker-end:none}
+.graph-node rect{fill:white;stroke:#d7dfed;stroke-width:1.2}
+.graph-node.selected rect{fill:#edf1ff;stroke:#a8b8f0}
+.graph-node.green rect{fill:#eff8f5;stroke:#aed3c9}
+.node-index{font-size:14px;font-family:Consolas,monospace;fill:#7e8da6}
+.node-title{font-size:21px;font-weight:700;fill:#18253d;letter-spacing:-.8px}
+.node-detail{font-size:16px;fill:#67748b;letter-spacing:-.5px}
+.loop-label{font-size:16px;fill:#78859a}
+.graph-output rect{fill:#e9edf5}.graph-output text{font:15px Consolas,monospace;fill:#67748b}
+.graph-legend{font-size:14px;fill:#7b899f}
+.source-explain{padding-top:12px}
+.dependency-row{display:grid;grid-template-columns:30px 1fr;gap:13px;padding:10px 0 12px;border-bottom:1px solid var(--line)}
+.dependency-row:first-child{padding-top:0}
+.dependency-no{font-size:15px;color:var(--blue);padding-top:5px}
+.source-explain h3{font-size:24px;margin:0 0 9px}
+.source-explain p{font-size:18px;line-height:1.65;color:var(--muted);margin:0}
+.dependency-foot{font-size:15px;color:#8b97aa;margin-top:10px;line-height:1.6}
+.retry-policy{margin-top:16px}.retry-policy strong{font-size:18px;color:var(--blue)}
+.retry-policy p{margin-top:7px;font-size:16px;line-height:1.55}
+.algorithm-layout{display:grid;grid-template-columns:1fr 1fr;gap:25px;height:100%;align-items:start}
+.algorithm-col{display:grid;gap:12px;min-width:0}
+.vs-editor{background:#1e1e1e;color:#d4d4d4;border:1px solid #34363d;border-radius:9px;overflow:hidden}
+.vs-tab{height:35px;background:#252526;color:#c8cbd1;border-bottom:1px solid #33343a;font:15px Consolas,monospace;display:flex;align-items:center;gap:10px;padding:0 16px}
+.py-icon{font-size:12px;color:#dcca70;font-weight:700}.editor-dot{margin-left:auto;width:6px;height:6px;border-radius:50%;background:#8b8f98}
+.vs-editor pre{padding:10px 15px;margin:0;font:16px/1.4 Consolas,'Malgun Gothic',monospace;letter-spacing:-.2px}
+.vs-editor code{font:inherit;display:block;white-space:normal}
+.code-line{display:grid;grid-template-columns:25px 1fr;gap:10px;white-space:pre}
+.line-no{color:#72757b;font-size:13px;text-align:right;user-select:none}
+.syn-comment{color:#6a9955}.syn-key{color:#c586c0}.syn-num{color:#b5cea8}.syn-fn{color:#dcdcaa}
+.editor-caption{background:#202127;border-top:1px solid #34363d;color:#acb8cb;padding:9px 16px;font-size:15px;line-height:1.5}
+.learning-layout{display:grid;grid-template-columns:1fr 1.1fr;gap:38px;height:100%;align-items:start}
+.learning-method .label{margin-bottom:3px}
+.nn-diagram{display:block;width:100%;height:170px;margin:0 0 3px}
+.nn-edges path{stroke:#91a2bf;stroke-width:1.6;fill:none;marker-end:url(#nn-arr)}
+.nn-layer rect{fill:white;stroke:#d6dfef}.nn-layer circle{fill:#aebfee;stroke:#829de3}.nn-layer text{font:15px Consolas,monospace;fill:#67748b}
+.nn-title{font-size:21px;font-weight:700;fill:#273954}.nn-detail{font:15px Consolas,monospace;fill:#78859a}.nn-k{font-size:23px;font-weight:700;fill:#218f87}
+.backprop-line{stroke:#c69b55;stroke-width:1.3;stroke-dasharray:4 4;fill:none;marker-end:url(#nn-arr)}
+.backprop-label{font:14px Consolas,monospace;fill:#a07b40}
+.feature-explain{font-size:15px;color:var(--muted);padding:0 0 16px;border-bottom:1px solid var(--line);line-height:1.6}
+.equation-set{font-family:'Cambria Math',Cambria,'Malgun Gothic',serif;font-size:25px;line-height:1.65;padding:14px 0 12px;color:#273954}
+.equation-set sub,.equation-set sup{font-size:.65em}.equation-set div>span:not(.fraction){font:14px 'Malgun Gothic',sans-serif;color:#8b97aa;margin-left:13px}
+.fraction{display:inline-flex;vertical-align:middle;flex-direction:column;text-align:center;font-size:20px;line-height:1.15;margin:0 5px}
+.fraction span:first-child{border-bottom:1px solid #273954;padding:0 4px 2px}
+.training-explain{font-size:17px!important;line-height:1.6!important;color:var(--muted);margin:0;padding-top:9px;border-top:1px solid var(--line)}
+.research-figure{margin:0;background:white;border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.research-figure img{display:block;width:100%;height:auto;object-fit:contain}
+.research-figure figcaption{font-size:15px;line-height:1.6;color:var(--muted);padding:7px 16px 12px;background:white}
+.convergence-facts{display:grid;grid-template-columns:1fr 1fr;gap:25px;margin-top:21px}
+.convergence-facts strong{font-size:31px;font-weight:600;color:var(--blue);display:block;line-height:1.2}
+.convergence-facts span{display:block;font-size:17px;color:var(--muted);margin-top:9px}
+.convergence-note{font-size:16px!important;line-height:1.6!important;color:var(--muted);margin:18px 0 0}
+.iou-layout{display:grid;grid-template-columns:1.8fr 1fr;gap:40px;height:100%;align-items:start}
+.angle-figure{margin-top:16px}.angle-figure img{width:100%;height:auto}
+.plot-conditions{font-size:16px!important;color:var(--muted);margin-top:17px;line-height:1.65!important}
+.iou-result{padding-top:13px}.result-heading{font-size:18px;color:var(--muted)}
+.angle-readout{font-size:83px;line-height:1.2;letter-spacing:-4px;color:var(--blue);margin-top:7px;font-weight:600}.angle-readout>span{font-size:48px;vertical-align:top;line-height:1.5}
+.numeric-results{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:16px 0 21px;padding-top:18px;border-top:1px solid var(--line)}
+.numeric-results>div>span{font-size:16px;color:var(--muted);display:block;margin-bottom:8px}
+.numeric-results strong{font-size:34px;letter-spacing:-1.2px;white-space:nowrap;font-weight:600}.numeric-results strong span{font-size:19px;margin-left:2px;color:var(--muted)}
+.result-interpretation{font-size:20px!important;color:var(--muted);line-height:1.7!important;margin:0 0 19px}
+.repeat-confirmation{border-left:3px solid #219789;background:#ebf5f2;padding:13px 15px;font-size:17px;line-height:1.65}
+.repeat-confirmation strong{display:block;color:#218f87}.repeat-confirmation span{font-size:15px;color:var(--muted);display:block;margin-top:3px}
+.selector-finding{font-size:16px!important;line-height:1.6!important;color:var(--muted);margin-top:16px}
+.gui-image-placeholder{height:100%;border:1px dashed #b9c6dc;border-radius:13px;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#edf0f6;text-align:center;color:var(--muted)}
+.image-placeholder-symbol{font-size:55px;line-height:1;color:#a2b3d3;margin-bottom:22px}
+.gui-image-placeholder strong{font-size:32px;color:#50668e;font-weight:500;margin-bottom:22px}
+.gui-image-placeholder p{font-size:21px;margin-bottom:15px}.gui-image-placeholder>span{font-size:16px;color:#8a98b0}
+#slide-17 .references{gap:8px}
+#slide-17 .ref-item{padding:8px 0}
+#slide-17 .ref-item span{font-size:12px;margin-bottom:5px}
+#slide-17 .ref-item a{font-size:19px}
+#slide-17 .ref-item p{font-size:15px;line-height:1.5;margin:4px 0 0}
+.slide .selector-finding{margin-top:15px}
+.gui-image-placeholder>img{display:block;width:100%;height:100%;object-fit:contain}

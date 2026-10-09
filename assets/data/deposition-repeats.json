@@ -1,0 +1,416 @@
+[
+  {
+    "run": 1,
+    "model_id": "mushroom_03",
+    "angle_deg": 0,
+    "direction": "outward",
+    "intersection": 763.0672499999998,
+    "union": 823.8307499999999,
+    "iou": 0.9262427385722127,
+    "voxel_size_mm": 0.3,
+    "step_size_mm": 0.15,
+    "voxel_count": 28803,
+    "gcode_sha256": "47853ebb6438eb65764deec4737c7cfcbab8d925905104f8811f5585879d7d74",
+    "occupancy_sha256": "a058eefb99ac1655b206c18dbec8e3475c69ab4e8af1a4578ce7c81a2dd2af48",
+    "input_stl_sha256": "17b46d734c17b90e1c0971d9577e0f143b32627b8660e07d2bc0b742f40175e4",
+    "syntax_valid": true,
+    "phases": [
+      {
+        "intersection": 760.5089999999999,
+        "union": 818.9369999999999,
+        "iou": 0.9286538524941479,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 777.6809999999999
+      },
+      {
+        "intersection": 766.8269999999999,
+        "union": 827.5229999999999,
+        "iou": 0.926653398153284,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 777.6809999999999
+      },
+      {
+        "intersection": 766.0169999999999,
+        "union": 828.3329999999999,
+        "iou": 0.9247693862251051,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 777.6809999999999
+      },
+      {
+        "intersection": 758.9159999999999,
+        "union": 820.5299999999999,
+        "iou": 0.9249095097071405,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 777.6809999999999
+      }
+    ]
+  },
+  {
+    "run": 1,
+    "model_id": "mushroom_03",
+    "angle_deg": 10,
+    "direction": "outward",
+    "intersection": 776.9654999999998,
+    "union": 833.9084999999999,
+    "iou": 0.9317155299412344,
+    "voxel_size_mm": 0.3,
+    "step_size_mm": 0.15,
+    "voxel_count": 29691,
+    "gcode_sha256": "761a010a233f040e3ddfe1025b1cbbdc6077e11043c090f97aca208e8bc5f9bf",
+    "occupancy_sha256": "407f05afc8fdf50a0d9827e371652ed790cf58f481dbd2ed7b14c7b6b030ee89",
+    "input_stl_sha256": "17b46d734c17b90e1c0971d9577e0f143b32627b8660e07d2bc0b742f40175e4",
+    "syntax_valid": true,
+    "phases": [
+      {
+        "intersection": 777.4379999999999,
+        "union": 825.9839999999999,
+        "iou": 0.9412264644351465,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 801.6569999999999
+      },
+      {
+        "intersection": 781.0289999999999,
+        "union": 837.2969999999999,
+        "iou": 0.9327980394053723,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 801.6569999999999
+      },
+      {
+        "intersection": 780.6239999999999,
+        "union": 837.7019999999999,
+        "iou": 0.9318635982724167,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 801.6569999999999
+      },
+      {
+        "intersection": 768.7709999999998,
+        "union": 834.6509999999998,
+        "iou": 0.9210688060039466,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 801.6569999999999
+      }
+    ]
+  },
+  {
+    "run": 1,
+    "model_id": "mushroom_03",
+    "angle_deg": 12,
+    "direction": "outward",
+    "intersection": 778.3154999999999,
+    "union": 839.8754999999999,
+    "iou": 0.9267034221143492,
+    "voxel_size_mm": 0.3,
+    "step_size_mm": 0.15,
+    "voxel_count": 29962,
+    "gcode_sha256": "397599447b9e98d2744ac848489a521beb31d5f51fd2fa75d3e359003e44d9a1",
+    "occupancy_sha256": "fcbb4a492c0a148c2411cccb2e80e672ad000431ab5811c4091a9ac2f34baddc",
+    "input_stl_sha256": "17b46d734c17b90e1c0971d9577e0f143b32627b8660e07d2bc0b742f40175e4",
+    "syntax_valid": true,
+    "phases": [
+      {
+        "intersection": 778.0859999999999,
+        "union": 832.6529999999999,
+        "iou": 0.9344660981225072,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 808.9739999999999
+      },
+      {
+        "intersection": 783.0539999999999,
+        "union": 842.5889999999998,
+        "iou": 0.9293427756593072,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 808.9739999999999
+      },
+      {
+        "intersection": 782.4599999999999,
+        "union": 843.1829999999999,
+        "iou": 0.9279836049825483,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 808.9739999999999
+      },
+      {
+        "intersection": 769.6619999999999,
+        "union": 841.0769999999999,
+        "iou": 0.9150910083143399,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 808.9739999999999
+      }
+    ]
+  },
+  {
+    "run": 2,
+    "model_id": "mushroom_03",
+    "angle_deg": 0,
+    "direction": "outward",
+    "intersection": 763.0672499999998,
+    "union": 823.8307499999999,
+    "iou": 0.9262427385722127,
+    "voxel_size_mm": 0.3,
+    "step_size_mm": 0.15,
+    "voxel_count": 28803,
+    "gcode_sha256": "47853ebb6438eb65764deec4737c7cfcbab8d925905104f8811f5585879d7d74",
+    "occupancy_sha256": "a058eefb99ac1655b206c18dbec8e3475c69ab4e8af1a4578ce7c81a2dd2af48",
+    "input_stl_sha256": "17b46d734c17b90e1c0971d9577e0f143b32627b8660e07d2bc0b742f40175e4",
+    "syntax_valid": true,
+    "phases": [
+      {
+        "intersection": 760.5089999999999,
+        "union": 818.9369999999999,
+        "iou": 0.9286538524941479,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 777.6809999999999
+      },
+      {
+        "intersection": 766.8269999999999,
+        "union": 827.5229999999999,
+        "iou": 0.926653398153284,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 777.6809999999999
+      },
+      {
+        "intersection": 766.0169999999999,
+        "union": 828.3329999999999,
+        "iou": 0.9247693862251051,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 777.6809999999999
+      },
+      {
+        "intersection": 758.9159999999999,
+        "union": 820.5299999999999,
+        "iou": 0.9249095097071405,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 777.6809999999999
+      }
+    ]
+  },
+  {
+    "run": 2,
+    "model_id": "mushroom_03",
+    "angle_deg": 10,
+    "direction": "outward",
+    "intersection": 776.9654999999998,
+    "union": 833.9084999999999,
+    "iou": 0.9317155299412344,
+    "voxel_size_mm": 0.3,
+    "step_size_mm": 0.15,
+    "voxel_count": 29691,
+    "gcode_sha256": "761a010a233f040e3ddfe1025b1cbbdc6077e11043c090f97aca208e8bc5f9bf",
+    "occupancy_sha256": "407f05afc8fdf50a0d9827e371652ed790cf58f481dbd2ed7b14c7b6b030ee89",
+    "input_stl_sha256": "17b46d734c17b90e1c0971d9577e0f143b32627b8660e07d2bc0b742f40175e4",
+    "syntax_valid": true,
+    "phases": [
+      {
+        "intersection": 777.4379999999999,
+        "union": 825.9839999999999,
+        "iou": 0.9412264644351465,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 801.6569999999999
+      },
+      {
+        "intersection": 781.0289999999999,
+        "union": 837.2969999999999,
+        "iou": 0.9327980394053723,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 801.6569999999999
+      },
+      {
+        "intersection": 780.6239999999999,
+        "union": 837.7019999999999,
+        "iou": 0.9318635982724167,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 801.6569999999999
+      },
+      {
+        "intersection": 768.7709999999998,
+        "union": 834.6509999999998,
+        "iou": 0.9210688060039466,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 801.6569999999999
+      }
+    ]
+  },
+  {
+    "run": 2,
+    "model_id": "mushroom_03",
+    "angle_deg": 12,
+    "direction": "outward",
+    "intersection": 778.3154999999999,
+    "union": 839.8754999999999,
+    "iou": 0.9267034221143492,
+    "voxel_size_mm": 0.3,
+    "step_size_mm": 0.15,
+    "voxel_count": 29962,
+    "gcode_sha256": "397599447b9e98d2744ac848489a521beb31d5f51fd2fa75d3e359003e44d9a1",
+    "occupancy_sha256": "fcbb4a492c0a148c2411cccb2e80e672ad000431ab5811c4091a9ac2f34baddc",
+    "input_stl_sha256": "17b46d734c17b90e1c0971d9577e0f143b32627b8660e07d2bc0b742f40175e4",
+    "syntax_valid": true,
+    "phases": [
+      {
+        "intersection": 778.0859999999999,
+        "union": 832.6529999999999,
+        "iou": 0.9344660981225072,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 808.9739999999999
+      },
+      {
+        "intersection": 783.0539999999999,
+        "union": 842.5889999999998,
+        "iou": 0.9293427756593072,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 808.9739999999999
+      },
+      {
+        "intersection": 782.4599999999999,
+        "union": 843.1829999999999,
+        "iou": 0.9279836049825483,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 808.9739999999999
+      },
+      {
+        "intersection": 769.6619999999999,
+        "union": 841.0769999999999,
+        "iou": 0.9150910083143399,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 808.9739999999999
+      }
+    ]
+  },
+  {
+    "run": 3,
+    "model_id": "mushroom_03",
+    "angle_deg": 0,
+    "direction": "outward",
+    "intersection": 763.0672499999998,
+    "union": 823.8307499999999,
+    "iou": 0.9262427385722127,
+    "voxel_size_mm": 0.3,
+    "step_size_mm": 0.15,
+    "voxel_count": 28803,
+    "gcode_sha256": "47853ebb6438eb65764deec4737c7cfcbab8d925905104f8811f5585879d7d74",
+    "occupancy_sha256": "a058eefb99ac1655b206c18dbec8e3475c69ab4e8af1a4578ce7c81a2dd2af48",
+    "input_stl_sha256": "17b46d734c17b90e1c0971d9577e0f143b32627b8660e07d2bc0b742f40175e4",
+    "syntax_valid": true,
+    "phases": [
+      {
+        "intersection": 760.5089999999999,
+        "union": 818.9369999999999,
+        "iou": 0.9286538524941479,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 777.6809999999999
+      },
+      {
+        "intersection": 766.8269999999999,
+        "union": 827.5229999999999,
+        "iou": 0.926653398153284,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 777.6809999999999
+      },
+      {
+        "intersection": 766.0169999999999,
+        "union": 828.3329999999999,
+        "iou": 0.9247693862251051,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 777.6809999999999
+      },
+      {
+        "intersection": 758.9159999999999,
+        "union": 820.5299999999999,
+        "iou": 0.9249095097071405,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 777.6809999999999
+      }
+    ]
+  },
+  {
+    "run": 3,
+    "model_id": "mushroom_03",
+    "angle_deg": 10,
+    "direction": "outward",
+    "intersection": 776.9654999999998,
+    "union": 833.9084999999999,
+    "iou": 0.9317155299412344,
+    "voxel_size_mm": 0.3,
+    "step_size_mm": 0.15,
+    "voxel_count": 29691,
+    "gcode_sha256": "761a010a233f040e3ddfe1025b1cbbdc6077e11043c090f97aca208e8bc5f9bf",
+    "occupancy_sha256": "407f05afc8fdf50a0d9827e371652ed790cf58f481dbd2ed7b14c7b6b030ee89",
+    "input_stl_sha256": "17b46d734c17b90e1c0971d9577e0f143b32627b8660e07d2bc0b742f40175e4",
+    "syntax_valid": true,
+    "phases": [
+      {
+        "intersection": 777.4379999999999,
+        "union": 825.9839999999999,
+        "iou": 0.9412264644351465,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 801.6569999999999
+      },
+      {
+        "intersection": 781.0289999999999,
+        "union": 837.2969999999999,
+        "iou": 0.9327980394053723,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 801.6569999999999
+      },
+      {
+        "intersection": 780.6239999999999,
+        "union": 837.7019999999999,
+        "iou": 0.9318635982724167,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 801.6569999999999
+      },
+      {
+        "intersection": 768.7709999999998,
+        "union": 834.6509999999998,
+        "iou": 0.9210688060039466,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 801.6569999999999
+      }
+    ]
+  },
+  {
+    "run": 3,
+    "model_id": "mushroom_03",
+    "angle_deg": 12,
+    "direction": "outward",
+    "intersection": 778.3154999999999,
+    "union": 839.8754999999999,
+    "iou": 0.9267034221143492,
+    "voxel_size_mm": 0.3,
+    "step_size_mm": 0.15,
+    "voxel_count": 29962,
+    "gcode_sha256": "397599447b9e98d2744ac848489a521beb31d5f51fd2fa75d3e359003e44d9a1",
+    "occupancy_sha256": "fcbb4a492c0a148c2411cccb2e80e672ad000431ab5811c4091a9ac2f34baddc",
+    "input_stl_sha256": "17b46d734c17b90e1c0971d9577e0f143b32627b8660e07d2bc0b742f40175e4",
+    "syntax_valid": true,
+    "phases": [
+      {
+        "intersection": 778.0859999999999,
+        "union": 832.6529999999999,
+        "iou": 0.9344660981225072,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 808.9739999999999
+      },
+      {
+        "intersection": 783.0539999999999,
+        "union": 842.5889999999998,
+        "iou": 0.9293427756593072,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 808.9739999999999
+      },
+      {
+        "intersection": 782.4599999999999,
+        "union": 843.1829999999999,
+        "iou": 0.9279836049825483,
+        "target_volume": 816.6689999999999,
+        "reconstructed_volume": 808.9739999999999
+      },
+      {
+        "intersection": 769.6619999999999,
+        "union": 841.0769999999999,
+        "iou": 0.9150910083143399,
+        "target_volume": 801.7649999999999,
+        "reconstructed_volume": 808.9739999999999
+      }
+    ]
+  }
+]
