@@ -57,24 +57,13 @@ window.DeckVisuals=(()=>{
    const liveGeometry=new THREE.BufferGeometry();liveGeometry.setAttribute('position',new THREE.BufferAttribute(new Float32Array(verticesPerBead*3),3).setUsage(THREE.DynamicDrawUsage));liveGeometry.setIndex(beadIndices(1));
    const live=new THREE.Mesh(liveGeometry,mint);live.frustumCulled=false;live.visible=false;scene.add(live);
    let elapsed=0,running=true,speed=3,cycle=1,lastTime=null,lastReadout=-Infinity,pose={x:0,y:0,z:4,b:0,c:-180,e:0},latest=null;
-   const slide=el.closest('.slide'),find=id=>slide.querySelector('#'+id),play=find('machine-play');
-   speed=Number(find('machine-speed').value)||3;
    function place(p){
      yaw.rotation.z=p.c*Math.PI/180;tilt.rotation.y=p.b*Math.PI/180;carriage.position.set(0,0,0);scene.updateMatrixWorld(true);
      carriage.position.copy(new THREE.Vector3(p.x,p.y,p.z).sub(tip.getWorldPosition(new THREE.Vector3())));scene.updateMatrixWorld(true);
    }
    function readout(state,hold=false){
-     const p=state.pose,s=state.segment;
-     find('b-control').value=p.b;find('c-control').value=((p.c+180)%360+360)%360-180;
-     find('b-value').textContent=p.b.toFixed(1)+'°';find('c-value').textContent=p.c.toFixed(1)+'°';
-     find('machine-code').textContent=s.raw;
-     find('machine-position').textContent=`X ${p.x.toFixed(1)}  Y ${p.y.toFixed(1)}  Z ${p.z.toFixed(1)} mm`;
-     find('machine-layer').textContent=`${Math.max(1,s.layer)} / ${program.layers}층 · ${s.coneAngle.toFixed(1)}°`;
-     find('machine-progress').value=Math.min(100,elapsed/program.duration*100);
-     const phase=s.type==='INFILL'?'내부 채움':'외벽 출력';
-     find('machine-status').textContent=hold?'완료 · 반복 준비':!running?'일시정지':s.extruding?phase:'이동 · 리트랙션';
+     const s=state.segment,phase=s.type==='INFILL'?'내부 채움':'외벽 출력';
      el.querySelector('.visual-caption').textContent=`${cycle}회차 · ${hold?'출력 완료':s.extruding?phase:'노즐 이동'} · 가변각 원뿔 슬라이싱`;
-     play.textContent=running?'일시정지':'계속 재생';play.setAttribute('aria-pressed',String(!running));
    }
    function renderState(force=false){
      const state=GCodeSimulation.sample(program,elapsed);latest=state;pose=state.pose;place(pose);
@@ -83,7 +72,6 @@ window.DeckVisuals=(()=>{
      if(live.visible){bead(state.segment.from,pose,liveGeometry.attributes.position.array,0,state.segment.layer-1);liveGeometry.attributes.position.needsUpdate=true;liveGeometry.computeVertexNormals();}
      if(force||elapsed-lastReadout>.08){readout(state,elapsed>=program.duration);lastReadout=elapsed;}
    }
-   function restart(){elapsed=0;lastTime=null;lastReadout=-Infinity;running=true;renderState(true);}
    function tick(now){
      const dt=lastTime===null?0:Math.min(Math.max((now-lastTime)/1000,0),.1);lastTime=now;
      if(running&&!document.hidden){
@@ -92,15 +80,8 @@ window.DeckVisuals=(()=>{
        renderState();
      }
    }
-   play.onclick=()=>{running=!running;lastTime=null;readout(latest,elapsed>=program.duration);};
-   find('machine-restart').onclick=restart;
-   find('machine-speed').onchange=e=>{speed=Number(e.target.value);};
-   find('machine-download').onclick=()=>{
-     const url=URL.createObjectURL(new Blob([program.source],{type:'text/plain'})),a=document.createElement('a');a.href=url;a.download='rep5x-slide11-demo.gcode';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);
-   };
    renderState(true);
-   function update(b,c){running=false;pose={...pose,b,c};place(pose);readout({...latest,pose});live.visible=false;}
-   return {size:190,center:new THREE.Vector3(0,0,52),update,tick,getState:()=>({elapsed,running,cycle,pose:{...pose},nozzle:tip.getWorldPosition(new THREE.Vector3()).toArray(),deposits:printedGeometry.drawRange.count/indicesPerBead,live:live.visible,duration:program.duration}),cleanup:()=>{[play,find('machine-restart'),find('machine-speed'),find('machine-download')].forEach(button=>{button.onclick=null;button.onchange=null;});}};
+   return {size:190,center:new THREE.Vector3(0,0,52),tick,getState:()=>({elapsed,running,cycle,pose:{...pose},nozzle:tip.getWorldPosition(new THREE.Vector3()).toArray(),deposits:printedGeometry.drawRange.count/indicesPerBead,live:live.visible,duration:program.duration})};
  }
 
  function dispose(){if(!active)return;const old=active;active=null;old.renderer.setAnimationLoop(null);old.setup.cleanup?.();old.controls.dispose();old.scene.traverse(o=>{if(o.geometry)o.geometry.dispose();if(o.material)(Array.isArray(o.material)?o.material:[o.material]).forEach(m=>m.dispose());});old.renderer.dispose();old.renderer.domElement.remove();old.renderer.forceContextLoss();}
@@ -121,5 +102,5 @@ window.DeckVisuals=(()=>{
    }catch(e){console.warn('3D 뷰어',e);fallback(el,'3D를 표시할 수 없습니다. 다른 브라우저에서 열어주세요.');}
  }
  function fallback(el,text){if(el.querySelector('.visual-unavailable'))return;const p=document.createElement('div');p.className='visual-unavailable';p.innerHTML=text+'<br><small>본문과 메모는 계속 사용할 수 있습니다.</small>';el.appendChild(p);}
- return {mount,dispose,resize:()=>active?.resize(),setMachine:(b,c)=>active?.setup.update?.(b,c),getMachineState:()=>active?.setup.getState?.(),reset:()=>active?.reset()};
+ return {mount,dispose,resize:()=>active?.resize(),getMachineState:()=>active?.setup.getState?.(),reset:()=>active?.reset()};
 })();
