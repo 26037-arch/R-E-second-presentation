@@ -433,31 +433,36 @@
           <header class="slide-header">
             <p class="eyebrow">09 · FIVE-AXIS STRUCTURE</p>
             <h2 id="title-11">Rep5x와 5축 구조</h2>
-            <p class="subtitle">기존 XYZ 이동에 헤드의 기울기 B와 방위 회전 C를 추가</p>
+            <p class="subtitle">기존 XYZ 이동에 헤드 기울기 B와 방위 회전 C를 추가</p>
           </header>
           <div class="content">
             <div class="split wide-left">
               <div>
                 <div class="visual" data-visual="machine" data-model="">
-                  <div class="visual-top">헤드 회전 구조 개념도 · 실제 장비 CAD와 구분</div>
+                  <div class="visual-top">가변각 원뿔 슬라이싱 · 외벽 + 내부 채움</div>
                   <div class="visual-buttons">
                     <button data-reset-view="">시점 초기화</button>
                   </div>
-                  <div class="visual-caption">B축 기울기 · C축 방위 회전</div>
+                  <div class="visual-caption">G-code 경로를 따라 자동 출력 중</div>
                 </div>
               </div>
               <div>
                 <div class="axis-specs">
                   <strong>XYZ</strong>
-                  <span>노즐 끝의 목표 위치</span>
+                  <span>노즐 위치</span>
                   <strong>B</strong>
                   <span>헤드의 기울기</span>
                   <strong>C</strong>
-                  <span>수직축 주위 헤드 방위 회전</span>
+                  <span>헤드 방위 회전</span>
                 </div>
-                <div class="rule"></div>
-                <h3>Ender-3 V3 SE 기반 개조</h3>
-                <p class="muted">캐리지에 회전 헤드 장착<br>기존 베드의 회전 자유도는 추가하지 않음</p>
+                
+                <div class="machine-panel">
+                  <div class="machine-toolbar"><button id="machine-play" aria-pressed="false">일시정지</button><button id="machine-restart">처음부터</button><label>속도 <select id="machine-speed"><option value="1">1×</option><option value="3" selected>3×</option><option value="6">6×</option></select></label></div>
+                  <div class="machine-readout"><strong id="machine-status">출력 준비</strong><span id="machine-layer">1 / 40층 · 0.0°</span></div>
+                  <progress id="machine-progress" max="100" value="0" aria-label="출력 진행률"></progress>
+                  <code id="machine-code">G90</code><div id="machine-position">X 0.0  Y 0.0  Z 4.0 mm</div>
+                  <button id="machine-download">시연 G-code 저장 ↓</button>
+                </div>
                 <div class="axis-control">
                   <label for="b-control">기울기 B</label>
                   <input id="b-control" type="range" min="-55" max="55" value="25">
@@ -468,7 +473,7 @@
                   <input id="c-control" type="range" min="-180" max="180" value="30">
                   <output id="c-value">30°</output>
                 </div>
-                <p class="small">위 입력 범위는 설명용입니다.<br>실제 허용각과 축 부호는 장비에서 확인</p>
+                <p class="small">40층 · 가변 원뿔각 0–18° · 내부 100% 채움<br>XYZ/B/C 연동 · 출력 완료 후 자동 반복</p>
               </div>
             </div>
           </div>
@@ -479,7 +484,7 @@
           <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
           <template class="slide-notes">
             <h3>발표 설명</h3>
-            <p>Rep5x는 head-head 구조다. C축이 yaw, B축이 tilt이며 회전 헤드가 캐리지에 장착된다. Open5x의 베드 회전 기구학을 동일하게 적용하면 안 된다. 여기의 3D는 사용자 요청에 따른 축 설명 개념도다. 부품 크기·장착 변환·장비 도달 영역은 실측 또는 검증된 조립 CAD를 나타내지 않는다. 렌더링은 노즐 끝이 기준점에 머물게 단순 보정해 운동 원리를 보여준다. 실제 RTCP 검증 결과가 아니다. 공식 웹은 마지막 출처와 메모에서만 링크한다.</p>
+            <p>Rep5x는 head-head 구조다. C축이 yaw, B축이 tilt이며 회전 헤드가 캐리지에 장착된다. Open5x의 베드 회전 기구학을 동일하게 적용하면 안 된다. 여기의 3D는 사용자 요청에 따른 축 설명 개념도다. 부품 크기·장착 변환·장비 도달 영역은 실측 또는 검증된 조립 CAD를 나타내지 않는다. 발표용 G-code를 G0/G1, G90/G91, M82/M83, G92로 해석하고 XYZ/B/C/E/F를 시간에 따라 보간한다. 노즐 끝을 목표 XYZ로 보정하고 G1의 E가 증가하는 구간에만 재료를 누적한다. 예시 출력물은 40층의 내부를 채운 모래시계형 모델이다. 저장소 backtransform.py의 outward 원뿔 역변환 z=z′−r·tanθ를 따른다. 중앙 꼭짓점의 법선 특이점은 r 대신 sqrt(r²+1.8²)−1.8로 정규화한다. 첫 층은 베드에 접하는 평면이고 이후 원뿔각을 0–18°로 부드럽게 증가시킨다. B는 각 점의 국소 법선 기울기, C는 방위각으로 계산하므로 임의로 한 축을 고정하지 않는다. 원뿔면 위 두 겹 외벽과 0.9mm 간격의 100% 지그재그 내부 채움을 생성하며 인접 층에서는 채움 방향을 90° 교대한다. 내부 경로는 1.2mm 이하로 분할하여 각 점의 Z/B/C를 역변환한다. E는 실공간 길이와 국소 층두께로 계산하며 이동 시 리트랙션·안전 높이·C 되감기를 표시한다. 기본 재생은 3배, F1200mm/min로 이전 12배 외벽 시연보다 느리다. 출력 완료 후 1.7초 동안 형상을 보여주고 반복한다. G-code와 축 범위는 발표용으로 생성한 예시이며 실제 장비에 실행할 파일이 아니다. 실제 RTCP 검증 결과가 아니다. 공식 웹은 마지막 출처와 메모에서만 링크한다.</p>
             <h3>추가로 필요한 자료</h3>
             <ul>
               <li>실물 장비 전체 사진과 B/C축 라벨</li>
@@ -1024,6 +1029,7 @@
     <script src="assets/vendor/OrbitControls.js"></script>
     <script src="assets/vendor/STLLoader.js"></script>
     <script src="assets/models.js"></script>
+    <script src="gcode-simulation.js"></script>
     <script src="visuals.js"></script>
     <script src="app.js"></script>
   </body>
