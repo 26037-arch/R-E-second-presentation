@@ -97,3 +97,14 @@
 #slide-17 .ref-item p{font-size:15px;line-height:1.5;margin:4px 0 0}
 .slide .selector-finding{margin-top:15px}
 .gui-image-placeholder>img{display:block;width:100%;height:100%;object-fit:contain}
+
+/* Slide 6: two original code excerpts with their explanations. */
+#slide-6 .algorithm-pair{gap:32px}
+#slide-6 .algorithm-col{display:flex;flex-direction:column;gap:0}
+#slide-6 .algorithm-heading{font-size:25px;line-height:1.35;margin:0 0 12px;color:var(--ink)}
+#slide-6 .vs-editor{flex:none;height:256px}
+#slide-6 .vs-editor pre{line-height:1.4}
+#slide-6 .algorithm-explanation{padding-top:12px}
+#slide-6 .algorithm-explanation p{font-size:20px;line-height:1.5;color:var(--muted);margin:0 0 8px;letter-spacing:-.35px}
+#slide-6 .algorithm-explanation p:last-child{margin-bottom:0}
+#slide-6 .algorithm-explanation strong{font-size:20px;color:var(--ink);font-weight:700}
