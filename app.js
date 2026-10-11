@@ -11,15 +11,31 @@
  const dots=document.getElementById('slide-dots');dots.innerHTML=slideInfo.map((d,i)=>`<button data-go="${i+1}" title="${i+1}. ${safe(d.title)}" aria-label="${i+1}번 슬라이드 ${safe(d.title)}"></button>`).join('');
  document.getElementById('overview-grid').innerHTML=slideInfo.map((d,i)=>`<button data-go="${i+1}"><span>${String(i+1).padStart(2,'0')} / ${safe(d.section)}</span><strong>${safe(d.title)}</strong></button>`).join('');
  const partMenu=document.getElementById('part-menu');
- const parts=[...partMenu.querySelectorAll('button[data-part]')].map(button=>{
-   const info=partMenu.querySelector('template[data-part-info="'+button.dataset.part+'"]');
-   return {id:button.dataset.part,name:button.textContent.trim(),desc:info.content.querySelector('[data-part-desc]').textContent,detail:info.content.querySelector('[data-part-detail]').textContent};
- });
- function part(id,render=true){const p=parts.find(p=>p.id===id)||parts[0];const sl=slides[11];sl.querySelectorAll('[data-part]').forEach(b=>b.classList.toggle('selected',b.dataset.part===p.id));document.getElementById('part-name').textContent=p.name;document.getElementById('part-file').textContent=p.id+'.3mf';document.getElementById('part-desc').textContent=p.desc;document.getElementById('part-detail').textContent=p.detail;document.getElementById('part-size').textContent='CAD 경계상자 '+MODEL_LIBRARY[p.id].sizeMm.map(x=>x.toFixed(1)).join(' × ')+' mm';sl.querySelector('[data-visual]').dataset.model=p.id;if(render&&current===11)DeckVisuals.mount(sl);}
- part(parts[0].id,false);
- function fit(){const v=document.getElementById('viewport');const scale=Math.min((v.clientWidth-20)/1600,(v.clientHeight-12)/900);stage.style.transform=`scale(${scale})`;DeckVisuals.resize();}
+ const parts=[...partMenu.querySelectorAll('button[data-part]')].map(button=>({id:button.dataset.part,name:button.textContent.trim()}));
+ function part(id,render=true){const p=parts.find(p=>p.id===id)||parts[0];const sl=slides[11];sl.querySelectorAll('button[data-part]').forEach(b=>{const selected=b.dataset.part===p.id;b.classList.toggle('selected',selected);b.setAttribute('aria-pressed',String(selected));});sl.querySelectorAll('[data-linked-part]').forEach(e=>e.classList.toggle('selected',e.dataset.linkedPart===p.id));document.getElementById('part-name').textContent=p.name;sl.querySelector('[data-visual]').dataset.model=p.id;if(render&&current===11)DeckVisuals.mount(sl);}
+ part('b-arm_v1.1.0',false);
+ // Connect actual photo locations to their menu rows, including after stage scaling.
+ function partLinks(){
+   const layout=slides[11].querySelector('.parts-layout'),img=document.getElementById('part-assembly-photo'),svg=document.getElementById('part-photo-links');
+   if(!layout||!img.complete||!img.naturalWidth||!slides[11].classList.contains('active'))return;
+   const lr=layout.getBoundingClientRect(),ir=img.getBoundingClientRect(),scale=lr.width/layout.clientWidth;
+   if(!scale)return;
+   svg.setAttribute('viewBox',`0 0 ${layout.clientWidth} ${layout.clientHeight}`);
+   const cover=Math.max(ir.width/img.naturalWidth,ir.height/img.naturalHeight),iw=img.naturalWidth*cover,ih=img.naturalHeight*cover;
+   const cropX=(iw-ir.width)*.5,cropY=(ih-ir.height)*.44;
+   svg.querySelectorAll('g[data-linked-part]').forEach(g=>{
+     const button=partMenu.querySelector('button[data-part="'+g.dataset.linkedPart+'"]'),br=button.getBoundingClientRect();
+     const x=(ir.left-lr.left+Number(g.dataset.photoX)*iw-cropX)/scale,y=(ir.top-lr.top+Number(g.dataset.photoY)*ih-cropY)/scale;
+     const endX=(br.left-lr.left)/scale-3,endY=(br.top-lr.top+br.height/2)/scale,rail=(ir.right-lr.left)/scale+20;
+     g.querySelector('path').setAttribute('d',`M ${x} ${y} H ${rail} L ${endX-18} ${endY} H ${endX}`);
+     const dot=g.querySelector('circle');dot.setAttribute('cx',x);dot.setAttribute('cy',y);
+   });
+ }
+ document.getElementById('part-assembly-photo').addEventListener('load',partLinks);
+ new ResizeObserver(()=>requestAnimationFrame(partLinks)).observe(slides[11].querySelector('.parts-layout'));
+ function fit(){const v=document.getElementById('viewport');const scale=Math.min((v.clientWidth-20)/1600,(v.clientHeight-12)/900);stage.style.transform=`scale(${scale})`;DeckVisuals.resize();requestAnimationFrame(partLinks);}
  function notes(){const d=slideInfo[current];document.getElementById('notes-title').textContent=`${current+1}. ${d.title}`;document.getElementById('notes-body').replaceChildren(slides[current].querySelector('.slide-notes').content.cloneNode(true));}
- function show(i){current=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>{s.classList.toggle('active',j===current);s.setAttribute('aria-hidden',j===current?'false':'true');s.inert=j!==current;});[...dots.children].forEach((b,j)=>{b.classList.toggle('active',j===current);b.setAttribute('aria-current',j===current?'step':'false');});document.getElementById('counter').textContent=String(current+1).padStart(2,'0')+' / 17';document.getElementById('section-label').textContent=slideInfo[current].section;document.getElementById('prev').disabled=current===0;document.getElementById('next').disabled=current===16;history.replaceState(null,'','#'+(current+1));notes();DeckVisuals.mount(slides[current]);document.getElementById('live-status').textContent=`${current+1}번 슬라이드, ${slideInfo[current].title}`;}
+ function show(i){current=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,j)=>{s.classList.toggle('active',j===current);s.setAttribute('aria-hidden',j===current?'false':'true');s.inert=j!==current;});[...dots.children].forEach((b,j)=>{b.classList.toggle('active',j===current);b.setAttribute('aria-current',j===current?'step':'false');});document.getElementById('counter').textContent=String(current+1).padStart(2,'0')+' / 17';document.getElementById('section-label').textContent=slideInfo[current].section;document.getElementById('prev').disabled=current===0;document.getElementById('next').disabled=current===16;history.replaceState(null,'','#'+(current+1));notes();DeckVisuals.mount(slides[current]);document.getElementById('live-status').textContent=`${current+1}번 슬라이드, ${slideInfo[current].title}`;requestAnimationFrame(partLinks);}
  function toggle(id){const e=document.getElementById(id);e.hidden=!e.hidden;if(!e.hidden)e.querySelector('button')?.focus();return !e.hidden;}
  function present(){presenting=!presenting;document.body.classList.toggle('presenting',presenting);document.body.classList.toggle('hide-memos',presenting);document.getElementById('present-button').textContent=presenting?'초안 모드':'발표 모드';document.getElementById('notes').hidden=true;}
  async function full(){try{if(document.fullscreenElement)await document.exitFullscreen();else await document.documentElement.requestFullscreen();}catch(e){document.getElementById('live-status').textContent='전체 화면을 사용할 수 없습니다.';}}

@@ -121,3 +121,63 @@
 #slide-11 .base-printer-photo{margin:0;height:230px;background:white;border-radius:10px;overflow:hidden}
 #slide-11 .base-printer-photo img{display:block;width:100%;height:100%;object-fit:contain}
 #slide-11 .base-printer-layout .hardware-points{font-size:18px;line-height:1.55;padding-left:21px}
+
+/* 12장: 공식 조립 사진, 부품 목록, 회전 가능한 단품 모델 */
+#viewport:has(#slide-12.active){grid-template-rows:minmax(0,1fr);grid-template-columns:minmax(0,1fr)}
+#slide-12 .parts-layout{grid-template-columns:620px 250px 1fr;gap:48px;position:relative}
+#slide-12 .part-assembly{margin:0;display:flex;flex-direction:column;min-height:0}
+#slide-12 .part-photo-frame{width:560px;flex:1;min-height:0;overflow:hidden;border-radius:10px}
+#slide-12 .part-photo-frame img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 44%}
+#slide-12 .part-assembly figcaption{font-size:16px;line-height:1.6;color:var(--muted);margin-top:13px}
+#slide-12 .part-assembly figcaption a{margin-left:12px}
+#slide-12 .part-menu{border-right:0;padding-right:0;position:relative;z-index:2}
+#slide-12 .part-menu .group-label{font-size:16px;margin:0 0 12px}
+#slide-12 .part-menu .dedicated-group{margin:22px 0 12px}
+#slide-12 .part-menu button{font-size:18px;padding:9px 12px;margin:3px 0;line-height:1.5;white-space:nowrap}
+#slide-12 .part-viewer{min-width:0;display:flex;flex-direction:column}
+#slide-12 .part-viewer h3{font-size:27px;margin:0 0 15px;line-height:1.4}
+#slide-12 .part-viewer .visual{flex:1;min-height:0;height:auto}
+#slide-12 .visual-top{left:18px;top:20px;font-size:14px}
+#slide-12 .visual-buttons{top:49px;right:14px}
+#slide-12 .visual-caption{left:18px;font-size:15px}
+#slide-12 .part-photo-links{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none;z-index:1}
+#slide-12 .part-photo-links path{fill:none;stroke:#8b9cbc;stroke-width:1.7;stroke-linejoin:round}
+#slide-12 .part-photo-links circle{fill:white;stroke:#8b9cbc;stroke-width:2}
+#slide-12 .part-photo-links .selected path{stroke:var(--blue);stroke-width:2.6}
+#slide-12 .part-photo-links .selected circle{fill:var(--blue);stroke:white;stroke-width:2.4}
+
+/* 11장: 사용자 제공 Rep5x 웹사이트 화면 이미지 */
+#slide-11 .rep5x-site-shot{margin:0;height:100%;min-height:0;min-width:0;display:flex;align-items:center;justify-content:center}
+#slide-11 .rep5x-site-shot img{display:block;width:auto;height:auto;max-width:100%;max-height:100%;object-fit:contain;border:1px solid var(--line);border-radius:12px}
+
+/* 11장: 작은 3D 뷰어, 기존 설명, 오른쪽 위 웹사이트 이미지 */
+#slide-11 .hardware-combined-layout{display:grid;grid-template-columns:540px minmax(0,1fr) 320px;gap:32px;height:100%;min-height:0}
+#slide-11 .machine-view-column{display:flex;align-items:center;min-width:0;min-height:0}
+#slide-11 .machine-view-column .visual{width:100%;height:420px;max-height:100%;min-height:0}
+#slide-11 .machine-view-column .visual-top{top:18px;left:18px;font-size:14px;max-width:calc(100% - 135px)}
+#slide-11 .machine-view-column .visual-buttons{top:14px;right:14px}
+#slide-11 .machine-view-column .visual-buttons button{font-size:12px;padding:8px 10px}
+#slide-11 .machine-view-column .visual-caption{left:18px;bottom:16px;font-size:14px}
+#slide-11 .hardware-overview{min-width:0;gap:28px;justify-content:center}
+#slide-11 .hardware-points{font-size:20px;line-height:1.55;padding-left:23px;letter-spacing:-.35px}
+#slide-11 .hardware-overview h3{font-size:27px;margin-bottom:12px}
+#slide-11 .base-printer-info{padding-top:24px}
+#slide-11 .hardware-images{display:flex;flex-direction:column;align-items:center;gap:18px;min-height:0}
+#slide-11 .hardware-images .rep5x-site-shot{width:320px;height:300px;flex:none;align-items:flex-start}
+#slide-11 .hardware-images .base-printer-photo{width:190px;height:190px;flex:none}
+
+/* 11장: 사용자 참고 배치, 세로형 3D + 위·아래 두 줄 */
+#slide-11 .hardware-combined-layout{grid-template-columns:540px minmax(0,1fr);gap:40px}
+#slide-11 .machine-view-column{align-items:stretch}
+#slide-11 .machine-view-column .visual{height:100%;max-height:none}
+#slide-11 .hardware-details-column{display:grid;grid-template-rows:minmax(0,1fr) minmax(0,1fr);gap:30px;min-width:0;min-height:0}
+#slide-11 .rep5x-top-row{display:grid;grid-template-columns:minmax(0,1fr) 270px;gap:28px;align-items:center;min-height:0}
+#slide-11 .ender-bottom-row{display:grid;grid-template-columns:230px minmax(0,1fr);gap:34px;align-items:center;min-height:0}
+#slide-11 .hardware-details-column h3{font-size:27px;margin:0 0 14px}
+#slide-11 .hardware-details-column .hardware-points{font-size:20px;line-height:1.55;letter-spacing:-.35px}
+#slide-11 .hardware-details-column .rep5x-site-shot{width:100%;height:100%;min-height:0}
+#slide-11 .hardware-details-column .base-printer-photo{width:230px;height:100%;max-height:240px;min-height:0;margin:0}
+#slide-11 .hardware-details-column .base-printer-info{border:0;padding:0;min-width:0}
+
+/* 11장: 다른 배치는 유지하고 웹페이지 이미지만 20% 확대 */
+#slide-11 .rep5x-top-row .rep5x-site-shot img{transform:scale(1.5);transform-origin:right center}

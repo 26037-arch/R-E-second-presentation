@@ -88,7 +88,7 @@
                   <span class="num">02</span>
                   <div>
                     <h3>코드 제작과 검증</h3>
-                    <p>원뿔각 평가, k값 수정, 결과 판단</p>
+                    <p>원뿔각 평가, k 학습, 결과 판단</p>
                   </div>
                   <span class="range">05–08</span>
                 </div>
@@ -175,7 +175,7 @@
           <header class="slide-header">
             <p class="eyebrow">02 · CURRENT WORK</p>
             <h2 id="title-4">이번 연구 성과 요약</h2>
-            <p class="subtitle">완성된 코드 설계와 프린터 제작·개조</p>
+            <p class="subtitle">코드 설계 완료와 5축 프린터 제작·개조 진행 중</p>
           </header>
           <div class="content">
             <div class="outcomes">
@@ -188,23 +188,23 @@
               <div class="outcome">
                 <div class="index">02</div>
                 <h3>하드웨어 구조 설계</h3>
-                <p class="outcome-detail">Ender-3 V3 SE 본체 기반<br>Rep5x 헤드 회전 구조 적용<br>3D 프린터 제작·개조</p>
-                <div class="status">핵심 산출물 · 5축 출력 플랫폼</div>
+                <p class="outcome-detail">Ender-3 V3 SE 본체 기반<br>Rep5x 헤드 회전 구조 적용<br>3D 프린터 제작·개조 진행 중</p>
+                <div class="status">핵심 산출물 · 5축 출력 플랫폼 제작 중</div>
               </div>
             </div>
           </div>
           <div class="prep-note">
             <strong>자료 메모</strong>
-            <span>코드 최종 구조도와 제작·개조 완료 사진을 추가하면 두 성과의 근거가 완성됩니다.</span>
+            <span>코드 최종 구조도와 제작·개조의 현재 상태 사진 추가 예정</span>
           </div>
           <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
           <template class="slide-notes">
             <h3>발표 설명</h3>
-            <p>두 성과의 완료 상태는 사용자 제공 연구 현황을 따른다. 저장소 또는 채팅에 사진이 없다는 이유로 오프라인 팀의 작업을 미완료로 판단하지 않는다. 프로그램 설계 완료와 실물 출력 성능 검증은 별도 단계이므로 구분해 설명한다.</p>
+            <p>코드 설계는 완료했고 하드웨어는 제작·개조 중이다. 10월 제작, 11월 실험 예정이며 현재 상태 사진과 실물 출력 결과는 14·15장에 추가한다. 프로그램 설계 완료와 실물 출력 성능 검증은 별도 단계로 설명한다.</p>
             <h3>추가로 필요한 자료</h3>
             <ul>
               <li>최종 코드 구조도 또는 모듈 목록</li>
-              <li>제작·개조 완료 전경 사진</li>
+              <li>제작·개조 현재 상태 사진</li>
               <li>팀원별 오프라인 설계 결과 요약</li>
             </ul>
             <h3>내용 출처</h3>
@@ -232,9 +232,9 @@
 </g>
 <g class="graph-node"><rect x="0" y="42" width="158" height="110" rx="10"/><text x="18" y="73" class="node-index">01 / INPUT</text><text x="18" y="105" class="node-title">STL 모델</text><text x="18" y="131" class="node-detail">입력 · 생성 모델</text></g>
 <g class="graph-node"><rect x="205" y="42" width="195" height="110" rx="10"/><text x="225" y="73" class="node-index">02 / MESH CHECK</text><text x="225" y="105" class="node-title">STL 자체 검사</text><text x="225" y="131" class="node-detail">닫힘 · 부피 · 좌표</text></g>
-<g class="graph-node selected"><rect x="458" y="42" width="178" height="110" rx="10"/><text x="478" y="73" class="node-index">03 / SELECT</text><text x="478" y="105" class="node-title">원뿔각 결정</text><text x="478" y="131" class="node-detail">max(ΔS − k|θ|)</text></g>
+<g class="graph-node selected"><rect x="458" y="42" width="178" height="110" rx="10"/><text x="478" y="73" class="node-index">03 / SELECT</text><text x="478" y="105" class="node-title">원뿔각 결정</text><text x="478" y="131" class="node-detail">균일각 max(ΔS−k|θ|)</text></g>
 <g class="graph-node"><rect x="688" y="42" width="150" height="110" rx="10"/><text x="706" y="73" class="node-index">04 / SLICE</text><text x="706" y="105" class="node-title">G-code 생성</text><text x="706" y="131" class="node-detail">변환 · XYZ/B/C</text></g>
-<g class="graph-node"><rect x="502" y="276" width="224" height="106" rx="10"/><text x="522" y="307" class="node-index">05 / VALIDATE</text><text x="522" y="338" class="node-title">명령·기구학 오류 검사</text><text x="522" y="364" class="node-detail">파싱 · 축 범위 · 간섭</text></g>
+<g class="graph-node"><rect x="502" y="276" width="224" height="106" rx="10"/><text x="522" y="307" class="node-index">05 / VALIDATE</text><text x="522" y="338" class="node-title">명령·기구학 오류 검사</text><text x="522" y="364" class="node-detail">파싱 · 축 범위 · 간섭(실측 전)</text></g>
 <g class="graph-node green"><rect x="207" y="276" width="197" height="106" rx="10"/><text x="226" y="307" class="node-index">06 / EVALUATE</text><text x="226" y="338" class="node-title">G-code 평가</text><text x="226" y="364" class="node-detail">지지율 · 퇴적 복원 · IoU</text></g>
 <g class="graph-node selected"><rect x="0" y="276" width="155" height="106" rx="10"/><text x="18" y="307" class="node-index">07 / LEARN</text><text x="18" y="338" class="node-title">k 갱신·반복</text><text x="18" y="364" class="node-detail">회귀 모델 설계</text></g>
 <text x="130" y="176" class="loop-label">STL 부적합: 생성 재시도</text>
@@ -247,7 +247,7 @@
 <div class="dependency-row"><span class="dependency-no">02</span><div><h3>외부 오픈소스 참고</h3><p>RotBot의 좌표 변환과 역변환을 바탕으로<br>PrusaSlicer CLI 연결 및 내장 슬라이서 구현</p><div class="dependency-foot">Bambu Studio·OrcaSlicer는 CLI·설정 구조 비교 자료</div></div></div>
 <div class="dependency-row"><span class="dependency-no">03</span><div><h3>검사·복원에 사용한 도구</h3><p>Trimesh · Shapely · SciPy로 기하 연산<br>PyMeshLab·ADMesh 검사 어댑터<br>VOLCO의 구형 퇴적 규칙에 B/C 방향 확장</p></div></div>
 <div class="retry-policy"><strong>되돌리는 기준</strong><p>생성 STL은 횟수를 제한해 재시도 실행<br>G-code 실패는 원인을 기록하고 조건을 수정</p></div></div></div></div>
-    <div class="prep-note"><strong>자료 메모</strong><span>팀 최종 버전 확인: 공개 저장소의 기존 구조 + Drive의 e9bc3b0 학습·검증 확장.</span></div><template class="slide-notes"><h3>발표 설명</h3><p>연결 그래프는 구현 모듈과 통합 제어 설계를 함께 설명한다. 공개 wjd main은 54385cf이고 Drive 소스는 e9bc3b0이다. 원뿔각 선택의 J와 후보 격자는 기존 selector를 그대로 사용한다. run_random_validation은 생성 STL 부적합일 때 max_generation_retries+1회까지 시도하지만 이미 선택된 G-code 생성 실패는 해당 사례에 기록하며 새 모델로 교체하지 않는다. 그래프의 G-code 실패 되돌림은 점선으로 통합 제어 설계라고 표시했다. 학습 데이터 연결도 별도 실행 프로그램 사이의 연결이며 모든 모듈이 하나의 자동 CLI로 통합됐다는 뜻은 아니다. Bambu Studio를 실행한 결과나 코드를 사용했다는 주장을 하지 않는다. 실제 이 발표의 G-code 반복 실험은 내장 슬라이서를 사용했다. OpenFOAM의 국소 유동 어댑터는 별도 범위이며 본 IoU 그래프에 사용하지 않았다.</p>
+    <div class="prep-note"><strong>자료 메모</strong><span>팀 최종 버전 확인: 공개 저장소의 기존 구조 + Drive의 e9bc3b0 학습·검증 확장.</span></div><template class="slide-notes"><h3>발표 설명</h3><p>연결 그래프는 구현 모듈과 통합 제어 설계를 함께 설명한다. 공개 wjd main은 54385cf이고 Drive 소스는 e9bc3b0이다. 원뿔각 선택의 J와 후보 격자는 기존 selector를 그대로 사용한다. 모델 전체에 각도 하나를 적용하는 균일각 선택기이며 가변각 선택기와 구분한다. 간섭 검사의 핫엔드·B암 치수는 추정값이므로 장비 실측 전에는 충돌 안전을 판단할 수 없다. run_random_validation은 생성 STL 부적합일 때 max_generation_retries+1회까지 시도하지만 이미 선택된 G-code 생성 실패는 해당 사례에 기록하며 새 모델로 교체하지 않는다. 그래프의 G-code 실패 되돌림은 점선으로 통합 제어 설계라고 표시했다. 학습 데이터 연결도 별도 실행 프로그램 사이의 연결이며 모든 모듈이 하나의 자동 CLI로 통합됐다는 뜻은 아니다. Bambu Studio를 실행한 결과나 코드를 사용했다는 주장을 하지 않는다. 실제 이 발표의 G-code 반복 실험은 내장 슬라이서를 사용했다. OpenFOAM의 국소 유동 어댑터는 별도 범위이며 본 IoU 그래프에 사용하지 않았다.</p>
     <h3>구현 근거</h3><p>conical/selector.py, conical/pipeline.py, tools/run_random_validation.py, tools/external/validators.py, conical/k_learning/*, docs/slicer_cli_analysis.md</p><h3>내용 출처</h3>
     <a class="note-source" href="https://github.com/26037-arch/wjd">wjd 공개 저장소</a>
     <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>
@@ -297,11 +297,11 @@
     <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>
     <a class="note-source" href="https://drive.google.com/drive/folders/1Z0gUKEgeItji8W_Syo2zUCr6RDTfqadh">Drive · wjd e9bc3b0 코드와 실험 원본</a>
     <a class="note-source" href="assets/data/provenance.json">발표용 반복 검증 조건과 결과</a></template></section>
-        <!-- 07 · k값 수정과 원뿔각 선택 검증 -->
+        <!-- 07 · k 학습과 원뿔각 선택 검증 -->
         <section id="slide-7" class="slide research-slide" data-section="코드와 검증" aria-labelledby="title-7" aria-hidden="true">
     <span class="slide-number">07</span><header class="slide-header">
     <p class="eyebrow">05 · LEARNING k</p>
-    <h2 id="title-7">형상 특징에서 k를 예측하고 역전파로 수정</h2><p class="subtitle">38차원 MLP의 연속값 회귀 출력과 선택 확률을 연결</p></header>
+    <h2 id="title-7">형상 특징에서 k를 예측하도록 학습</h2><p class="subtitle">38차원 MLP의 연속값 회귀 출력과 선택 확률을 연결</p></header>
     <div class="content">
 <div class="learning-layout"><div class="learning-method"><div class="label">입력 형상에서 k까지</div><svg class="nn-diagram" viewBox="0 0 650 190" role="img" aria-label="38차원 형상 특징을 32,16개 은닉층과 Softplus 출력으로 처리하고 손실에서 역전파하는 MLP">
 <defs><marker id="nn-arr" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="#6f83a7"/></marker></defs>
@@ -318,8 +318,8 @@
 <p class="training-explain">손실의 기울기가 k와 MLP 가중치를 갱신<br>새 STL 추론에서는 k를 예측한 뒤 기존 J의 최대 후보를 선택</p></div>
 <div class="convergence-result"><figure class="research-figure"><img src="assets/figures/k-convergence.png" alt="시드 42,43,44의 실제 재학습 평균 k 수렴 기록"><figcaption>누적 1000회 학습 뒤 50개 고정 · 시드 42 / 43 / 44</figcaption></figure>
 <div class="convergence-facts"><div><strong>3 / 3</strong><span>종료 기준 만족</span></div><div><strong>240–540회</strong><span>50개 고정 후 추가 업데이트</span></div></div>
-<p class="convergence-note">100회 동안 선택 후보가 유지되고, 개별 k의 변화폭 &lt; 0.01.<br>그래프는 모든 50개 형상에 대한 평균이며, 시드별 최종 k는 서로 다릅니다.</p></div></div></div>
-    <div class="prep-note"><strong>자료 메모</strong><span>학습 label: 50개 STL × 46후보의 이상적 적층 형상 IoU. 학습 곡선과 실제 G-code 복원 IoU는 구분</span></div><template class="slide-notes"><h3>발표 설명</h3><p>k_predictor는 38→32 ReLU→16 ReLU→1 Softplus의 작은 MLP이며 정답 k를 바로 회귀하는 MSE baseline도 구현돼 있다. 이 장의 실제 재학습은 IoU regret를 최소화하는 방식이고 MSE 곡선이라고 부르지 않는다. Q는 0~1 IoU, G와 T는 %p, θ는 degree, k는 %p/degree다. softmax는 학습에만 사용하고 추론은 select_cone의 hard argmax를 유지한다. 원본 50-STL 각도별 기하근사 IoU와 원본 STLs를 사용해 seed42/43/44로 재실행했다. 매 STL 도착 후 기존 데이터 전체를 다시 사용해 20회 Adam 업데이트하고 50개 후 동일 고정 데이터로 추가 학습한다. initial_k=.2, lr=.003, weight_decay=1e-4, T 1→.1, 고정 단계 T=.1. 각 실행의 총 업데이트는 1000+540,1000+400,1000+240. 평균 k는 각각 2.133259,4.157754,1.676892. 전체 50개를 학습에 사용한 내부 수렴 검증이며 보지 않은 STL 성능을 측정한 실험은 아니다. 고정 단계 종료 기준은 최근100 업데이트 동안 선택 인덱스 동일, 개별 k 최대 변화폭&lt;.01, loss 범위&lt;1e-5. 이 기준의 만족은 고유한 k값에 대한 수학적 수렴 증명과 구분된다. Drive 원본은 다른 실행에서 평균3.233567을 기록했으나 이번 그래프는 이번에 실제 다시 실행한 기록으로 생성했다. 재실행 전체 결과를 숨기지 않고 세 곡선을 모두 넣었다.</p>
+<p class="convergence-note">100회 선택 후보 유지 · 개별 k 변화폭 &lt; 0.01<br>시드별 평균 k 2.13 / 4.16 / 1.68 · mushroom_03은 모두 0°<br><strong>고유한 k는 확인 불가</strong> · 50개 모두 학습, 새 형상 성능 미측정</p></div></div></div>
+    <div class="prep-note"><strong>자료 메모</strong><span>학습 label: 50개 STL × 46후보의 이상적 적층 형상 IoU. 학습 곡선과 실제 G-code 복원 IoU는 구분</span></div><template class="slide-notes"><h3>발표 설명</h3><p>k_predictor는 38→32 ReLU→16 ReLU→1 Softplus의 작은 MLP이며 정답 k를 바로 회귀하는 MSE baseline도 구현돼 있다. 이 장의 실제 재학습은 IoU regret를 최소화하는 방식이고 MSE 곡선이라고 부르지 않는다. Q는 0~1 IoU, G와 T는 %p, θ는 degree, k는 %p/degree다. softmax는 학습에만 사용하고 추론은 select_cone의 hard argmax를 유지한다. 원본 50-STL 각도별 기하근사 IoU와 원본 STLs를 사용해 seed42/43/44로 재실행했다. 매 STL 도착 후 기존 데이터 전체를 다시 사용해 20회 Adam 업데이트하고 50개 후 동일 고정 데이터로 추가 학습한다. initial_k=.2, lr=.003, weight_decay=1e-4, T 1→.1, 고정 단계 T=.1. 각 실행의 총 업데이트는 1000+540,1000+400,1000+240. 평균 k는 각각 2.133259,4.157754,1.676892. 전체 50개를 학습에 사용한 내부 수렴 검증이며 보지 않은 STL 성능을 측정한 실험은 아니다. 고정 단계 종료 기준은 최근100 업데이트 동안 선택 인덱스 동일, 개별 k 최대 변화폭&lt;.01, loss 범위&lt;1e-5. mushroom_03의 예측 k는 각각 1.629244,3.680339,1.090967로 다르지만 세 시드 모두 outward 0°를 선택했다. 넓은 k 범위가 같은 선택을 내므로 이 기록으로 k를 하나로 정할 수 없다. Drive 원본은 다른 실행에서 평균3.233567을 기록했으나 이번 그래프는 이번에 실제 다시 실행한 기록으로 생성했다. 재실행 전체 결과를 숨기지 않고 세 곡선을 모두 넣었다.</p>
     <h3>구현 근거</h3><p>conical/k_learning/model.py, features.py, loss.py; tools/run_cumulative_k_learning.py, tools/settle_cumulative_k.py; assets/data/learning-traces.csv, learning-repeats.json</p><h3>내용 출처</h3>
     <a class="note-source" href="https://github.com/26037-arch/wjd">wjd 공개 저장소</a>
     <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>
@@ -329,16 +329,16 @@
         <section id="slide-8" class="slide research-slide" data-section="코드와 검증" aria-labelledby="title-8" aria-hidden="true">
     <span class="slide-number">08</span><header class="slide-header">
     <p class="eyebrow">06 · ANGLE VALIDATION</p>
-    <h2 id="title-8">선택한 원뿔각의 복원 형상을 IoU로 확인</h2><p class="subtitle">전체 G-code 후보 결과가 확보된 mushroom_03을 대표 검증 모델로 사용</p></header>
+    <h2 id="title-8">선택한 원뿔각의 복원 형상을 IoU로 확인</h2><p class="subtitle">학습에 사용한 mushroom_03의 G-code 복원 46후보 비교</p></header>
     <div class="content">
 <div class="iou-layout"><div><figure class="research-figure angle-figure"><img src="assets/figures/angle-iou.png" alt="mushroom_03의 원뿔각별 체적 IoU. 학습 k 선택각 0도 점선과 측정 최대 10도 표시"><figcaption>0–44° · 2° 간격 · outward / inward 총 46후보</figcaption></figure>
 <p class="plot-conditions">층고 0.3 mm · 선폭/인필 간격 0.45 mm · voxel 0.3 mm · 이동 샘플 0.15 mm</p></div>
 <div class="iou-result"><div class="result-heading">학습 k가 선택한 각도</div><div class="angle-readout">0<span>°</span></div>
 <div class="numeric-results"><div><span>선택각 IoU</span><strong>92.624<span>%</span></strong></div><div><span>측정 최대 · 10°</span><strong>93.172<span>%</span></strong></div></div>
-<p class="result-interpretation">선택값은 측정 최대의 <strong>99.41%</strong>.<br>최대값과의 차이는 <strong>0.547 %p</strong>입니다.</p>
-<div class="repeat-confirmation"><strong>같은 조건으로 3회 반복 확인</strong><span>0° · 10° · 12°의 G-code와 복원 voxel이 모두 동일</span></div>
+<p class="result-interpretation">voxel 0.3 mm · <strong>0–12° 순위 미확정</strong><br>기본 k의 IoU가 <strong>0.046 %p</strong> 높음</p>
+<div class="repeat-confirmation"><strong>같은 조건의 계산 재현성 확인</strong><span>0° · 10° · 12° 각 3회 · G-code·voxel 동일</span></div>
 <p class="selector-finding">이 모델에서 선형 J는 k에 따라 0° 또는 12°를 선택<br>측정 최대인 10°를 선택하려면 평가식의 추가 항 검토 필요</p></div></div></div>
-    <div class="prep-note"><strong>자료 메모</strong><span>IoU = 교집합 / 합집합. 4개 격자 내부 측정 위치의 부피를 집계한 수치입니다. 실물 스캔이 아닌 G-code 퇴적 복원 비교입니다.</span></div><template class="slide-notes"><h3>발표 설명</h3><p>Drive 데이터 중 mushroom_03 하나에만 실제 G-code 생성과 복원 46조건 전체가 확보돼 있다. 최고 성능의 임의 모델이라고 부르지 않고 전체 후보 결과가 있는 대표 모델로 선정했다. 50개 STL의 이상적 적층 기하근사 label을 실제 출력 형상과 혼합하지 않았다. 동일 원본 STL과 고정 좌표의 구형 퇴적 복원을 비교했으며 각 voxel 내부의 4개 측정 위치에서 교집합 부피와 합집합 부피를 구한 뒤 평균 교집합/평균 합집합으로 집계했다. 4개 측정 위치는 독립 퇴적 실행4회가 아니다. 이번에 0°,10°,12°를 각각3회 실제로 G-code 생성 및 전체 퇴적 재실행했고 매 각도 G-code SHA256, occupied voxel SHA256, IoU가 모두 일치했다. 선택0° IoU .9262427386, 측정최대10° .9317155299, 기본k=.2가 선택한12° .9267034221. 학습 k 선택은 기본 k 대비 .046068%p 낮으며 이번 실험의 성과는 실행 재현과 평가 결과 확인이다. 최고 IoU 차이는 .547279%p다. 비율99.4126%는 선택IoU/측정최대IoU로 계산하며 출력 성공률을 뜻하지 않는다. 원본 selector의 k 선형 envelope는 이 모델에서 경계1.05870556527을 사이에 12°와0°만 도달 가능해, k값 하나를 바꾸는 것으로10°를 선택할 수 없다는 구조적 결과를 얻는다. 이를 실제 프린터 품질의 최고각 확정이라고 말하지 않는다. 냉각/고화/처짐을 해석하지 않는 구형 퇴적 재구성이며 실물 출력 자료는15장에 추가한다.</p>
+    <div class="prep-note"><strong>자료 메모</strong><span>IoU = 교집합 / 합집합. 4개 격자 내부 측정 위치의 부피를 집계한 수치입니다. 실물 스캔이 아닌 G-code 퇴적 복원 비교입니다.</span></div><template class="slide-notes"><h3>발표 설명</h3><p>Drive 데이터 중 mushroom_03 하나에만 실제 G-code 생성과 복원 46조건 전체가 확보돼 있다. 최고 성능의 임의 모델이라고 부르지 않고 전체 후보 결과가 있는 대표 모델로 선정했다. 50개 STL의 이상적 적층 기하근사 label을 실제 출력 형상과 혼합하지 않았다. 동일 원본 STL과 고정 좌표의 구형 퇴적 복원을 비교했으며 각 voxel 내부의 4개 측정 위치에서 교집합 부피와 합집합 부피를 구한 뒤 평균 교집합/평균 합집합으로 집계했다. 4개 측정 위치는 독립 퇴적 실행4회가 아니다. 이번에 0°,10°,12°를 각각3회 실제로 G-code 생성 및 전체 퇴적 재실행했고 매 각도 G-code SHA256, occupied voxel SHA256, IoU가 모두 일치했다. 선택0° IoU .9262427386, 측정최대10° .9317155299, 기본k=.2가 선택한12° .9267034221. 학습 k 선택은 기본 k 대비 .046068%p 낮으며 이번 실험의 성과는 실행 재현과 평가 결과 확인이다. 계산상 최대와의 IoU 차이는 .547279%p다. outward 0–12°의 이웃 각도 간 IoU 차이 절댓값 평균은 .569016%p로 약 .57%p이며 오차 범위나 신뢰구간이 아니다. voxel .3mm의 해상도 수렴을 확인하지 않아 이 차이로 정밀한 각도 순위나 학습 개선을 확정하기 어렵다. mushroom_03은 학습에 사용한 50개에 포함된다. 동일 해시의 반복은 결정적 계산의 재현성을 보여주며 수치 정확도를 보장하지 않는다. 원본 selector의 k 선형 envelope는 이 모델에서 경계1.05870556527을 사이에 12°와0°만 도달 가능해, k값 하나를 바꾸는 것으로10°를 선택할 수 없다는 구조적 결과를 얻는다. 이를 실제 프린터 품질의 최고각 확정이라고 말하지 않는다. 냉각/고화/처짐을 해석하지 않는 구형 퇴적 재구성이며 실물 출력 자료는15장에 추가한다.</p>
     <h3>구현 근거</h3><p>tools/deposition_iou_sweep.py, tools/check_deposition_phases.py, conical/k_learning/baselines.py; assets/data/angle-iou.csv, deposition-repeats.csv, provenance.json</p><h3>내용 출처</h3>
     <a class="note-source" href="https://github.com/26037-arch/wjd">wjd 공개 저장소</a>
     <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>
@@ -436,29 +436,30 @@
             <p class="subtitle">기존 XYZ 이동에 헤드 기울기 B와 방위 회전 C를 추가</p>
           </header>
           <div class="content">
-            <div class="split wide-left">
-              <div>
+            <div class="hardware-combined-layout">
+              <div class="machine-view-column">
                 <div class="visual" data-visual="machine" data-model="">
-                  <div class="visual-top">가변각 원뿔 슬라이싱 · 외벽 + 내부 채움</div>
-                  <div class="visual-buttons">
-                    <button data-reset-view="">시점 초기화</button>
-                  </div>
-                  <div class="visual-caption">G-code 경로를 따라 자동 출력 중</div>
+                  <div class="visual-top">발표용 시뮬레이션 · 가변각 원뿔 슬라이싱</div>
+                  <div class="visual-buttons"><button data-reset-view="">시점 초기화</button></div>
+                  <div class="visual-caption">발표용 시뮬레이션 · 실제 장비 치수·재료 미반영</div>
                 </div>
               </div>
-              <div class="hardware-overview">
-                <div class="rep5x-summary">
-                  <h3>Rep5x</h3>
-                  <ul class="hardware-points">
-                    <li>3축 프린터를 5축으로 확장하는 오픈소스 설계</li>
-                    <li>B축 기울기·C축 회전으로 노즐 자세 제어</li>
-                    <li>비평면·원뿔 적층을 위한 회전 헤드 구조</li>
-                  </ul>
+              <div class="hardware-details-column">
+                <div class="rep5x-top-row">
+                  <div class="rep5x-summary">
+                    <h3>Rep5x</h3>
+                    <ul class="hardware-points">
+                      <li>3축 프린터를 5축으로 확장하는 오픈소스 설계</li>
+                      <li>B축 기울기·C축 회전으로 노즐 자세 제어</li>
+                      <li>비평면·원뿔 적층을 위한 회전 헤드 구조</li>
+                    </ul>
+                  </div>
+                  <figure class="rep5x-site-shot"><img src="assets/images/rep5x-build-instructions.png" alt="Rep5x 제작 안내 웹사이트 화면" width="1081" height="1012"></figure>
                 </div>
-                <div class="base-printer-info">
-                  <h3>Ender-3 V3 SE</h3>
-                  <div class="base-printer-layout">
-                    <figure class="base-printer-photo"><img src="assets/images/ender-3-v3-se.png" alt="Creality Ender-3 V3 SE 3D 프린터 제품 사진" width="291" height="291"></figure>
+                <div class="ender-bottom-row">
+                  <figure class="base-printer-photo"><img src="assets/images/ender-3-v3-se.png" alt="Creality Ender-3 V3 SE 3D 프린터 제품 사진" width="291" height="291"></figure>
+                  <div class="base-printer-info">
+                    <h3>Ender-3 V3 SE</h3>
                     <ul class="hardware-points">
                       <li>Creality의 FDM 3D 프린터</li>
                       <li>직접 압출·자동 베드 레벨링</li>
@@ -476,7 +477,7 @@
           <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
           <template class="slide-notes">
             <h3>발표 설명</h3>
-            <p>Rep5x는 head-head 구조다. C축이 yaw, B축이 tilt이며 회전 헤드가 캐리지에 장착된다. Open5x의 베드 회전 기구학을 동일하게 적용하면 안 된다. 여기의 3D는 사용자 요청에 따른 축 설명 개념도다. 부품 크기·장착 변환·장비 도달 영역은 실측 또는 검증된 조립 CAD를 나타내지 않는다. 발표용 G-code를 G0/G1, G90/G91, M82/M83, G92로 해석하고 XYZ/B/C/E/F를 시간에 따라 보간한다. 노즐 끝을 목표 XYZ로 보정하고 G1의 E가 증가하는 구간에만 재료를 누적한다. 예시 출력물은 40층의 내부를 채운 모래시계형 모델이다. 저장소 backtransform.py의 outward 원뿔 역변환 z=z′−r·tanθ를 따른다. 중앙 꼭짓점의 법선 특이점은 r 대신 sqrt(r²+1.8²)−1.8로 정규화한다. 첫 층은 베드에 접하는 평면이고 이후 원뿔각을 0–18°로 부드럽게 증가시킨다. B는 각 점의 국소 법선 기울기, C는 방위각으로 계산하므로 임의로 한 축을 고정하지 않는다. 원뿔면 위 두 겹 외벽과 0.9mm 간격의 100% 지그재그 내부 채움을 생성하며 인접 층에서는 채움 방향을 90° 교대한다. 내부 경로는 1.2mm 이하로 분할하여 각 점의 Z/B/C를 역변환한다. E는 실공간 길이와 국소 층두께로 계산하며 이동 시 리트랙션·안전 높이·C 되감기를 표시한다. 기본 재생은 3배, F1200mm/min로 이전 12배 외벽 시연보다 느리다. 출력 완료 후 1.7초 동안 형상을 보여주고 반복한다. G-code와 축 범위는 발표용으로 생성한 예시이며 실제 장비에 실행할 파일이 아니다. 실제 RTCP 검증 결과가 아니다. 공식 웹은 마지막 출처와 메모에서만 링크한다. 오른쪽은 Rep5x와 Ender-3 V3 SE를 각각 세 항목으로 설명한다. 사용자 요청으로 축 슬라이더, 재생 버튼, 속도, 상태와 G-code 표시는 제거하고 자동 반복 출력만 유지한다.</p>
+            <p>Rep5x는 head-head 구조다. C축이 yaw, B축이 tilt이며 회전 헤드가 캐리지에 장착된다. Open5x의 베드 회전 기구학을 동일하게 적용하면 안 된다. 여기의 3D는 사용자 요청에 따른 축 설명 개념도다. 부품 크기·장착 변환·장비 도달 영역은 실측 또는 검증된 조립 CAD를 나타내지 않는다. 발표용 G-code를 G0/G1, G90/G91, M82/M83, G92로 해석하고 XYZ/B/C/E/F를 시간에 따라 보간한다. 노즐 끝을 목표 XYZ로 보정하고 G1의 E가 증가하는 구간에만 재료를 누적한다. 예시 출력물은 40층의 내부를 채운 모래시계형 모델이다. 저장소 backtransform.py의 outward 원뿔 역변환 z=z′−r·tanθ를 따른다. 중앙 꼭짓점의 법선 특이점은 r 대신 sqrt(r²+1.8²)−1.8로 정규화한다. 첫 층은 베드에 접하는 평면이고 이후 원뿔각을 0–18°로 부드럽게 증가시킨다. B는 각 점의 국소 법선 기울기, C는 방위각으로 계산하므로 임의로 한 축을 고정하지 않는다. 원뿔면 위 두 겹 외벽과 0.9mm 간격의 100% 지그재그 내부 채움을 생성하며 인접 층에서는 채움 방향을 90° 교대한다. 내부 경로는 1.2mm 이하로 분할하여 각 점의 Z/B/C를 역변환한다. E는 실공간 길이와 국소 층두께로 계산하며 이동 시 리트랙션·안전 높이·C 되감기를 표시한다. 기본 재생은 3배, F1200mm/min로 이전 12배 외벽 시연보다 느리다. 출력 완료 후 1.7초 동안 형상을 보여주고 반복한다. G-code와 축 범위는 발표용으로 생성한 예시이며 실제 장비에 실행할 파일이 아니다. 실제 RTCP 검증 결과가 아니다. 공식 웹은 마지막 출처와 메모에서만 링크한다. 기존 Rep5x와 Ender-3 V3 SE의 각 세 항목 설명을 유지한다. 사용자 제공 배치도에 맞춰 왼쪽에는 본문 높이를 채우는 세로형 3D 뷰어를 둔다. 오른쪽 위는 Rep5x 설명과 웹사이트 이미지, 오른쪽 아래는 프린터 사진과 Ender-3 V3 SE 설명을 각각 나란히 배치한다. 두 이미지의 원래 비율을 보존한다. 사용자 요청으로 축 슬라이더, 재생 버튼, 속도, 상태와 G-code 표시는 제거하고 자동 반복 출력만 유지한다.</p>
             <h3>추가로 필요한 자료</h3>
             <ul>
               <li>실물 장비 전체 사진과 B/C축 라벨</li>
@@ -485,7 +486,7 @@
             </ul>
             <h3>내용 출처</h3>
             <a class="note-source" href="https://www.creality.com/compare/compare-ender-3-v3-series" target="_blank" rel="noopener">Creality · Ender-3 V3 SE 공식 제품 비교</a>
-            <p style="color:#78859a;font-size:12px;margin:0">제품 사진: 사용자가 첨부한 이미지. 연구팀의 실제 개조 장비 사진과 구분.</p>
+            <p style="color:#78859a;font-size:12px;margin:0">웹사이트 화면: 사용자가 첨부한 Rep5x Build Instructions 이미지. 실제 웹페이지가 아닌 화면 캡처.</p>
             <a class="note-source" href="https://github.com/dennisklappe/Rep5x" target="_blank" rel="noopener">Rep5x 공식 설계</a>
             <p style="color:#78859a;font-size:12px;margin:0">9c437d5cce7766d641e7aa35ced2c63231148a1f</p>
             <a class="note-source" href="https://rep5x.com/build-instructions/" target="_blank" rel="noopener">Rep5x 공식 웹</a>
@@ -504,86 +505,47 @@
           </header>
           <div class="content">
             <div class="parts-layout">
-              <div class="part-menu" id="part-menu">
-                <p class="group-label" style="margin-top:2px">공통 부품</p>
-                <button data-part="b-arm_v1.1.0">B축 회전 암</button>
-                <template data-part-info="b-arm_v1.1.0">
-                  <p data-part-desc="">기울어지는 헤드의 중심 구조. 회전 베어링과 핫엔드를 연결합니다.</p>
-                  <p data-part-detail="">베어링 지지와 핫엔드 체결 위치가 중요합니다. 실제 장착 치수와 피벗 위치는 조립 CAD 및 실측으로 확인합니다.</p>
-                </template>
-                <button data-part="C-driven-pulley_v1.1.0">C축 구동 풀리</button>
-                <template data-part-info="C-driven-pulley_v1.1.0">
-                  <p data-part-desc="">헤드를 수직축 주위로 회전시키는 구동 전달부입니다.</p>
-                  <p data-part-detail="">벨트 전달 구조와 회전 베어링이 헤드의 방위각을 결정합니다. 축 이름은 현재 공식 B/C 표기를 따릅니다.</p>
-                </template>
-                <button data-part="b-driven-pulley_v1.1.0">B축 구동 풀리</button>
-                <template data-part-info="b-driven-pulley_v1.1.0">
-                  <p data-part-desc="">벨트 구동을 회전 암에 전달해 노즐의 기울기를 바꿉니다.</p>
-                  <p data-part-detail="">회전 암 체결부와 벨트 맞물림을 확인합니다. 조립 후 유격 및 각도 반복 오차를 기록해야 합니다.</p>
-                </template>
-                <button data-part="hotend-spacer_v1.0.0">핫엔드 스페이서</button>
-                <template data-part-info="hotend-spacer_v1.0.0">
-                  <p data-part-desc="">핫엔드 장착 간격을 맞추는 부품입니다.</p>
-                  <p data-part-detail="">간격 변화는 노즐 끝 위치와 공구 길이 보정에 영향을 줍니다. 모델 치수와 실제 체결 상태를 함께 확인합니다.</p>
-                </template>
+              <figure class="part-assembly">
+                <div class="part-photo-frame">
+                  <img id="part-assembly-photo" src="assets/photos/rep5x-ender3v3se-head.jpg" alt="Ender-3 V3 SE에 장착한 Rep5x 공식 조립 헤드. 위쪽 슬립링 홀더와 C축 풀리, 아래쪽 B축 회전 암과 B축 풀리." width="3072" height="4080">
+                </div>
+                <figcaption>Ender-3 V3 SE용 Rep5x <a href="https://github.com/dennisklappe/Rep5x/blob/9c437d5cce7766d641e7aa35ced2c63231148a1f/build-guide/images/final-assembly-complete.jpg" target="_blank" rel="noopener">공식 조립 사진</a></figcaption>
+              </figure>
+              <div class="part-menu" id="part-menu" aria-label="부품 목록">
+                <p class="group-label">공통 부품</p>
                 <button data-part="slip-ring-holder_v1.1.1">슬립링 홀더</button>
-                <template data-part-info="slip-ring-holder_v1.1.1">
-                  <p data-part-desc="">회전부 전기 연결을 위한 슬립링을 고정합니다.</p>
-                  <p data-part-detail="">슬립링은 배선 감김을 줄이는 구조입니다. 펌웨어의 C축 소프트리밋과 되감기 처리는 별도로 관리합니다.</p>
-                </template>
+                <button data-part="C-driven-pulley_v1.1.0">C축 구동 풀리</button>
+                <button data-part="b-arm_v1.1.0">B축 회전 암</button>
+                <button data-part="b-driven-pulley_v1.1.0">B축 구동 풀리</button>
+                <button data-part="hotend-spacer_v1.0.0">핫엔드 스페이서</button>
                 <button data-part="spacer-3mm_v1.0.0">3 mm 스페이서</button>
-                <template data-part-info="spacer-3mm_v1.0.0">
-                  <p data-part-desc="">조립 간격을 맞추기 위한 스페이서입니다.</p>
-                  <p data-part-detail="">어느 조립 위치에 사용했는지 실제 조립도에 표시합니다. 단품 뷰는 조립 방향을 나타내지 않습니다.</p>
-                </template>
-                <p class="group-label" style="margin-top:17px">Ender-3 V3 SE 전용</p>
+                <p class="group-label dedicated-group">Ender-3 V3 SE 전용</p>
                 <button data-part="carriage-mount_v1.1.1">캐리지 마운트</button>
-                <template data-part-info="carriage-mount_v1.1.1">
-                  <p data-part-desc="">기존 X 캐리지와 Rep5x 회전 헤드를 연결하는 장착부입니다.</p>
-                  <p data-part-detail="">기존 캐리지 체결, 헤드 강성, 회전부 간섭을 확인합니다. Ender 3 V3 SE용 공식 모델 v1.1.1을 사용했습니다.</p>
-                </template>
                 <button data-part="extruder-mount_v1.1.0">외장 압출기 마운트</button>
-                <template data-part-info="extruder-mount_v1.1.0">
-                  <p data-part-desc="">외장 압출기를 프린터 프레임에 고정하는 부품입니다.</p>
-                  <p data-part-detail="">Rep5x의 Bowden 구성에 맞춘 장착부입니다. 실제 압출기와 튜브 배치 사진을 함께 넣으면 설명이 분명해집니다.</p>
-                </template>
                 <button data-part="x-endstop_v1.1.0">X축 엔드스톱 마운트</button>
-                <template data-part-info="x-endstop_v1.1.0">
-                  <p data-part-desc="">헤드 변경에 맞춰 X축 원점 센서를 설치하는 장착부입니다.</p>
-                  <p data-part-detail="">센서 위치와 실제 홈 방향을 사진으로 표시합니다. 공식 전용 부품 목록의 축 표기는 X/Z입니다.</p>
-                </template>
                 <button data-part="z-endstop_v1.1.0">Z축 엔드스톱 마운트</button>
-                <template data-part-info="z-endstop_v1.1.0">
-                  <p data-part-desc="">개조 구조에 맞는 Z축 원점 센서를 설치하는 장착부입니다.</p>
-                  <p data-part-detail="">원점 위치, 베드와의 간격, 소프트리밋은 실제 장비 설정으로 확인합니다.</p>
-                </template>
               </div>
-              <div>
+              <div class="part-viewer">
+                <h3 id="part-name">B축 회전 암</h3>
                 <div class="visual" data-visual="part" data-model="b-arm_v1.1.0">
-                  <div class="visual-top">공식 3MF에서 추출한 실제 단품 형상</div>
-                  <div class="visual-buttons">
-                    <button data-reset-view="">시점 초기화</button>
-                  </div>
-                  <div class="visual-caption">드래그 회전 · 휠 확대 · 조립 자세와 구분</div>
+                  <div class="visual-top">공식 3MF 단품 모델</div>
+                  <div class="visual-buttons"><button data-reset-view="">시점 초기화</button></div>
+                  <div class="visual-caption">드래그 회전 · 휠 확대</div>
                 </div>
               </div>
-              <div class="part-info">
-                <h3 id="part-name">B축 회전 암</h3>
-                <div id="part-file" class="part-file">b-arm_v1.1.0.3mf</div>
-                <p id="part-desc" class="part-desc"></p>
-                <div id="part-detail" class="part-detail"></div>
-                <div id="part-size" class="part-size"></div>
-              </div>
+              <svg id="part-photo-links" class="part-photo-links" aria-hidden="true">
+                <g data-linked-part="slip-ring-holder_v1.1.1" data-photo-x="0.465" data-photo-y="0.258"><path/><circle r="5"/></g>
+                <g data-linked-part="C-driven-pulley_v1.1.0" data-photo-x="0.46" data-photo-y="0.293"><path/><circle r="5"/></g>
+                <g data-linked-part="b-arm_v1.1.0" data-photo-x="0.34" data-photo-y="0.52"><path/><circle r="5"/></g>
+                <g data-linked-part="b-driven-pulley_v1.1.0" data-photo-x="0.39" data-photo-y="0.655"><path/><circle r="5"/></g>
+              </svg>
             </div>
-          </div>
-          <div class="prep-note">
-            <strong>자료 메모</strong>
-            <span>실제 출력한 부품 사진과 사용 버전, 팀이 수정한 형상·치수를 함께 표시해주세요.</span>
           </div>
           <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
           <template class="slide-notes">
             <h3>발표 설명</h3>
             <p>모든 단품 메시를 Rep5x 공식 저장소의 current/3mf에서 추출했다. 원본 파일을 함께 제공한다. 공통 부품: B arm, C driven pulley, B driven pulley, hotend spacer, slip-ring holder, 3 mm spacer. Ender 3 V3 SE 전용: carriage mount, extruder mount, X/Z endstop mounts. 단품은 뷰어 중앙으로 이동해 표시하며 실제 조립 좌표계·출력 방향을 의미하지 않는다. 표시 치수는 파일의 경계상자이며 측정한 장비 치수가 아니다. 공식 CAD를 팀이 직접 설계한 부품으로 주장하지 않는다. 팀의 재설계가 있다면 수정 형상과 원본을 대응시킨다.</p>
+            <p>왼쪽 사진은 Ender-3 V3 SE에 장착한 Rep5x 헤드의 공식 조립 사진이다. 선은 슬립링 홀더, C축 구동 풀리, B축 회전 암, B축 구동 풀리의 위치만 표시한다. 팀이 직접 촬영한 제작 사진이 아니다. 부품 목록을 선택하면 단품 3D 모델과 해당 연결선이 강조된다.</p>
             <h3>추가로 필요한 자료</h3>
             <ul>
               <li>실제 채택한 각 부품 파일 버전</li>
@@ -591,6 +553,7 @@
               <li>직접 설계·수정한 부위의 CAD 및 변경 이유</li>
             </ul>
             <h3>내용 출처</h3>
+            <a class="note-source" href="https://github.com/dennisklappe/Rep5x/blob/9c437d5cce7766d641e7aa35ced2c63231148a1f/build-guide/images/final-assembly-complete.jpg" target="_blank" rel="noopener">Rep5x 공식 Ender-3 V3 SE 헤드 조립 사진 · Figure 11</a>
             <a class="note-source" href="https://github.com/dennisklappe/Rep5x" target="_blank" rel="noopener">Rep5x 공식 설계</a>
             <p style="color:#78859a;font-size:12px;margin:0">9c437d5cce7766d641e7aa35ced2c63231148a1f</p>
             <a class="note-source" href="codex://threads/6a9a4d45-a440-83e8-b0af-048ec78a0b32" target="_blank" rel="noopener">R&amp;E 2학기 · 코드 검토 결과</a>
