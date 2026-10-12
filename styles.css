@@ -243,3 +243,13 @@
 #slide-7 .convergence-facts{margin-top:34px;padding-top:22px;border-top:1px solid var(--line)}
 #slide-7 .convergence-facts strong{font-size:44px}
 #slide-7 .convergence-facts span{font-size:20px;margin-top:10px}
+#slide-5 .system-layout{grid-template-columns:1.6fr 1fr;gap:36px}
+#slide-5 .mesh-to-layers{display:grid;grid-template-columns:1fr 34px 1fr;align-items:center;height:100%;max-height:500px}
+#slide-5 .mesh-to-layers figure{margin:0;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;min-height:0}
+#slide-5 .mesh-to-layers img{display:block;max-height:400px;max-width:100%;width:auto;height:auto;object-fit:contain}
+#slide-5 .mesh-to-layers figcaption{text-align:center;margin-top:16px}
+#slide-5 .mesh-to-layers figcaption strong{display:block;font-size:24px}
+#slide-5 .mesh-to-layers figcaption span{display:block;font-size:17px;color:var(--muted);margin-top:4px}
+#slide-5 .ml-arrow{font-size:30px;color:#8093b2;text-align:center;padding-bottom:80px}
+#slide-5 .ml-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin:0 5px 0 8px}
+#slide-5 .ml-dot.mint{background:#219789;margin-left:0}#slide-5 .ml-dot.blue{background:#4262e9}
