@@ -301,7 +301,7 @@
         <section id="slide-7" class="slide research-slide" data-section="코드와 검증" aria-labelledby="title-7" aria-hidden="true">
     <span class="slide-number">07</span><header class="slide-header">
     <p class="eyebrow">05 · LEARNING k</p>
-    <h2 id="title-7">k를 다시 학습해도 같은 원뿔각을 고르는가</h2><p class="subtitle">형상 38특징 → MLP → k · 시드 3개로 재학습해 선택이 흔들리는지 확인</p></header>
+    <h2 id="title-7">k를 다시 학습해도 같은 원뿔각을 고르는가</h2><p class="subtitle">시드 3개로 다시 학습해 선택 비교</p></header>
     <div class="content">
 <div class="learning-layout"><div class="learning-method"><div class="label">입력 형상에서 k까지</div><svg class="nn-diagram" viewBox="0 0 650 190" role="img" aria-label="38차원 형상 특징을 32,16개 은닉층과 Softplus 출력으로 처리하고 손실에서 역전파하는 MLP">
 <defs><marker id="nn-arr" markerWidth="7" markerHeight="7" refX="6" refY="3" orient="auto"><path d="M0 0 L6 3 L0 6" fill="#6f83a7"/></marker></defs>
@@ -315,9 +315,9 @@
 </svg>
 <div class="feature-explain">크기·부피 8개 + 반경 프로필 20개 + 법선 히스토그램 10개</div>
 <div class="equation-set"><div>k<sub>i</sub> = Softplus(MLP<sub>w</sub>(x<sub>i</sub>))</div><div>J<sub>ij</sub> = G<sub>ij</sub> − k<sub>i</sub>|θ<sub>j</sub>|<span>G = 평면 대비 서포트 감소 (%p)</span></div><div>p<sub>ij</sub> = softmax<sub>j</sub>(J<sub>ij</sub>/T)</div><div>L = <span class="fraction"><span>1</span><span>N</span></span> Σ<sub>i,j</sub> p<sub>ij</sub>(Q<sub>i</sub><sup>max</sup> − Q<sub>ij</sub>)</div></div>
-<p class="training-explain">손실의 기울기가 k와 MLP 가중치를 갱신<br>새 STL 추론에서는 k를 예측한 뒤 기존 J의 최대 후보를 선택</p></div>
-<div class="convergence-result"><figure class="research-figure"><img src="assets/figures/k-convergence.png" alt="시드 42,43,44의 실제 재학습 평균 k 수렴 기록"><figcaption>학습 수렴 · 3/3 종료 기준 만족 · 50개 고정 후 240–540회 추가 업데이트</figcaption></figure>
-<div class="k-line-block"><div class="label">mushroom_03 · 시드별 예측 k와 선택 각도</div><svg class="k-line" viewBox="0 0 640 122" role="img" aria-label="mushroom_03의 예측 k 수직선. 경계 1.0587보다 작으면 12도, 크면 0도. 기본 k 0.2는 12도, 세 시드 1.09, 1.63, 3.68은 모두 0도">
+</div>
+<div class="convergence-result"><h3 class="kl-title">mushroom_03의 예측 k</h3>
+<div class="k-line-block"><svg class="k-line" viewBox="0 0 640 122" role="img" aria-label="mushroom_03의 예측 k 수직선. 경계 1.0587보다 작으면 12도, 크면 0도. 기본 k 0.2는 12도, 세 시드 1.09, 1.63, 3.68은 모두 0도">
 <rect x="20" y="40" width="151.2" height="26" fill="#e7ecfb"/><rect x="171.2" y="40" width="448.8" height="26" fill="#e2f2ee"/>
 <text x="164" y="58" text-anchor="end" class="kl-region">12° 선택</text><text x="395.6" y="58" text-anchor="middle" class="kl-region mint">0° 선택</text>
 <line x1="171.2" y1="30" x2="171.2" y2="72" class="kl-bound"/><text x="171.2" y="24" text-anchor="middle" class="kl-bound-label">경계 k = 1.059</text>
@@ -326,32 +326,30 @@
 <circle cx="48.6" cy="53" r="7" class="kl-default"/><text x="48.6" y="104" text-anchor="middle" class="kl-label amber">기본</text><text x="48.6" y="119" text-anchor="middle" class="kl-label amber">0.2</text><line x1="48.6" y1="62" x2="48.6" y2="94" class="kl-lead"/>
 <circle cx="175.7" cy="53" r="7" class="kl-seed"/><line x1="175.7" y1="62" x2="175.7" y2="94" class="kl-lead"/><text x="175.7" y="104" text-anchor="middle" class="kl-label">s44</text><text x="175.7" y="119" text-anchor="middle" class="kl-label">1.09</text><circle cx="252.9" cy="53" r="7" class="kl-seed"/><line x1="252.9" y1="62" x2="252.9" y2="94" class="kl-lead"/><text x="252.9" y="104" text-anchor="middle" class="kl-label">s42</text><text x="252.9" y="119" text-anchor="middle" class="kl-label">1.63</text><circle cx="545.7" cy="53" r="7" class="kl-seed"/><line x1="545.7" y1="62" x2="545.7" y2="94" class="kl-lead"/><text x="545.7" y="104" text-anchor="middle" class="kl-label">s43</text><text x="545.7" y="119" text-anchor="middle" class="kl-label">3.68</text>
 </svg></div>
-<div class="convergence-facts"><div><strong>3 / 3</strong><span>시드가 같은 각도 0°를 선택</span></div><div><strong>+3 %</strong><span>가장 가까운 시드(s44)의 경계 여유</span></div></div>
-<p class="convergence-note">k값 자체는 시드마다 1.09–3.68로 다름 → <strong>k 하나로 확정할 수는 없음</strong><br>50개 모두 학습에 사용 · 보지 않은 형상에서의 성능은 아직 미측정</p></div></div></div>
-    <div class="prep-note"><strong>자료 메모</strong><span>학습 label: 50개 STL × 46후보의 이상적 적층 형상 IoU. 학습 곡선과 실제 G-code 복원 IoU는 구분</span></div><template class="slide-notes"><h3>발표 설명</h3><p>k_predictor는 38→32 ReLU→16 ReLU→1 Softplus의 작은 MLP이며 정답 k를 바로 회귀하는 MSE baseline도 구현돼 있다. 이 장의 실제 재학습은 IoU regret를 최소화하는 방식이고 MSE 곡선이라고 부르지 않는다. Q는 0~1 IoU, G와 T는 %p, θ는 degree, k는 %p/degree다. softmax는 학습에만 사용하고 추론은 select_cone의 hard argmax를 유지한다. 원본 50-STL 각도별 기하근사 IoU와 원본 STLs를 사용해 seed42/43/44로 재실행했다. 매 STL 도착 후 기존 데이터 전체를 다시 사용해 20회 Adam 업데이트하고 50개 후 동일 고정 데이터로 추가 학습한다. initial_k=.2, lr=.003, weight_decay=1e-4, T 1→.1, 고정 단계 T=.1. 각 실행의 총 업데이트는 1000+540,1000+400,1000+240. 평균 k는 각각 2.133259,4.157754,1.676892. 전체 50개를 학습에 사용한 내부 수렴 검증이며 보지 않은 STL 성능을 측정한 실험은 아니다. 고정 단계 종료 기준은 최근100 업데이트 동안 선택 인덱스 동일, 개별 k 최대 변화폭&lt;.01, loss 범위&lt;1e-5. mushroom_03의 예측 k는 각각 1.629244,3.680339,1.090967로 다르지만 세 시드 모두 outward 0°를 선택했다. 넓은 k 범위가 같은 선택을 내므로 이 기록으로 k를 하나로 정할 수 없다. 수직선의 경계 1.0587은 원본 selector에서 mushroom_03의 J(12°)=J(0°)가 되는 k이며, 그보다 작으면 12°, 크면 0°를 고른다. 기본 k=0.2는 12°를 고른다. 가장 가까운 seed44의 1.091은 경계보다 약 3% 위라 여유가 작다. 8장에서 0°와 12°의 IoU 차(0.046%p, 12°가 높음)는 voxel 0.3mm에서 순위를 가릴 수 없는 크기다. Drive 원본은 다른 실행에서 평균3.233567을 기록했으나 이번 그래프는 이번에 실제 다시 실행한 기록으로 생성했다. 재실행 전체 결과를 숨기지 않고 세 곡선을 모두 넣었다.</p>
+<div class="convergence-facts"><div><strong>3 / 3</strong><span>같은 각도(0°) 선택</span></div><div><strong>1.09 – 3.68</strong><span>k값은 시드마다 다름</span></div></div></div></div></div>
+    <div class="prep-note"><strong>자료 메모</strong><span>학습 label: 50개 STL × 46후보의 이상적 적층 형상 IoU. 학습 곡선과 실제 G-code 복원 IoU는 구분</span></div><template class="slide-notes"><h3>발표 설명</h3><p>k_predictor는 38→32 ReLU→16 ReLU→1 Softplus의 작은 MLP이며 정답 k를 바로 회귀하는 MSE baseline도 구현돼 있다. 이 장의 실제 재학습은 IoU regret를 최소화하는 방식이고 MSE 곡선이라고 부르지 않는다. Q는 0~1 IoU, G와 T는 %p, θ는 degree, k는 %p/degree다. softmax는 학습에만 사용하고 추론은 select_cone의 hard argmax를 유지한다. 원본 50-STL 각도별 기하근사 IoU와 원본 STLs를 사용해 seed42/43/44로 재실행했다. 매 STL 도착 후 기존 데이터 전체를 다시 사용해 20회 Adam 업데이트하고 50개 후 동일 고정 데이터로 추가 학습한다. initial_k=.2, lr=.003, weight_decay=1e-4, T 1→.1, 고정 단계 T=.1. 각 실행의 총 업데이트는 1000+540,1000+400,1000+240. 평균 k는 각각 2.133259,4.157754,1.676892. 전체 50개를 학습에 사용한 내부 수렴 검증이며 보지 않은 STL 성능을 측정한 실험은 아니다. 고정 단계 종료 기준은 최근100 업데이트 동안 선택 인덱스 동일, 개별 k 최대 변화폭&lt;.01, loss 범위&lt;1e-5. mushroom_03의 예측 k는 각각 1.629244,3.680339,1.090967로 다르지만 세 시드 모두 outward 0°를 선택했다. 넓은 k 범위가 같은 선택을 내므로 이 기록으로 k를 하나로 정할 수 없다. 수직선의 경계 1.0587은 원본 selector에서 mushroom_03의 J(12°)=J(0°)가 되는 k이며, 그보다 작으면 12°, 크면 0°를 고른다. 기본 k=0.2는 12°를 고른다. 가장 가까운 seed44의 1.091은 경계보다 약 3% 위라 여유가 작다. 8장에서 0°와 12°의 IoU 차(0.046%p, 12°가 높음)는 voxel 0.3mm에서 순위를 가릴 수 없는 크기다. Drive 원본은 다른 실행에서 평균3.233567을 기록했으나 이번 그래프는 이번에 실제 다시 실행한 기록으로 생성했다. 수렴 곡선(assets/figures/k-convergence.png)은 화면에서 빼고 아래 출처 링크로 남겼다. 세 시드 모두 종료 기준(최근 100회 선택 유지, k 변화폭 0.01 미만)을 만족했다. 학습 단계: 손실의 기울기가 k와 MLP 가중치를 갱신하고, 새 STL 추론에서는 k를 예측한 뒤 기존 J의 최대 후보를 선택한다.</p>
     <h3>구현 근거</h3><p>conical/k_learning/model.py, features.py, loss.py; tools/run_cumulative_k_learning.py, tools/settle_cumulative_k.py; assets/data/learning-traces.csv, learning-repeats.json</p><h3>내용 출처</h3>
     <a class="note-source" href="https://github.com/26037-arch/wjd">wjd 공개 저장소</a>
     <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>
     <a class="note-source" href="https://drive.google.com/drive/folders/1Z0gUKEgeItji8W_Syo2zUCr6RDTfqadh">Drive · wjd e9bc3b0 코드와 실험 원본</a>
-    <a class="note-source" href="assets/data/provenance.json">발표용 반복 검증 조건과 결과</a><a class="note-source" href="assets/figures/k-training-full.png">누적 학습부터 종료까지 전체 곡선</a></template></section>
+    <a class="note-source" href="assets/data/provenance.json">발표용 반복 검증 조건과 결과</a><a class="note-source" href="assets/figures/k-convergence.png">시드 42/43/44 수렴 곡선</a><a class="note-source" href="assets/figures/k-training-full.png">누적 학습부터 종료까지 전체 곡선</a></template></section>
         <!-- 08 · 두 갈래 검증 -->
         <section id="slide-8" class="slide research-slide" data-section="코드와 검증" aria-labelledby="title-8" aria-hidden="true">
     <span class="slide-number">08</span><header class="slide-header">
     <p class="eyebrow">06 · TWO-WAY CHECK</p>
-    <h2 id="title-8">선택한 원뿔각을 두 갈래로 확인</h2><p class="subtitle">판정식·검사기는 오버행을, 퇴적 복원은 형상을 본다 — 어느 쪽이 실물과 맞는지는 15장의 출력이 판정</p></header>
+    <h2 id="title-8">선택한 원뿔각을 두 갈래로 확인</h2><p class="subtitle">오버행은 판정식으로, 형상은 퇴적 복원으로</p></header>
     <div class="content">
 <div class="check-lanes two-way">
-<div class="check-lane"><div class="label">A · 판정식과 검사기</div><h3>오버행 판정이 맞는가</h3>
+<div class="check-lane"><div class="label">A · 판정식과 검사기</div>
 <div class="metric-list">
-<div class="metric"><strong>3 / 3</strong><p>판정식을 세 번 따로 다시 유도<br>코드와 최대 차 7.6×10<sup>−14</sup>°</p></div>
-<div class="metric"><strong>22,000면</strong><p>같은 식을 팀원이 따로 구현<br>면 단위 최대 차 1.42×10<sup>−14</sup>°</p></div>
-<div class="metric"><strong>0.000 %p</strong><p>정답을 아는 입력으로 대조<br>원기둥 θ=0 → 서포트 0이어야 함</p></div>
-<div class="metric"><strong>48점 오판</strong><p>검사기 결함 발견·수정<br>원뿔 층의 공중 점을 베드 지지로 셈</p></div>
+<div class="metric"><strong>3 / 3</strong><p>판정식 재유도 일치</p></div>
+<div class="metric"><strong>22,000면</strong><p>팀원 구현과 일치</p></div>
+<div class="metric"><strong>0.000 %p</strong><p>정답 대조 (원기둥)</p></div>
+<div class="metric"><strong>48점</strong><p>검사기 오판 수정</p></div>
+</div></div>
+<div class="check-lane green"><div class="label">B · 출력 형상 복원</div>
+<figure class="research-figure angle-figure"><img src="assets/figures/angle-iou.png" alt="mushroom_03의 원뿔각별 체적 IoU. 학습 k 선택각 0도 점선과 측정 최대 10도 표시"><figcaption>mushroom_03 · 0–12° 순위는 아직 못 가림</figcaption></figure>
 </div>
-<p class="lane-foot">회귀 테스트 127개 · 저장소 전체가 판정식 하나(analytic.py)를 사용</p></div>
-<div class="check-lane green"><div class="label">B · 출력 형상 복원</div><h3>선택한 각도의 형상이 맞는가</h3>
-<figure class="research-figure angle-figure"><img src="assets/figures/angle-iou.png" alt="mushroom_03의 원뿔각별 체적 IoU. 학습 k 선택각 0도 점선과 측정 최대 10도 표시"><figcaption>mushroom_03 · G-code 퇴적 복원 46후보 · 0° 선택 92.624% / 최대 10° 93.172%</figcaption></figure>
-<p class="lane-foot">voxel 0.3 mm에서 <strong>0–12° 순위 미확정</strong> · 0°·10°·12° 각 3회 재실행 동일<br>선형 J는 k를 바꿔도 0° 또는 12°만 선택 — 10°에는 닿지 못함</p></div>
 </div></div>
     <div class="prep-note"><strong>자료 메모</strong><span>IoU = 교집합 / 합집합. 4개 격자 내부 측정 위치의 부피를 집계한 수치입니다. 실물 스캔이 아닌 G-code 퇴적 복원 비교입니다.</span></div><template class="slide-notes"><h3>발표 설명</h3><p>A 갈래(재혁): 판정식 g(θ)=n_z cosθ + d n_r sinθ &lt; κ와 면별 임계각 θ*를 세 번 따로 다시 유도해 코드와 대조했다(20,000 법선, 최대 차 7.6e-14°). 이 재유도는 같은 AI 도구로 했고 식이 CLAUDE.md에 적혀 있어 완전 독립은 아니다. 팀원 구현과는 3모델×2방향 약 22,000면에서 임계각 최대 차 1.42e-14°. 구현 독립이지 가정 독립은 아니므로 정답을 아는 입력(수직 원기둥·직육면체 θ=0 → 0%p, 60° 원뿔 → 0.5%p 초과)으로 따로 검정했다. 그 과정에서 툴패스 검사기의 베드 지지 규칙이 평면 층을 가정해 원뿔 층에서 공중 점 48개를 베드 지지로 세던 결함을 찾아 고쳤다. 같은 대조에서 critical_angle의 도달 불가 판정이 과엄격한 잠재 결함(F1)도 나왔으나 실제 메시 영향은 0면이고 주 파이프라인은 무관하다.</p><p>B 갈래(팀원): Drive 데이터 중 mushroom_03 하나에만 실제 G-code 생성과 복원 46조건 전체가 확보돼 있다. 최고 성능의 임의 모델이라고 부르지 않고 전체 후보 결과가 있는 대표 모델로 선정했다. 50개 STL의 이상적 적층 기하근사 label을 실제 출력 형상과 혼합하지 않았다. 동일 원본 STL과 고정 좌표의 구형 퇴적 복원을 비교했으며 각 voxel 내부의 4개 측정 위치에서 교집합 부피와 합집합 부피를 구한 뒤 평균 교집합/평균 합집합으로 집계했다. 4개 측정 위치는 독립 퇴적 실행4회가 아니다. 이번에 0°,10°,12°를 각각3회 실제로 G-code 생성 및 전체 퇴적 재실행했고 매 각도 G-code SHA256, occupied voxel SHA256, IoU가 모두 일치했다. 선택0° IoU .9262427386, 측정최대10° .9317155299, 기본k=.2가 선택한12° .9267034221. 학습 k 선택은 기본 k 대비 .046068%p 낮으며 이번 실험의 성과는 실행 재현과 평가 결과 확인이다. 계산상 최대와의 IoU 차이는 .547279%p다. outward 0–12°의 이웃 각도 간 IoU 차이 절댓값 평균은 .569016%p로 약 .57%p이며 오차 범위나 신뢰구간이 아니다. voxel .3mm의 해상도 수렴을 확인하지 않아 이 차이로 정밀한 각도 순위나 학습 개선을 확정하기 어렵다. mushroom_03은 학습에 사용한 50개에 포함된다. 동일 해시의 반복은 결정적 계산의 재현성을 보여주며 수치 정확도를 보장하지 않는다. 원본 selector의 k 선형 envelope는 이 모델에서 경계1.05870556527을 사이에 12°와0°만 도달 가능해, k값 하나를 바꾸는 것으로10°를 선택할 수 없다는 구조적 결과를 얻는다. 이를 실제 프린터 품질의 최고각 확정이라고 말하지 않는다. 냉각/고화/처짐을 해석하지 않는 구형 퇴적 재구성이며 실물 출력 자료는15장에 추가한다.</p>
     <h3>구현 근거</h3><p>tools/deposition_iou_sweep.py, tools/check_deposition_phases.py, conical/k_learning/baselines.py; assets/data/angle-iou.csv, deposition-repeats.csv, provenance.json</p><h3>내용 출처</h3>
@@ -433,19 +431,13 @@
         <section id="slide-10" class="slide research-slide" data-section="프로그램 설계" aria-labelledby="title-10" aria-hidden="true">
     <span class="slide-number">10</span><header class="slide-header">
     <p class="eyebrow">08 · GUI</p>
-    <h2 id="title-10">출력 전에 G-code를 눈으로 확인하는 도구</h2><p class="subtitle">각도 결정은 명령줄(conical_slice.py), 확인은 브라우저 시뮬레이터 — 설치 없이 브라우저에서 실행</p></header>
+    <h2 id="title-10">출력 전에 G-code를 눈으로 확인하는 도구</h2><p class="subtitle">각도는 명령줄에서 정하고, 결과는 브라우저에서 확인</p></header>
     <div class="content">
 <div class="gui-layout">
-<figure class="research-figure gui-shot"><img src="assets/figures/gui-gcode.png" alt="시뮬레이터 G-code 실행 탭: 램프 모델의 가변각 밴드 G-code를 65% 지점까지 재생, 원뿔 레이어 색상"><figcaption><strong>G-code 실행</strong> · 램프 가변각(30°→0°) 경로를 재생 · 색 = 원뿔 레이어 z + r·tanθ</figcaption></figure>
-<figure class="research-figure gui-shot"><img src="assets/figures/gui-verify.png" alt="시뮬레이터 검증 탭: 같은 G-code의 층간격 히트맵. 파랑은 층고 이하, 노랑·빨강은 아래 지지점까지 거리가 큰 점"><figcaption><strong>검증</strong> · 같은 G-code의 층간격 히트맵 · 점 클릭 → 손계산 식</figcaption></figure>
-<ol class="gui-flow">
-<li><span>01</span><strong>각도 결정</strong><p>conical_slice.py<br>STL → 원뿔 G-code</p></li>
-<li><span>02</span><strong>경로 재생</strong><p>층 순서·노즐 위치<br>STL 겹쳐 보기</p></li>
-<li><span>03</span><strong>지지 확인</strong><p>Python과 따로 구현한<br>JS 검사기로 대조</p></li>
-<li><span>04</span><strong>기계 점검</strong><p>rep5x_check.py<br>B/C 한계·급회전</p></li>
-</ol>
+<figure class="research-figure gui-shot"><img src="assets/figures/gui-gcode.png" alt="시뮬레이터 G-code 실행 탭: 램프 모델의 가변각 밴드 G-code를 65% 지점까지 재생, 원뿔 레이어 색상"><figcaption><strong>G-code 실행</strong> · 경로 재생</figcaption></figure>
+<figure class="research-figure gui-shot"><img src="assets/figures/gui-verify.png" alt="시뮬레이터 검증 탭: 같은 G-code의 층간격 히트맵. 파랑은 층고 이하, 노랑·빨강은 아래 지지점까지 거리가 큰 점"><figcaption><strong>검증</strong> · 층간격 히트맵</figcaption></figure>
 </div></div>
-    <div class="prep-note"><strong>자료 메모</strong><span>실제 화면 캡처(tools/slicing_simulator.html). 프라임 선을 뺀 같은 G-code로 표시 · GUI에서 각도를 고르는 기능은 아직 없음</span></div><template class="slide-notes"><h3>발표 설명</h3><p>tools/slicing_simulator.html의 실제 화면이다. HTML 파일(rep5x_scene.js 동봉)이라 설치 없이 브라우저에서 열린다(3D 표시는 CDN의 Plotly·three.js를 쓰므로 발표 노트북은 인터넷 연결이 필요하고, 검증 탭은 오프라인 동작). 왼쪽은 G-code 실행 탭: conical_slice.py가 만든 램프 가변각 밴드 G-code(examples/lamp_expA_band2_lh04.gcode, 아래 30° → 위 0°, 층고 0.4)를 65% 지점까지 재생했고 lamp.stl을 반투명으로 겹쳤다. 오른쪽은 검증 탭: 같은 G-code를 Python 검사기와 따로 작성한 JS 구현으로 다시 계산해 아래 지지점까지의 거리를 색으로 칠한다. 점을 클릭하면 숫자를 대입한 식이 나와 계산기로 따라 칠 수 있다. 두 구현 모두 같은 AI 도구로 작성해 완전 독립은 아니다. 화면에 보이는 미지지 압출 %는 인필을 포함한 원시 값이므로 오버행 지표로 인용하지 않는다. 캡처에는 머신 시작 블록의 프라임 선(X5→X100)을 뺀 사본을 썼다 — 경로 자체는 동일하다. 현재 GUI는 확인 도구이며 각도를 고르거나 G-code를 만드는 버튼은 없다. 각도 결정과 G-code 생성은 명령줄에서 한다.</p>
+    <div class="prep-note"><strong>자료 메모</strong><span>실제 화면 캡처 · 각도 선택 기능은 아직 GUI에 없음</span></div><template class="slide-notes"><h3>발표 설명</h3><p>tools/slicing_simulator.html의 실제 화면이다. HTML 파일(rep5x_scene.js 동봉)이라 설치 없이 브라우저에서 열린다(3D 표시는 CDN의 Plotly·three.js를 쓰므로 발표 노트북은 인터넷 연결이 필요하고, 검증 탭은 오프라인 동작). 왼쪽은 G-code 실행 탭: conical_slice.py가 만든 램프 가변각 밴드 G-code(examples/lamp_expA_band2_lh04.gcode, 아래 30° → 위 0°, 층고 0.4)를 65% 지점까지 재생했고 lamp.stl을 반투명으로 겹쳤다. 오른쪽은 검증 탭: 같은 G-code를 Python 검사기와 따로 작성한 JS 구현으로 다시 계산해 아래 지지점까지의 거리를 색으로 칠한다. 점을 클릭하면 숫자를 대입한 식이 나와 계산기로 따라 칠 수 있다. 두 구현 모두 같은 AI 도구로 작성해 완전 독립은 아니다. 화면에 보이는 미지지 압출 %는 인필을 포함한 원시 값이므로 오버행 지표로 인용하지 않는다. 캡처에는 머신 시작 블록의 프라임 선(X5→X100)을 뺀 사본을 썼다 — 경로 자체는 동일하다. 현재 GUI는 확인 도구이며 각도를 고르거나 G-code를 만드는 버튼은 없다. 각도 결정과 G-code 생성은 명령줄에서 한다.</p>
     <h3>구현 근거</h3><p>tools/slicing_simulator.html, conical_slice.py, rep5x_check.py; 캡처 입력 examples/lamp_expA_band2_lh04.gcode, examples/lamp.stl</p><h3>내용 출처</h3>
     <a class="note-source" href="https://github.com/26037-arch/wjd">wjd 공개 저장소</a>
     <a class="note-source" href="https://github.com/KJH-code/slicer">KJH-code/slicer</a>

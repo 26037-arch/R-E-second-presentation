@@ -220,3 +220,26 @@
 #slide-7 .convergence-note{margin-top:9px;font-size:15px!important}
 #slide-7 .k-line-block .label{text-transform:none;letter-spacing:.02em}
 #slide-15 .empty-results th,#slide-15 .empty-results td{padding:8px 13px}
+#slide-7 .convergence-facts{margin-top:18px}
+#slide-7 .convergence-facts strong{font-size:31px}
+#slide-7 .convergence-facts span{font-size:17px;margin-top:6px}
+#slide-7 .k-line-block{margin-top:22px}
+#slide-8 .two-way{gap:70px}
+#slide-8 .check-lane{padding-top:22px}
+#slide-8 .metric-list{gap:44px 36px;margin-top:30px}
+#slide-8 .metric-list .metric{padding-top:20px}
+#slide-8 .metric-list strong{font-size:44px;margin-bottom:10px}
+#slide-8 .metric-list p{font-size:20px}
+#slide-8 .angle-figure{margin-top:18px}
+#slide-8 .angle-figure img{max-height:330px}
+#slide-8 .research-figure figcaption{font-size:16px;padding:8px 16px 12px}
+#slide-10 .gui-layout{grid-template-columns:1.78fr 1.264fr;gap:24px}
+#slide-10 .gui-shot img{height:auto;aspect-ratio:auto}
+#slide-10 .gui-shot figcaption{font-size:17px;padding:10px 16px 12px}
+#slide-7 .convergence-result{padding-top:6px}
+#slide-7 .kl-title{font-size:27px;margin:0 0 4px}
+#slide-7 .k-line-block{margin-top:6px}
+#slide-7 .kl-region{font-size:16px}#slide-7 .kl-bound-label{font-size:15px}#slide-7 .kl-label{font-size:15px}#slide-7 .kl-tick{font-size:13px}
+#slide-7 .convergence-facts{margin-top:34px;padding-top:22px;border-top:1px solid var(--line)}
+#slide-7 .convergence-facts strong{font-size:44px}
+#slide-7 .convergence-facts span{font-size:20px;margin-top:10px}
