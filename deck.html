@@ -647,7 +647,7 @@
           <header class="slide-header">
             <p class="eyebrow">12 · PRINTER RETROFIT</p>
             <h2 id="title-14">3D 프린터 개조</h2>
-            <p class="subtitle">Ender-3 V3 SE 본체에 Rep5x 헤드 회전 구조 적용</p>
+            <p class="subtitle">Ender-3 V3 SE 본체에 Rep5x 헤드 회전 구조 적용 (제작 진행 중)</p>
           </header>
           <div class="content">
             <div class="photo-grid">
@@ -655,7 +655,7 @@
                 <div class="photo-slot">
                   <span class="slot-num">01 / BEFORE</span>
                   <strong>개조 전 본체</strong>
-                  <p>Ender-3 V3 SE 전체 사진<br>기존 헤드와 캐리지 표시</p>
+                  <p>사진 추가 예정<br>Ender-3 V3 SE 전체 · 기존 헤드와 캐리지</p>
                 </div>
                 <div class="photo-caption">
                   <h3>본체와 기준 구조</h3>
@@ -666,7 +666,7 @@
                 <div class="photo-slot">
                   <span class="slot-num">02 / BUILD</span>
                   <strong>회전 헤드 조립</strong>
-                  <p>C축 구동부와 B축 암 근접 사진<br>부품 연결 위치 표시</p>
+                  <p>사진 추가 예정<br>C축 구동부와 B축 암 근접</p>
                 </div>
                 <div class="photo-caption">
                   <h3>5축 회전부</h3>
@@ -676,8 +676,8 @@
               <div>
                 <div class="photo-slot">
                   <span class="slot-num">03 / AFTER</span>
-                  <strong>개조 완료 장비</strong>
-                  <p>완성 장비 정면·측면 사진<br>외장 압출기와 배선 표시</p>
+                  <strong>개조 후 장비 (예정)</strong>
+                  <p>제작 완료 후 추가<br>정면·측면 · 외장 압출기와 배선</p>
                 </div>
                 <div class="photo-caption">
                   <h3>장비 통합</h3>
@@ -691,7 +691,7 @@
                 <p>기존 부품 대비 추가·교체한 부위와 선택 이유</p>
               </div>
               <div>
-                <h3>완료 상태를 보여줄 기록</h3>
+                <h3>완료 후 남길 기록</h3>
                 <p>축 구동, 원점 복귀, 보정 결과와 짧은 동작 영상</p>
               </div>
             </div>
@@ -703,7 +703,7 @@
           <!-- 발표자 메모: 화면의 메모 버튼 또는 N 키로 확인 -->
           <template class="slide-notes">
             <h3>발표 설명</h3>
-            <p>사용자 제공 성과인 프린터 제작·개조를 소개하는 장이다. 공식 시연 사진을 팀 장비 사진처럼 사용하지 않고 실제 사진 요청을 남겼다. 사진에 어떤 구조가 보이면 좋을지 구체적으로 적었다. Ender 3 V3 SE용 설계는 외장 압출기 마운트와 X/Z endstop mount를 포함한다. 실제 설치한 제어보드나 모터·드라이버 모델은 자료가 없으므로 임의로 채우지 않았다. 장비 상태와 팀의 직접 수정 부품을 중심으로 최종 문구를 보완한다.</p>
+            <p>프린터 제작·개조는 진행 중이다(10월 제작, 11월 실험). 이 장은 개조 계획과 완료 후 남길 기록을 보여주며, 완료로 말하지 않는다. 공식 시연 사진을 팀 장비 사진처럼 사용하지 않고 실제 사진 요청을 남겼다. 사진에 어떤 구조가 보이면 좋을지 구체적으로 적었다. Ender 3 V3 SE용 설계는 외장 압출기 마운트와 X/Z endstop mount를 포함한다. 실제 설치한 제어보드나 모터·드라이버 모델은 자료가 없으므로 임의로 채우지 않았다. 장비 상태와 팀의 직접 수정 부품을 중심으로 최종 문구를 보완한다.</p>
             <h3>추가로 필요한 자료</h3>
             <ul>
               <li>개조 전 본체 전경</li>
@@ -720,13 +720,13 @@
             <p style="color:#78859a;font-size:12px;margin:0">2학기 프로젝트 내 대화. 설계 방향 참고, 실측값의 출처로 사용하지 않음</p>
           </template>
         </section>
-        <!-- 15 · 형상 출력 확인 -->
+        <!-- 15 · 실물 출력이 판정할 것 -->
         <section id="slide-15" class="slide" data-section="출력과 후속 연구" aria-labelledby="title-15" aria-hidden="true">
           <span class="slide-number">15</span>
           <header class="slide-header">
             <p class="eyebrow">13 · PRINT VERIFICATION</p>
-            <h2 id="title-15">형상 출력 확인</h2>
-            <p class="subtitle">동일 모델의 원본, G-code 재구성, 실제 출력물을 대응</p>
+            <h2 id="title-15">실물 출력이 판정할 것</h2>
+            <p class="subtitle">같은 모델을 평면·균일각·가변각으로 출력해, 오버행 기준과 IoU 기준 중 어느 쪽이 실물과 맞는지 가린다</p>
           </header>
           <div class="content">
             <div class="validation-columns">
@@ -744,7 +744,7 @@
               <div class="validation-column">
                 <div class="photo-slot">
                   <span class="slot-num">SIMULATION</span>
-                  <strong>재구성 형상</strong>
+                  <strong>재구성 형상 (예정)</strong>
                   <p>G-code 시뮬레이션 STL 또는 캡처<br>같은 좌표계·크기·시점</p>
                 </div>
                 <h3>G-code 재구성</h3>
@@ -753,7 +753,7 @@
               <div class="validation-column">
                 <div class="photo-slot">
                   <span class="slot-num">PRINT</span>
-                  <strong>실물 출력 사진</strong>
+                  <strong>실물 출력 사진 (11월)</strong>
                   <p>같은 시점의 실물 정면·측면<br>크기 기준 또는 측정 눈금 포함</p>
                 </div>
                 <h3>실제 출력물</h3>
@@ -764,33 +764,24 @@
               <thead>
                 <tr>
                   <th>비교 방법</th>
-                  <th>IoU</th>
+                  <th>오버행 실패 (처짐 위치·길이)</th>
                   <th>대표 치수 오차 (mm)</th>
                   <th>출력 시간 (min)</th>
-                  <th>출력 결과</th>
+                  <th>재구성 IoU</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>평면</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>기록 추가</td>
+                  <td colspan="4">11월 실험에서 측정 (아직 출력 0건)</td>
                 </tr>
                 <tr>
-                  <td>고정각 원뿔</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>기록 추가</td>
+                  <td>균일각 원뿔</td>
+                  <td colspan="4">11월 실험에서 측정 (아직 출력 0건)</td>
                 </tr>
                 <tr>
                   <td>가변각 원뿔</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>—</td>
-                  <td>기록 추가</td>
+                  <td colspan="4">11월 실험에서 측정 (아직 출력 0건)</td>
                 </tr>
               </tbody>
             </table>
